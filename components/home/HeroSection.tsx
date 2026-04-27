@@ -4,7 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import Link from 'next/link'
 import { useBooking } from '@/lib/booking-context'
-import CarAnimation from './CarAnimation'
+import Image from 'next/image'
 
 const HEADLINES = [
   ['MM', 'Car', 'Care.'],
@@ -62,7 +62,7 @@ function HeroHeadline() {
             style={{
               display: 'block',
               fontFamily: 'var(--font-big-shoulders, sans-serif)',
-              fontSize: 'clamp(80px, 16vw, 220px)',
+              fontSize: 'clamp(100px, 20vw, 280px)',
               fontWeight: 400,
               lineHeight: 1.0,
               textTransform: 'uppercase',
@@ -137,8 +137,25 @@ export default function HeroSection() {
         overflow: 'hidden',
       }}
     >
-      {/* Car SVG */}
-      <CarAnimation />
+      {/* Logo — top right */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '32px',
+          right: 'clamp(24px, 5vw, 80px)',
+          zIndex: 3,
+          opacity: 0.12,
+          pointerEvents: 'none',
+        }}
+      >
+        <Image
+          src="/uploads/logo.png"
+          alt="MM Car Care"
+          width={320}
+          height={90}
+          style={{ objectFit: 'contain', width: 'clamp(180px, 25vw, 320px)', height: 'auto' }}
+        />
+      </div>
 
       {/* Geometric accents */}
       <div
@@ -186,19 +203,17 @@ export default function HeroSection() {
       />
 
       {/* Content */}
-      <div className="hero-content" style={{ position: 'relative', zIndex: 2, maxWidth: '900px' }}>
-        <div
-          ref={labelRef}
-          style={{
-            fontFamily: 'var(--font-space-mono, monospace)',
-            fontSize: '11px',
-            letterSpacing: '1.4px',
-            textTransform: 'uppercase',
-            color: '#555',
-            marginBottom: '24px',
-          }}
-        >
-          Kakinada · Andhra Pradesh · Mobile Service Available
+      <div className="hero-content" style={{ position: 'relative', zIndex: 2, maxWidth: '1000px' }}>
+        {/* Logo above headline */}
+        <div ref={labelRef} style={{ marginBottom: '32px' }}>
+          <Image
+            src="/uploads/logo.png"
+            alt="MM Car Care"
+            width={220}
+            height={60}
+            style={{ objectFit: 'contain', height: '52px', width: 'auto' }}
+            priority
+          />
         </div>
 
         <HeroHeadline />
