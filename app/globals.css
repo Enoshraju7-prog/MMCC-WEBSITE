@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+:root {
+  --color-canvas: #000000;
+  --color-white: #ffffff;
+  --color-silver: #999999;
+  --font-big-shoulders: 'Big Shoulders Display', ui-sans-serif, sans-serif;
+  --font-space-mono: 'Space Mono', ui-monospace, monospace;
+  --font-dm-sans: 'DM Sans', ui-sans-serif, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: var(--font-dm-sans, 'DM Sans', sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+}
+
+/* Hide default cursor on desktop */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #333;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(0.3);
+}
+
+/* Text reveal utility — wrap lines in these */
+.line-mask {
+  overflow: hidden;
+  display: block;
+}
+
+/* Page fade in */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Car float animation */
+@keyframes carFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+/* Wheel spin */
+@keyframes wheelSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Headlight pulse */
+@keyframes headlightPulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Scan line */
+@keyframes scanLine {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(200%);
+    opacity: 0;
+  }
+}
+
+/* Ground reflection */
+@keyframes reflectFade {
+  0%,
+  100% {
+    opacity: 0.07;
+  }
+  50% {
+    opacity: 0.14;
+  }
+}
+
+.car-body {
+  animation: carFloat 4s ease-in-out infinite;
+}
+.wheel-front {
+  animation: wheelSpin 2s linear infinite;
+  transform-origin: 338px 295px;
+}
+.wheel-rear {
+  animation: wheelSpin 2s linear infinite;
+  transform-origin: 122px 295px;
+}
+.headlight {
+  animation: headlightPulse 2.5s ease-in-out infinite;
+}
+.scan-line {
+  animation: scanLine 6s ease-in-out infinite 1s;
+}
+.car-reflect {
+  animation: reflectFade 4s ease-in-out infinite;
+}
