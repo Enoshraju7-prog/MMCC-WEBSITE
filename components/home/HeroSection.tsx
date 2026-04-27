@@ -62,7 +62,7 @@ function HeroHeadline() {
             style={{
               display: 'block',
               fontFamily: 'var(--font-big-shoulders, sans-serif)',
-              fontSize: 'clamp(100px, 20vw, 280px)',
+              fontSize: 'clamp(72px, 14vw, 200px)',
               fontWeight: 400,
               lineHeight: 1.0,
               textTransform: 'uppercase',
@@ -211,7 +211,7 @@ export default function HeroSection() {
             alt="MM Car Care"
             width={220}
             height={60}
-            style={{ objectFit: 'contain', height: '80px', width: 'auto' }}
+            style={{ objectFit: 'contain', height: '120px', width: 'auto' }}
             priority
           />
         </div>
