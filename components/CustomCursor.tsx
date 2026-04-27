@@ -20,8 +20,8 @@ export default function CustomCursor() {
 
     const moveXDot = gsap.quickTo(dot, 'x', { duration: 0.08, ease: 'power3.out' })
     const moveYDot = gsap.quickTo(dot, 'y', { duration: 0.08, ease: 'power3.out' })
-    const moveXRing = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3.out' })
-    const moveYRing = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3.out' })
+    const moveXRing = gsap.quickTo(ring, 'x', { duration: 0.15, ease: 'power3.out' })
+    const moveYRing = gsap.quickTo(ring, 'y', { duration: 0.15, ease: 'power3.out' })
 
     const onMouseMove = (e: MouseEvent) => {
       moveXDot(e.clientX)
