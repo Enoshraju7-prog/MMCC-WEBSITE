@@ -508,7 +508,14 @@ export default function ContactGrid() {
                     onBlur={(e) => (e.target.style.borderColor = '#1a1a1a')}
                   />
                   <button
-                    onClick={() => form.name && form.phone && setSent(true)}
+                    onClick={() => {
+                      if (!form.name || !form.phone) return
+                      const msg = encodeURIComponent(
+                        `Hi MM Car Care! I'd like to request a callback.\nName: ${form.name}\nPhone: ${form.phone}${form.vehicle ? `\nVehicle: ${form.vehicle}` : ''}${form.message ? `\nNote: ${form.message}` : ''}`
+                      )
+                      window.open(`https://wa.me/919848377309?text=${msg}`, '_blank')
+                      setSent(true)
+                    }}
                     style={{
                       width: '100%',
                       background: 'transparent',
