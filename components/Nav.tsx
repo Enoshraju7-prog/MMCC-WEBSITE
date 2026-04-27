@@ -70,13 +70,13 @@ export default function Nav() {
           left: 0,
           right: 0,
           zIndex: 200,
-          background: '#000',
+          background: '#fff',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '0 48px',
           height: '72px',
-          borderBottom: '1px solid #111',
+          borderBottom: '1px solid #ebebeb',
         }}
       >
         <button
@@ -86,7 +86,7 @@ export default function Nav() {
             fontSize: '12px',
             letterSpacing: '1.4px',
             textTransform: 'uppercase',
-            color: '#fff',
+            color: '#000',
             background: 'none',
             border: 'none',
             minWidth: '60px',
@@ -106,7 +106,7 @@ export default function Nav() {
             fontWeight: 400,
             letterSpacing: '6px',
             textTransform: 'uppercase',
-            color: '#fff',
+            color: '#000',
             position: 'absolute',
             left: '50%',
             transform: 'translateX(-50%)',
@@ -124,20 +124,20 @@ export default function Nav() {
             fontSize: '12px',
             letterSpacing: '1.4px',
             textTransform: 'uppercase',
-            color: '#fff',
+            color: '#000',
             background: 'transparent',
-            border: '1px solid #fff',
+            border: '1px solid #000',
             borderRadius: '9999px',
             padding: '8px 20px',
             transition: 'background 250ms ease, color 250ms ease',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#fff'
-            e.currentTarget.style.color = '#000'
+            e.currentTarget.style.background = '#000'
+            e.currentTarget.style.color = '#fff'
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = 'transparent'
-            e.currentTarget.style.color = '#fff'
+            e.currentTarget.style.color = '#000'
           }}
         >
           BOOK
@@ -154,12 +154,12 @@ export default function Nav() {
           left: 0,
           right: 0,
           bottom: 0,
-          background: '#000',
+          background: '#fff',
           zIndex: 199,
           flexDirection: 'column',
           justifyContent: 'center',
           padding: '48px 64px',
-          borderTop: '1px solid #111',
+          borderTop: '1px solid #ebebeb',
         }}
       >
         <div ref={linksRef} style={{ display: 'flex', flexDirection: 'column', gap: '8px', flex: 1, justifyContent: 'center' }}>
@@ -174,7 +174,7 @@ export default function Nav() {
                 fontWeight: 400,
                 lineHeight: 1.05,
                 textTransform: 'uppercase',
-                color: '#fff',
+                color: '#000',
                 textDecoration: 'none',
                 opacity: pathname === href ? 1 : 0.3,
                 transition: 'opacity 200ms ease',
@@ -192,7 +192,7 @@ export default function Nav() {
             display: 'flex',
             justifyContent: 'space-between',
             paddingTop: '36px',
-            borderTop: '1px solid #111',
+            borderTop: '1px solid #ebebeb',
           }}
         >
           <span

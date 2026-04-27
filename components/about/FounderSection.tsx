@@ -86,9 +86,9 @@ export default function FounderSection() {
     <section
       ref={sectionRef}
       style={{
-        background: '#000',
+        background: '#fff',
         padding: 'clamp(64px, 8vw, 120px) clamp(24px, 5vw, 80px)',
-        borderBottom: '1px solid #111',
+        borderBottom: '1px solid #ebebeb',
       }}
     >
       <div
@@ -111,7 +111,7 @@ export default function FounderSection() {
               paddingBottom: '120%',
               position: 'relative',
               overflow: 'hidden',
-              border: '1px solid #1a1a1a',
+              border: '1px solid #e0e0e0',
             }}
           >
             <Image
@@ -139,7 +139,7 @@ export default function FounderSection() {
           </div>
           <div
             className="founder-nameplate"
-            style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid #111' }}
+            style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid #ebebeb' }}
           >
             <div
               style={{
@@ -147,7 +147,7 @@ export default function FounderSection() {
                 fontSize: 'clamp(22px, 2.5vw, 28px)',
                 fontWeight: 400,
                 textTransform: 'uppercase',
-                color: '#fff',
+                color: '#000',
                 marginBottom: '6px',
               }}
             >
@@ -182,7 +182,7 @@ export default function FounderSection() {
                       fontWeight: 400,
                       lineHeight: 1.1,
                       textTransform: 'uppercase',
-                      color: '#fff',
+                      color: '#000',
                     }}
                   >
                     {line}
@@ -232,8 +232,8 @@ export default function FounderSection() {
             style={{
               marginTop: '40px',
               background: 'transparent',
-              color: '#fff',
-              border: '1px solid #fff',
+              color: '#000',
+              border: '1px solid #000',
               borderRadius: '9999px',
               padding: '14px 32px',
               fontFamily: 'var(--font-space-mono, monospace)',
@@ -243,8 +243,8 @@ export default function FounderSection() {
               transition: 'background 250ms ease, color 250ms ease',
               display: 'block',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000' }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#fff' }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff' }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#000' }}
           >
             Book a Service
           </button>

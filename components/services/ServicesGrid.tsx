@@ -123,9 +123,9 @@ export default function ServicesGrid() {
       <section
         className="svc-header"
         style={{
-          background: '#000',
+          background: '#fff',
           padding: 'clamp(80px, 10vw, 140px) clamp(24px, 5vw, 80px) clamp(48px, 6vw, 80px)',
-          borderBottom: '1px solid #111',
+          borderBottom: '1px solid #ebebeb',
         }}
       >
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
@@ -150,7 +150,7 @@ export default function ServicesGrid() {
                 fontWeight: 400,
                 lineHeight: 1,
                 textTransform: 'uppercase',
-                color: '#fff',
+                color: '#000',
                 marginBottom: '28px',
                 display: 'block',
               }}
@@ -174,7 +174,7 @@ export default function ServicesGrid() {
       </section>
 
       {/* Grid */}
-      <section style={{ background: '#000', padding: 'clamp(48px, 6vw, 96px) clamp(24px, 5vw, 80px)' }}>
+      <section style={{ background: '#fff', padding: 'clamp(48px, 6vw, 96px) clamp(24px, 5vw, 80px)' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div
             className="svc-grid"
@@ -182,8 +182,8 @@ export default function ServicesGrid() {
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
               gap: '1px',
-              background: '#111',
-              border: '1px solid #111',
+              background: '#e8e8e8',
+              border: '1px solid #ebebeb',
             }}
           >
             {SERVICES.map((svc) => (
@@ -192,14 +192,14 @@ export default function ServicesGrid() {
                 className="svc-card"
                 onClick={() => setActive(active === svc.id ? null : svc.id)}
                 style={{
-                  background: active === svc.id ? '#050505' : '#000',
+                  background: active === svc.id ? '#fafafa' : '#fff',
                   padding: 'clamp(28px, 3vw, 44px)',
                   cursor: 'pointer',
                   transition: 'background 200ms ease',
                   position: 'relative',
                 }}
-                onMouseEnter={(e) => { if (active !== svc.id) e.currentTarget.style.background = '#040404' }}
-                onMouseLeave={(e) => { if (active !== svc.id) e.currentTarget.style.background = '#000' }}
+                onMouseEnter={(e) => { if (active !== svc.id) e.currentTarget.style.background = '#f8f8f8' }}
+                onMouseLeave={(e) => { if (active !== svc.id) e.currentTarget.style.background = '#fff' }}
               >
                 {svc.highlight && (
                   <div
@@ -211,8 +211,8 @@ export default function ServicesGrid() {
                       fontSize: '8px',
                       letterSpacing: '1.2px',
                       textTransform: 'uppercase',
-                      color: '#000',
-                      background: '#fff',
+                      color: '#fff',
+                      background: '#000',
                       padding: '4px 10px',
                       borderRadius: '9999px',
                     }}
@@ -228,7 +228,7 @@ export default function ServicesGrid() {
                       fontSize: 'clamp(28px, 3vw, 36px)',
                       fontWeight: 400,
                       textTransform: 'uppercase',
-                      color: '#fff',
+                      color: '#000',
                       lineHeight: 1,
                     }}
                   >
@@ -267,7 +267,7 @@ export default function ServicesGrid() {
                     transition: 'max-height 380ms ease',
                   }}
                 >
-                  <div style={{ borderTop: '1px solid #111', paddingTop: '16px', marginBottom: '20px' }}>
+                  <div style={{ borderTop: '1px solid #ebebeb', paddingTop: '16px', marginBottom: '20px' }}>
                     {svc.detail.map((d, i) => (
                       <div
                         key={i}
@@ -300,7 +300,7 @@ export default function ServicesGrid() {
                       padding: 0,
                       transition: 'color 200ms ease',
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = '#000')}
                     onMouseLeave={(e) => (e.currentTarget.style.color = '#555')}
                   >
                     {active === svc.id ? '− Hide Details' : "+ What's Included"}
@@ -309,8 +309,8 @@ export default function ServicesGrid() {
                     onClick={(e) => { e.stopPropagation(); open() }}
                     style={{
                       background: 'transparent',
-                      color: '#fff',
-                      border: '1px solid #fff',
+                      color: '#000',
+                      border: '1px solid #000',
                       borderRadius: '9999px',
                       padding: '8px 20px',
                       fontFamily: 'var(--font-space-mono, monospace)',
@@ -319,8 +319,8 @@ export default function ServicesGrid() {
                       textTransform: 'uppercase',
                       transition: 'background 250ms ease, color 250ms ease',
                     }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#fff' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#000' }}
                   >
                     Book
                   </button>
@@ -335,9 +335,9 @@ export default function ServicesGrid() {
       <section
         className="svc-note"
         style={{
-          background: '#000',
+          background: '#fff',
           padding: 'clamp(48px, 5vw, 80px) clamp(24px, 5vw, 80px)',
-          borderTop: '1px solid #111',
+          borderTop: '1px solid #ebebeb',
           textAlign: 'center',
         }}
       >
@@ -357,8 +357,8 @@ export default function ServicesGrid() {
           onClick={open}
           style={{
             background: 'transparent',
-            color: '#fff',
-            border: '1px solid #fff',
+            color: '#000',
+            border: '1px solid #000',
             borderRadius: '9999px',
             padding: '14px 36px',
             fontFamily: 'var(--font-space-mono, monospace)',
@@ -367,8 +367,8 @@ export default function ServicesGrid() {
             textTransform: 'uppercase',
             transition: 'background 250ms ease, color 250ms ease',
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000' }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#fff' }}
+          onMouseEnter={(e) => { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff' }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#000' }}
         >
           Book a Service
         </button>

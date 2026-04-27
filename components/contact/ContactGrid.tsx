@@ -18,9 +18,9 @@ const HOURS = [
 
 const inp: React.CSSProperties = {
   width: '100%',
-  background: '#000',
-  color: '#fff',
-  border: '1px solid #1a1a1a',
+  background: '#fff',
+  color: '#000',
+  border: '1px solid #e0e0e0',
   borderRadius: '6px',
   padding: '14px 16px',
   fontFamily: 'var(--font-dm-sans, sans-serif)',
@@ -107,9 +107,9 @@ export default function ContactGrid() {
       <section
         ref={headerRef}
         style={{
-          background: '#000',
+          background: '#fff',
           padding: 'clamp(80px, 10vw, 140px) clamp(24px, 5vw, 80px) clamp(48px, 6vw, 80px)',
-          borderBottom: '1px solid #111',
+          borderBottom: '1px solid #ebebeb',
         }}
       >
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
@@ -137,7 +137,7 @@ export default function ContactGrid() {
                   fontWeight: 400,
                   lineHeight: 1,
                   textTransform: 'uppercase',
-                  color: '#fff',
+                  color: '#000',
                 }}
               >
                 {line}
@@ -148,7 +148,7 @@ export default function ContactGrid() {
       </section>
 
       {/* Main grid */}
-      <section style={{ background: '#000', padding: 'clamp(48px, 6vw, 96px) clamp(24px, 5vw, 80px)' }}>
+      <section style={{ background: '#fff', padding: 'clamp(48px, 6vw, 96px) clamp(24px, 5vw, 80px)' }}>
         <div
           ref={sectionRef}
           style={{
@@ -224,8 +224,8 @@ export default function ContactGrid() {
                   display: 'inline-block',
                   marginTop: '28px',
                   background: 'transparent',
-                  color: '#fff',
-                  border: '1px solid #fff',
+                  color: '#000',
+                  border: '1px solid #000',
                   borderRadius: '9999px',
                   padding: '12px 28px',
                   fontFamily: 'var(--font-space-mono, monospace)',
@@ -235,8 +235,8 @@ export default function ContactGrid() {
                   textDecoration: 'none',
                   transition: 'background 250ms ease, color 250ms ease',
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000' }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#fff' }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff' }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#000' }}
               >
                 Book via WhatsApp
               </a>
@@ -275,7 +275,7 @@ export default function ContactGrid() {
                         fontSize: '10px',
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
-                        color: isToday ? '#fff' : '#444',
+                        color: isToday ? '#000' : '#444',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '10px',
@@ -286,8 +286,8 @@ export default function ContactGrid() {
                         <span
                           style={{
                             fontSize: '7px',
-                            background: '#fff',
-                            color: '#000',
+                            background: '#000',
+                            color: '#fff',
                             padding: '2px 7px',
                             borderRadius: '9999px',
                           }}
@@ -302,7 +302,7 @@ export default function ContactGrid() {
                         fontSize: '10px',
                         letterSpacing: '0.5px',
                         textTransform: 'uppercase',
-                        color: h.open ? (isToday ? '#fff' : '#444') : '#2a2a2a',
+                        color: h.open ? (isToday ? '#000' : '#444') : '#2a2a2a',
                       }}
                     >
                       {h.time}
@@ -334,11 +334,11 @@ export default function ContactGrid() {
                 style={{
                   width: '100%',
                   height: '240px',
-                  border: '1px solid #1a1a1a',
+                  border: '1px solid #e0e0e0',
                   borderRadius: '6px',
                   overflow: 'hidden',
                   position: 'relative',
-                  background: '#060606',
+                  background: '#f9f9f9',
                   cursor: 'pointer',
                 }}
               >
@@ -348,12 +348,12 @@ export default function ContactGrid() {
                     position: 'absolute',
                     inset: 0,
                     backgroundImage:
-                      'linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)',
+                      'linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px)',
                     backgroundSize: '36px 36px',
                   }}
                 />
-                <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: '2px', background: 'rgba(255,255,255,0.07)' }} />
-                <div style={{ position: 'absolute', left: '38%', top: 0, bottom: 0, width: '2px', background: 'rgba(255,255,255,0.07)' }} />
+                <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: '2px', background: 'rgba(0,0,0,0.07)' }} />
+                <div style={{ position: 'absolute', left: '38%', top: 0, bottom: 0, width: '2px', background: 'rgba(0,0,0,0.07)' }} />
                 {/* Pin */}
                 <div
                   style={{
@@ -371,11 +371,11 @@ export default function ContactGrid() {
                       width: '8px',
                       height: '8px',
                       borderRadius: '50%',
-                      background: '#fff',
-                      boxShadow: '0 0 12px rgba(255,255,255,0.3)',
+                      background: '#000',
+                      boxShadow: '0 0 12px rgba(0,0,0,0.3)',
                     }}
                   />
-                  <div style={{ width: '1px', height: '14px', background: 'rgba(255,255,255,0.6)' }} />
+                  <div style={{ width: '1px', height: '14px', background: 'rgba(0,0,0,0.6)' }} />
                 </div>
                 <div
                   style={{
@@ -383,8 +383,8 @@ export default function ContactGrid() {
                     top: '50%',
                     left: '38%',
                     transform: 'translate(8px, -80%)',
-                    background: '#fff',
-                    color: '#000',
+                    background: '#000',
+                    color: '#fff',
                     fontFamily: 'var(--font-space-mono, monospace)',
                     fontSize: '8px',
                     letterSpacing: '0.5px',
@@ -424,7 +424,7 @@ export default function ContactGrid() {
                     textDecoration: 'none',
                     transition: 'color 200ms ease',
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#000')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = '#555')}
                 >
                   Open Maps →
@@ -448,7 +448,7 @@ export default function ContactGrid() {
               </div>
 
               {sent ? (
-                <div style={{ padding: '32px 0', borderTop: '1px solid #111' }}>
+                <div style={{ padding: '32px 0', borderTop: '1px solid #ebebeb' }}>
                   <div
                     style={{
                       fontFamily: 'var(--font-big-shoulders, sans-serif)',
@@ -456,7 +456,7 @@ export default function ContactGrid() {
                       fontWeight: 400,
                       lineHeight: 1,
                       textTransform: 'uppercase',
-                      color: '#fff',
+                      color: '#000',
                       marginBottom: '12px',
                     }}
                   >
@@ -480,32 +480,32 @@ export default function ContactGrid() {
                     placeholder="Your name"
                     value={form.name}
                     onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                    onFocus={(e) => (e.target.style.borderColor = '#fff')}
-                    onBlur={(e) => (e.target.style.borderColor = '#1a1a1a')}
+                    onFocus={(e) => (e.target.style.borderColor = '#000')}
+                    onBlur={(e) => (e.target.style.borderColor = '#e0e0e0')}
                   />
                   <input
                     style={inp}
                     placeholder="Phone number"
                     value={form.phone}
                     onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
-                    onFocus={(e) => (e.target.style.borderColor = '#fff')}
-                    onBlur={(e) => (e.target.style.borderColor = '#1a1a1a')}
+                    onFocus={(e) => (e.target.style.borderColor = '#000')}
+                    onBlur={(e) => (e.target.style.borderColor = '#e0e0e0')}
                   />
                   <input
                     style={inp}
                     placeholder="Vehicle (optional)"
                     value={form.vehicle}
                     onChange={(e) => setForm((f) => ({ ...f, vehicle: e.target.value }))}
-                    onFocus={(e) => (e.target.style.borderColor = '#fff')}
-                    onBlur={(e) => (e.target.style.borderColor = '#1a1a1a')}
+                    onFocus={(e) => (e.target.style.borderColor = '#000')}
+                    onBlur={(e) => (e.target.style.borderColor = '#e0e0e0')}
                   />
                   <textarea
                     style={{ ...inp, minHeight: '80px', resize: 'vertical', marginBottom: '16px' }}
                     placeholder="Any specific request? (optional)"
                     value={form.message}
                     onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-                    onFocus={(e) => (e.target.style.borderColor = '#fff')}
-                    onBlur={(e) => (e.target.style.borderColor = '#1a1a1a')}
+                    onFocus={(e) => (e.target.style.borderColor = '#000')}
+                    onBlur={(e) => (e.target.style.borderColor = '#e0e0e0')}
                   />
                   <button
                     onClick={() => {
@@ -519,8 +519,8 @@ export default function ContactGrid() {
                     style={{
                       width: '100%',
                       background: 'transparent',
-                      color: form.name && form.phone ? '#fff' : '#444',
-                      border: `1px solid ${form.name && form.phone ? '#fff' : '#222'}`,
+                      color: form.name && form.phone ? '#000' : '#444',
+                      border: `1px solid ${form.name && form.phone ? '#000' : '#dddddd'}`,
                       borderRadius: '9999px',
                       padding: '14px 24px',
                       fontFamily: 'var(--font-space-mono, monospace)',
@@ -531,13 +531,13 @@ export default function ContactGrid() {
                     }}
                     onMouseEnter={(e) => {
                       if (form.name && form.phone) {
-                        e.currentTarget.style.background = '#fff'
-                        e.currentTarget.style.color = '#000'
+                        e.currentTarget.style.background = '#000'
+                        e.currentTarget.style.color = '#fff'
                       }
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.background = 'transparent'
-                      e.currentTarget.style.color = form.name && form.phone ? '#fff' : '#444'
+                      e.currentTarget.style.color = form.name && form.phone ? '#000' : '#444'
                     }}
                   >
                     Request Callback

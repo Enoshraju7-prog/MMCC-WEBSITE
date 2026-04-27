@@ -62,11 +62,11 @@ function HeroHeadline() {
             style={{
               display: 'block',
               fontFamily: 'var(--font-big-shoulders, sans-serif)',
-              fontSize: 'clamp(52px, 11vw, 160px)',
+              fontSize: 'clamp(80px, 16vw, 220px)',
               fontWeight: 400,
               lineHeight: 1.0,
               textTransform: 'uppercase',
-              color: '#fff',
+              color: '#000',
               letterSpacing: '-1px',
             }}
           >
@@ -133,7 +133,7 @@ export default function HeroSection() {
         flexDirection: 'column',
         justifyContent: 'flex-end',
         padding: 'clamp(32px, 5vw, 80px) clamp(24px, 5vw, 80px)',
-        background: '#000',
+        background: '#fff',
         overflow: 'hidden',
       }}
     >
@@ -148,7 +148,7 @@ export default function HeroSection() {
           top: 0,
           bottom: 0,
           width: '50%',
-          background: 'linear-gradient(to left, rgba(255,255,255,0.018) 0%, transparent 100%)',
+          background: 'linear-gradient(to left, rgba(0,0,0,0.03) 0%, transparent 100%)',
           pointerEvents: 'none',
         }}
       />
@@ -160,7 +160,7 @@ export default function HeroSection() {
           top: '15%',
           width: '1px',
           height: '40%',
-          background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.08), transparent)',
+          background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.08), transparent)',
         }}
       />
       <div
@@ -171,7 +171,7 @@ export default function HeroSection() {
           top: '20%',
           width: '1px',
           height: '30%',
-          background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.04), transparent)',
+          background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.04), transparent)',
         }}
       />
 
@@ -180,7 +180,7 @@ export default function HeroSection() {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 55%)',
+          background: 'linear-gradient(to top, rgba(255,255,255,0.0) 0%, rgba(0,0,0,0) 55%)',
           pointerEvents: 'none',
         }}
       />
@@ -221,9 +221,9 @@ export default function HeroSection() {
           <button
             onClick={open}
             style={{
-              background: '#fff',
-              color: '#000',
-              border: '1px solid #fff',
+              background: '#000',
+              color: '#fff',
+              border: '1px solid #000',
               borderRadius: '9999px',
               padding: '15px 36px',
               fontFamily: 'var(--font-space-mono, monospace)',
@@ -232,8 +232,8 @@ export default function HeroSection() {
               textTransform: 'uppercase',
               transition: 'background 250ms ease, color 250ms ease',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#fff' }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000' }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#000' }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff' }}
           >
             Book a Service
           </button>
@@ -241,8 +241,8 @@ export default function HeroSection() {
             href="/services"
             style={{
               background: 'transparent',
-              color: '#fff',
-              border: '1px solid #333',
+              color: '#000',
+              border: '1px solid #bbb',
               borderRadius: '9999px',
               padding: '15px 36px',
               fontFamily: 'var(--font-space-mono, monospace)',
@@ -253,8 +253,8 @@ export default function HeroSection() {
               display: 'inline-block',
               transition: 'border-color 200ms ease',
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.borderColor = '#fff')}
-            onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#333')}
+            onMouseEnter={(e) => (e.currentTarget.style.borderColor = '#000')}
+            onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#bbb')}
           >
             All Services
           </Link>

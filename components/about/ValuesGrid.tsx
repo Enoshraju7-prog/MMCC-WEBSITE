@@ -46,7 +46,7 @@ export default function ValuesGrid() {
   return (
     <section
       ref={sectionRef}
-      style={{ background: '#000', padding: 'clamp(64px, 8vw, 120px) clamp(24px, 5vw, 80px)' }}
+      style={{ background: '#fff', padding: 'clamp(64px, 8vw, 120px) clamp(24px, 5vw, 80px)' }}
     >
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
         <div
@@ -68,8 +68,8 @@ export default function ValuesGrid() {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            borderTop: '1px solid #111',
-            borderLeft: '1px solid #111',
+            borderTop: '1px solid #ebebeb',
+            borderLeft: '1px solid #ebebeb',
           }}
         >
           {VALUES.map((v) => (
@@ -78,11 +78,11 @@ export default function ValuesGrid() {
               className="value-card"
               style={{
                 padding: 'clamp(28px, 3vw, 44px)',
-                borderRight: '1px solid #111',
-                borderBottom: '1px solid #111',
+                borderRight: '1px solid #ebebeb',
+                borderBottom: '1px solid #ebebeb',
                 transition: 'background 200ms ease',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#040404')}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#f8f8f8')}
               onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
             >
               <div
@@ -102,7 +102,7 @@ export default function ValuesGrid() {
                   fontSize: 'clamp(26px, 2.5vw, 32px)',
                   fontWeight: 400,
                   textTransform: 'uppercase',
-                  color: '#fff',
+                  color: '#000',
                   marginBottom: '14px',
                   lineHeight: 1,
                 }}

@@ -22,8 +22,8 @@ html {
 }
 
 body {
-  background: #000;
-  color: #fff;
+  background: #fff;
+  color: #000;
   font-family: var(--font-dm-sans, 'DM Sans', sans-serif);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -48,10 +48,10 @@ body {
   width: 3px;
 }
 ::-webkit-scrollbar-track {
-  background: #000;
+  background: #fff;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1a1a1a;
+  background: #ddd;
 }
 
 input::placeholder,

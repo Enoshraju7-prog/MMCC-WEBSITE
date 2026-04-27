@@ -56,7 +56,7 @@ function StatItem({ stat, index }: { stat: typeof STATS[0]; index: number }) {
           fontWeight: 400,
           lineHeight: 1,
           textTransform: 'uppercase',
-          color: '#fff',
+          color: '#000',
           marginBottom: '12px',
         }}
       >
@@ -81,10 +81,10 @@ export default function AboutStats() {
   return (
     <section
       style={{
-        background: '#000',
+        background: '#fff',
         padding: 'clamp(64px, 8vw, 100px) clamp(24px, 5vw, 80px)',
-        borderTop: '1px solid #111',
-        borderBottom: '1px solid #111',
+        borderTop: '1px solid #ebebeb',
+        borderBottom: '1px solid #ebebeb',
       }}
     >
       <div

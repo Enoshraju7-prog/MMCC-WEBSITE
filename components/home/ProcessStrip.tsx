@@ -42,7 +42,7 @@ export default function ProcessStrip() {
     <section
       ref={sectionRef}
       style={{
-        background: '#000',
+        background: '#fff',
         padding: 'clamp(48px, 6vw, 96px) clamp(24px, 5vw, 80px)',
         borderTop: '1px solid #0a0a0a',
       }}
@@ -67,8 +67,8 @@ export default function ProcessStrip() {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(5, 1fr)',
-            borderTop: '1px solid #111',
-            borderLeft: '1px solid #111',
+            borderTop: '1px solid #ebebeb',
+            borderLeft: '1px solid #ebebeb',
           }}
         >
           {STEPS.map((step, i) => (
@@ -77,8 +77,8 @@ export default function ProcessStrip() {
               className="process-step"
               style={{
                 padding: 'clamp(20px, 2vw, 36px) clamp(16px, 2vw, 28px)',
-                borderRight: '1px solid #111',
-                borderBottom: '1px solid #111',
+                borderRight: '1px solid #ebebeb',
+                borderBottom: '1px solid #ebebeb',
               }}
             >
               <div
@@ -99,7 +99,7 @@ export default function ProcessStrip() {
                   fontWeight: 400,
                   lineHeight: 1,
                   textTransform: 'uppercase',
-                  color: '#fff',
+                  color: '#000',
                 }}
               >
                 {step}

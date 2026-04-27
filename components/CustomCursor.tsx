@@ -79,7 +79,7 @@ export default function CustomCursor() {
           width: '6px',
           height: '6px',
           borderRadius: '50%',
-          background: '#fff',
+          background: '#000',
           pointerEvents: 'none',
           zIndex: 99999,
           mixBlendMode: 'difference',

@@ -18,9 +18,9 @@ const SERVICES = [
 
 const inputStyle: React.CSSProperties = {
   width: '100%',
-  background: '#000',
-  color: '#fff',
-  border: '1px solid #222',
+  background: '#fff',
+  color: '#000',
+  border: '1px solid #ddd',
   borderRadius: '6px',
   padding: '14px 16px',
   fontFamily: 'var(--font-dm-sans, sans-serif)',
@@ -96,9 +96,9 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
         style={{
           width: '100%',
           maxWidth: '580px',
-          border: '1px solid #1a1a1a',
+          border: '1px solid #e0e0e0',
           borderRadius: '6px',
-          background: '#000',
+          background: '#fff',
           padding: 'clamp(32px, 5vw, 56px)',
           position: 'relative',
           margin: 'auto',
@@ -120,7 +120,7 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
             textTransform: 'uppercase',
             transition: 'color 200ms ease',
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
+          onMouseEnter={(e) => (e.currentTarget.style.color = '#000')}
           onMouseLeave={(e) => (e.currentTarget.style.color = '#555')}
         >
           CLOSE ×
@@ -141,14 +141,14 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
         </div>
 
         {/* Step progress bar */}
-        <div style={{ height: '1px', background: '#111', marginBottom: '28px', position: 'relative' }}>
+        <div style={{ height: '1px', background: '#e8e8e8', marginBottom: '28px', position: 'relative' }}>
           <div
             style={{
               position: 'absolute',
               top: 0,
               left: 0,
               height: '100%',
-              background: '#fff',
+              background: '#000',
               width: `${(step / 3) * 100}%`,
               transition: 'width 400ms ease',
             }}
@@ -166,7 +166,7 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                   fontWeight: 400,
                   lineHeight: 1,
                   textTransform: 'uppercase',
-                  color: '#fff',
+                  color: '#000',
                   marginBottom: '28px',
                 }}
               >
@@ -179,7 +179,7 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                     onClick={() => setSelected(s.id)}
                     style={{
                       background: 'transparent',
-                      border: selected === s.id ? '1px solid #fff' : '1px solid #222',
+                      border: selected === s.id ? '1px solid #000' : '1px solid #ddd',
                       borderRadius: '6px',
                       padding: '16px',
                       textAlign: 'left',
@@ -192,7 +192,7 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                         fontSize: '17px',
                         fontWeight: 400,
                         textTransform: 'uppercase',
-                        color: '#fff',
+                        color: '#000',
                       }}
                     >
                       {s.label}
@@ -205,8 +205,8 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                 style={{
                   width: '100%',
                   background: 'transparent',
-                  color: selected ? '#fff' : '#444',
-                  border: `1px solid ${selected ? '#fff' : '#222'}`,
+                  color: selected ? '#000' : '#444',
+                  border: `1px solid ${selected ? '#000' : '#dddddd'}`,
                   borderRadius: '9999px',
                   padding: '14px 24px',
                   fontFamily: 'var(--font-space-mono, monospace)',
@@ -215,8 +215,8 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                   textTransform: 'uppercase',
                   transition: 'all 250ms ease',
                 }}
-                onMouseEnter={(e) => { if (selected) { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000' } }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = selected ? '#fff' : '#444' }}
+                onMouseEnter={(e) => { if (selected) { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff' } }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = selected ? '#000' : '#444' }}
               >
                 Continue
               </button>
@@ -233,7 +233,7 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                   fontWeight: 400,
                   lineHeight: 1,
                   textTransform: 'uppercase',
-                  color: '#fff',
+                  color: '#000',
                   marginBottom: '28px',
                 }}
               >
@@ -248,8 +248,8 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                   }
                   value={form[field]}
                   onChange={(e) => setForm((f) => ({ ...f, [field]: e.target.value }))}
-                  onFocus={(e) => (e.target.style.borderColor = '#fff')}
-                  onBlur={(e) => (e.target.style.borderColor = '#222')}
+                  onFocus={(e) => (e.target.style.borderColor = '#000')}
+                  onBlur={(e) => (e.target.style.borderColor = '#dddddd')}
                 />
               ))}
 
@@ -277,14 +277,14 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                     onClick={() => setTimeSlot(t.id)}
                     style={{
                       background: 'transparent',
-                      border: timeSlot === t.id ? '1px solid #fff' : '1px solid #222',
+                      border: timeSlot === t.id ? '1px solid #000' : '1px solid #ddd',
                       borderRadius: '6px',
                       padding: '12px 8px',
                       textAlign: 'center',
                       transition: 'border-color 200ms ease',
                     }}
                   >
-                    <div style={{ fontFamily: 'var(--font-big-shoulders, sans-serif)', fontSize: '14px', textTransform: 'uppercase', color: '#fff' }}>{t.label}</div>
+                    <div style={{ fontFamily: 'var(--font-big-shoulders, sans-serif)', fontSize: '14px', textTransform: 'uppercase', color: '#000' }}>{t.label}</div>
                     <div style={{ fontFamily: 'var(--font-space-mono, monospace)', fontSize: '8px', color: '#555', marginTop: '2px' }}>{t.sub}</div>
                   </button>
                 ))}
@@ -296,8 +296,8 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                 placeholder="Anything you'd like us to know? (optional)"
                 value={form.message}
                 onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-                onFocus={(e) => (e.target.style.borderColor = '#fff')}
-                onBlur={(e) => (e.target.style.borderColor = '#222')}
+                onFocus={(e) => (e.target.style.borderColor = '#000')}
+                onBlur={(e) => (e.target.style.borderColor = '#dddddd')}
               />
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginTop: '8px' }}>
                 <button
@@ -305,7 +305,7 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                   style={{
                     background: 'transparent',
                     color: '#555',
-                    border: '1px solid #222',
+                    border: '1px solid #ddd',
                     borderRadius: '9999px',
                     padding: '14px 24px',
                     fontFamily: 'var(--font-space-mono, monospace)',
@@ -328,8 +328,8 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                   }}
                   style={{
                     background: 'transparent',
-                    color: '#fff',
-                    border: '1px solid #fff',
+                    color: '#000',
+                    border: '1px solid #000',
                     borderRadius: '9999px',
                     padding: '14px 24px',
                     fontFamily: 'var(--font-space-mono, monospace)',
@@ -338,8 +338,8 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                     textTransform: 'uppercase',
                     transition: 'background 250ms ease, color 250ms ease',
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000' }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#fff' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#000' }}
                 >
                   Confirm
                 </button>
@@ -365,7 +365,7 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                   fontWeight: 400,
                   lineHeight: 1,
                   textTransform: 'uppercase',
-                  color: '#fff',
+                  color: '#000',
                   marginBottom: '16px',
                 }}
               >
@@ -389,9 +389,9 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                 onClick={() => window.open('https://forms.gle/YYXPoCavW6TMMpReA', '_blank')}
                 style={{
                   width: '100%',
-                  background: '#fff',
-                  color: '#000',
-                  border: '1px solid #fff',
+                  background: '#000',
+                  color: '#fff',
+                  border: '1px solid #000',
                   borderRadius: '9999px',
                   padding: '16px 24px',
                   fontFamily: 'var(--font-space-mono, monospace)',
@@ -402,7 +402,7 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                   transition: 'background 250ms ease, color 250ms ease',
                 }}
                 onMouseEnter={(e) => { e.currentTarget.style.background = '#e0e0e0' }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = '#fff' }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = '#000' }}
               >
                 Fill Booking Form →
               </button>
@@ -413,7 +413,7 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                   width: '100%',
                   background: 'transparent',
                   color: '#444',
-                  border: '1px solid #222',
+                  border: '1px solid #ddd',
                   borderRadius: '9999px',
                   padding: '14px 24px',
                   fontFamily: 'var(--font-space-mono, monospace)',
@@ -422,7 +422,7 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                   textTransform: 'uppercase',
                   transition: 'color 200ms ease',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
+                onMouseEnter={(e) => (e.currentTarget.style.color = '#000')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = '#444')}
               >
                 Back to Site

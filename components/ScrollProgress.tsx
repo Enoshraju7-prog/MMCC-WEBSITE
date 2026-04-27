@@ -45,7 +45,7 @@ export default function ScrollProgress() {
         ref={barRef}
         style={{
           height: '100%',
-          background: '#fff',
+          background: '#000',
           transformOrigin: 'left',
           transform: 'scaleX(0)',
         }}

@@ -39,9 +39,9 @@ export default function MarqueeStrip({ inverted = false }: { inverted?: boolean 
   return (
     <div
       style={{
-        background: inverted ? '#fff' : '#000',
-        borderTop: `1px solid ${inverted ? 'rgba(0,0,0,0.1)' : '#111'}`,
-        borderBottom: `1px solid ${inverted ? 'rgba(0,0,0,0.1)' : '#111'}`,
+        background: inverted ? '#000' : '#fff',
+        borderTop: `1px solid ${inverted ? 'rgba(0,0,0,0.1)' : '#e8e8e8'}`,
+        borderBottom: `1px solid ${inverted ? 'rgba(0,0,0,0.1)' : '#e8e8e8'}`,
         padding: '16px 0',
         overflow: 'hidden',
       }}
@@ -63,7 +63,7 @@ export default function MarqueeStrip({ inverted = false }: { inverted?: boolean 
               fontSize: '11px',
               letterSpacing: '1.8px',
               textTransform: 'uppercase',
-              color: inverted ? '#000' : '#333',
+              color: inverted ? '#fff' : '#333',
               paddingRight: '0',
             }}
           >

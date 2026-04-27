@@ -58,7 +58,7 @@ export default function ServicesOverview() {
   }, [])
 
   return (
-    <section ref={sectionRef} style={{ background: '#000', padding: 'clamp(64px, 8vw, 120px) clamp(24px, 5vw, 80px)' }}>
+    <section ref={sectionRef} style={{ background: '#fff', padding: 'clamp(64px, 8vw, 120px) clamp(24px, 5vw, 80px)' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
         {/* Header */}
         <div
@@ -84,7 +84,7 @@ export default function ServicesOverview() {
                     fontWeight: 400,
                     lineHeight: 1,
                     textTransform: 'uppercase',
-                    color: '#fff',
+                    color: '#000',
                   }}
                 >
                   {line}
@@ -105,7 +105,7 @@ export default function ServicesOverview() {
               alignSelf: 'flex-end',
               transition: 'color 200ms ease',
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#000')}
             onMouseLeave={(e) => (e.currentTarget.style.color = '#999')}
           >
             ALL SERVICES →
@@ -118,8 +118,8 @@ export default function ServicesOverview() {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            borderTop: '1px solid #111',
-            borderLeft: '1px solid #111',
+            borderTop: '1px solid #ebebeb',
+            borderLeft: '1px solid #ebebeb',
           }}
         >
           {SERVICES.map((s, i) => (
@@ -129,14 +129,14 @@ export default function ServicesOverview() {
               className="service-card"
               style={{
                 padding: '40px 32px',
-                borderRight: '1px solid #111',
-                borderBottom: '1px solid #111',
+                borderRight: '1px solid #ebebeb',
+                borderBottom: '1px solid #ebebeb',
                 textDecoration: 'none',
                 display: 'block',
                 transition: 'background 200ms ease',
                 background: 'transparent',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#050505')}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#fafafa')}
               onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
             >
               <div
@@ -156,7 +156,7 @@ export default function ServicesOverview() {
                   fontSize: 'clamp(22px, 2.5vw, 28px)',
                   fontWeight: 400,
                   textTransform: 'uppercase',
-                  color: '#fff',
+                  color: '#000',
                   marginBottom: '12px',
                   lineHeight: 1,
                 }}

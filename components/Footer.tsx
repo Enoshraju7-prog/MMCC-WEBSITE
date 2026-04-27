@@ -50,8 +50,8 @@ export default function Footer() {
     <footer
       ref={footerRef}
       style={{
-        background: '#000',
-        borderTop: '1px solid #111',
+        background: '#fff',
+        borderTop: '1px solid #ebebeb',
         padding: 'clamp(60px, 8vw, 80px) clamp(24px, 5vw, 64px) 48px',
       }}
     >
@@ -74,7 +74,7 @@ export default function Footer() {
                 fontWeight: 400,
                 letterSpacing: '5px',
                 textTransform: 'uppercase',
-                color: '#fff',
+                color: '#000',
                 marginBottom: '16px',
               }}
             >
@@ -127,7 +127,7 @@ export default function Footer() {
                     textDecoration: 'none',
                     transition: 'color 200ms ease',
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#000')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = '#555')}
                 >
                   {label}
@@ -179,14 +179,14 @@ export default function Footer() {
                 Hours
               </div>
               <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: '#555' }}>Mon – Sat</div>
-              <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: '#fff' }}>9:00 AM – 9:00 PM</div>
+              <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: '#000' }}>9:00 AM – 9:00 PM</div>
               <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: '#555', marginTop: '8px' }}>Sunday</div>
               <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: '#555' }}>Closed</div>
             </div>
           </div>
         </div>
 
-        <div style={{ height: '1px', background: '#111', marginBottom: '28px' }} />
+        <div style={{ height: '1px', background: '#e8e8e8', marginBottom: '28px' }} />
 
         <div
           className="footer-bottom"
@@ -220,7 +220,7 @@ export default function Footer() {
               border: 'none',
               transition: 'color 200ms ease',
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#000')}
             onMouseLeave={(e) => (e.currentTarget.style.color = '#555')}
           >
             BOOK A SERVICE →
