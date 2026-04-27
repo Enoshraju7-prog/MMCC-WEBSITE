@@ -54,7 +54,7 @@ export default function Nav() {
           alt="MM Car Care"
           width={160}
           height={44}
-          style={{ objectFit: 'contain', height: '40px', width: 'auto' }}
+          style={{ objectFit: 'contain', height: '52px', width: 'auto' }}
           priority
         />
       </Link>

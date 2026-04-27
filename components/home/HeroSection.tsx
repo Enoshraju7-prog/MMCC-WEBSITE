@@ -211,7 +211,7 @@ export default function HeroSection() {
             alt="MM Car Care"
             width={220}
             height={60}
-            style={{ objectFit: 'contain', height: '52px', width: 'auto' }}
+            style={{ objectFit: 'contain', height: '80px', width: 'auto' }}
             priority
           />
         </div>
