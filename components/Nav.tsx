@@ -43,7 +43,7 @@ export default function Nav() {
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0 clamp(20px, 4vw, 56px)',
-        height: '96px',
+        height: '110px',
         borderBottom: '1px solid #ebebeb',
       }}
     >
@@ -52,9 +52,9 @@ export default function Nav() {
         <Image
           src="/uploads/logo.png"
           alt="MM Car Care"
-          width={160}
-          height={44}
-          style={{ objectFit: 'contain', height: '80px', width: 'auto' }}
+          width={400}
+          height={110}
+          style={{ objectFit: 'contain', height: '95px', width: 'auto' }}
           priority
         />
       </Link>
