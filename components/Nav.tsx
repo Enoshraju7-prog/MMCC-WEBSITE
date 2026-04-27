@@ -43,7 +43,7 @@ export default function Nav() {
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0 clamp(20px, 4vw, 56px)',
-        height: '72px',
+        height: '96px',
         borderBottom: '1px solid #ebebeb',
       }}
     >
@@ -54,7 +54,7 @@ export default function Nav() {
           alt="MM Car Care"
           width={160}
           height={44}
-          style={{ objectFit: 'contain', height: '100px', width: 'auto' }}
+          style={{ objectFit: 'contain', height: '80px', width: 'auto' }}
           priority
         />
       </Link>
