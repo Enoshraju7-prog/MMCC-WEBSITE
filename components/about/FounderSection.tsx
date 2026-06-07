@@ -196,7 +196,7 @@ export default function FounderSection() {
 
           {[
             'MM Car Care — Maruthi Mobile Car Care — started with a simple conviction: that every car deserves the same level of care, regardless of brand or budget. Devisetty Santosham built the business from the ground up in Kakinada, Andhra Pradesh, combining a passion for automotive craft with a commitment to professional-grade standards.',
-            'Over 25 years, MM Car Care has grown from a mobile detailing service to a full-service garage — without ever compromising on the principles that started it. Trained hands. Professional products. The same meticulous attention to detail that earned the trust of over 1,500 customers across the region.',
+            'With 25+ years in the business, MM Car Care has grown from a mobile detailing service to a full-service garage — without ever compromising on the principles that started it. Trained hands. Professional products. The same meticulous attention to detail that earned the trust of over 1,500 customers across the region.',
             'The mobile service offering remains — because the belief that quality should come to you has never changed.',
           ].map((text, i) => (
             <p
