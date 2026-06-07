@@ -50,7 +50,7 @@ export default function Footer() {
     <footer
       ref={footerRef}
       style={{
-        background: '#0a0f1e',
+        background: '#0a0a0a',
         borderTop: '1px solid rgba(255,255,255,0.08)',
         padding: 'clamp(60px, 8vw, 80px) clamp(24px, 5vw, 64px) 48px',
       }}
@@ -220,7 +220,7 @@ export default function Footer() {
               border: 'none',
               transition: 'color 200ms ease',
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#2563EB')}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#C9A96E')}
             onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.4)')}
           >
             BOOK A SERVICE →

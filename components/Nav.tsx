@@ -37,7 +37,7 @@ export default function Nav() {
         left: 0,
         right: 0,
         zIndex: 200,
-        background: '#0a0f1e',
+        background: '#0a0a0a',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -96,10 +96,10 @@ export default function Nav() {
             transition: 'border-color 200ms ease, background 200ms ease',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#2563EB'
-            e.currentTarget.style.borderColor = '#2563EB'
+            e.currentTarget.style.background = '#C9A96E'
+            e.currentTarget.style.borderColor = '#C9A96E'
             const svg = e.currentTarget.querySelector('svg')
-            if (svg) svg.style.color = '#0a0f1e'
+            if (svg) svg.style.color = '#0a0a0a'
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = 'none'
@@ -136,9 +136,9 @@ export default function Nav() {
             transition: 'background 250ms ease, color 250ms ease, border-color 250ms ease',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#2563EB'
-            e.currentTarget.style.color = '#0a0f1e'
-            e.currentTarget.style.borderColor = '#2563EB'
+            e.currentTarget.style.background = '#C9A96E'
+            e.currentTarget.style.color = '#0a0a0a'
+            e.currentTarget.style.borderColor = '#C9A96E'
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = 'transparent'

@@ -125,7 +125,7 @@ export default function HeroSection() {
         flexDirection: 'column',
         justifyContent: 'flex-end',
         padding: 'clamp(32px, 5vw, 80px) clamp(24px, 5vw, 80px)',
-        background: '#0a0f1e',
+        background: '#0a0a0a',
         overflow: 'hidden',
       }}
     >
@@ -137,7 +137,7 @@ export default function HeroSection() {
           top: 0,
           bottom: 0,
           width: '50%',
-          background: 'linear-gradient(to left, rgba(37,99,235,0.06) 0%, transparent 100%)',
+          background: 'linear-gradient(to left, rgba(201,169,110,0.04) 0%, transparent 100%)',
           pointerEvents: 'none',
         }}
       />
@@ -149,7 +149,7 @@ export default function HeroSection() {
           top: '15%',
           width: '1px',
           height: '40%',
-          background: 'linear-gradient(to bottom, transparent, rgba(37,99,235,0.5), transparent)',
+          background: 'linear-gradient(to bottom, transparent, rgba(201,169,110,0.35), transparent)',
         }}
       />
       <div
@@ -160,7 +160,7 @@ export default function HeroSection() {
           top: '20%',
           width: '1px',
           height: '30%',
-          background: 'linear-gradient(to bottom, transparent, rgba(37,99,235,0.25), transparent)',
+          background: 'linear-gradient(to bottom, transparent, rgba(201,169,110,0.18), transparent)',
         }}
       />
 
@@ -196,9 +196,9 @@ export default function HeroSection() {
           <button
             onClick={open}
             style={{
-              background: '#2563EB',
-              color: '#0a0f1e',
-              border: '1px solid #2563EB',
+              background: '#C9A96E',
+              color: '#0a0a0a',
+              border: '1px solid #C9A96E',
               borderRadius: '9999px',
               padding: '15px 36px',
               fontFamily: 'var(--font-space-mono, monospace)',
@@ -207,8 +207,8 @@ export default function HeroSection() {
               textTransform: 'uppercase',
               transition: 'background 250ms ease, color 250ms ease',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#2563EB' }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = '#2563EB'; e.currentTarget.style.color = '#0a0f1e' }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#C9A96E' }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = '#C9A96E'; e.currentTarget.style.color = '#0a0a0a' }}
           >
             Book a Service
           </button>

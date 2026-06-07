@@ -66,7 +66,7 @@ function StatItem({ stat, index }: { stat: typeof STATS[0]; index: number }) {
           fontWeight: 400,
           lineHeight: 1,
           textTransform: 'uppercase',
-          color: '#2563EB',
+          color: '#C9A96E',
           marginBottom: '8px',
         }}
       >
@@ -91,7 +91,7 @@ export default function StatsBar() {
   return (
     <div
       style={{
-        background: '#0a0f1e',
+        background: '#0a0a0a',
         borderTop: '1px solid rgba(255,255,255,0.08)',
         borderBottom: '1px solid rgba(255,255,255,0.08)',
         display: 'grid',
