@@ -42,9 +42,9 @@ export default function ProcessStrip() {
     <section
       ref={sectionRef}
       style={{
-        background: '#fff',
+        background: '#0a0f1e',
         padding: 'clamp(48px, 6vw, 96px) clamp(24px, 5vw, 80px)',
-        borderTop: '1px solid #0a0a0a',
+        borderTop: '1px solid rgba(37,99,235,0.2)',
       }}
     >
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
@@ -55,7 +55,7 @@ export default function ProcessStrip() {
             fontSize: '10px',
             letterSpacing: '1.4px',
             textTransform: 'uppercase',
-            color: '#555',
+            color: 'rgba(255,255,255,0.35)',
             marginBottom: '36px',
           }}
         >
@@ -67,8 +67,8 @@ export default function ProcessStrip() {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(5, 1fr)',
-            borderTop: '1px solid #ebebeb',
-            borderLeft: '1px solid #ebebeb',
+            borderTop: '1px solid rgba(255,255,255,0.08)',
+            borderLeft: '1px solid rgba(255,255,255,0.08)',
           }}
         >
           {STEPS.map((step, i) => (
@@ -77,16 +77,19 @@ export default function ProcessStrip() {
               className="process-step"
               style={{
                 padding: 'clamp(20px, 2vw, 36px) clamp(16px, 2vw, 28px)',
-                borderRight: '1px solid #ebebeb',
-                borderBottom: '1px solid #ebebeb',
+                borderRight: '1px solid rgba(255,255,255,0.08)',
+                borderBottom: '1px solid rgba(255,255,255,0.08)',
+                transition: 'background 200ms ease',
               }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(37,99,235,0.08)')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
             >
               <div
                 style={{
                   fontFamily: 'var(--font-space-mono, monospace)',
                   fontSize: '9px',
                   letterSpacing: '1px',
-                  color: '#C9A96E',
+                  color: '#2563EB',
                   marginBottom: '14px',
                 }}
               >
@@ -99,7 +102,7 @@ export default function ProcessStrip() {
                   fontWeight: 400,
                   lineHeight: 1,
                   textTransform: 'uppercase',
-                  color: '#000',
+                  color: '#fff',
                 }}
               >
                 {step}

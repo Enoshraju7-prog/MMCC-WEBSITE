@@ -25,7 +25,6 @@ export default function ServicesOverview() {
     if (!section) return
 
     const ctx = gsap.context(() => {
-      // Heading reveal
       gsap.from('.services-heading-line', {
         y: '105%',
         duration: 0.9,
@@ -43,7 +42,6 @@ export default function ServicesOverview() {
         delay: 0.3,
       })
 
-      // Card stagger
       gsap.from('.service-card', {
         y: 60,
         opacity: 0,
@@ -58,7 +56,7 @@ export default function ServicesOverview() {
   }, [])
 
   return (
-    <section ref={sectionRef} style={{ background: '#fff', padding: 'clamp(64px, 8vw, 120px) clamp(24px, 5vw, 80px)' }}>
+    <section ref={sectionRef} style={{ background: '#0a0f1e', padding: 'clamp(64px, 8vw, 120px) clamp(24px, 5vw, 80px)' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
         {/* Header */}
         <div
@@ -84,7 +82,7 @@ export default function ServicesOverview() {
                     fontWeight: 400,
                     lineHeight: 1,
                     textTransform: 'uppercase',
-                    color: '#000',
+                    color: '#fff',
                   }}
                 >
                   {line}
@@ -100,13 +98,13 @@ export default function ServicesOverview() {
               fontSize: '11px',
               letterSpacing: '1.4px',
               textTransform: 'uppercase',
-              color: '#999',
+              color: 'rgba(255,255,255,0.4)',
               textDecoration: 'none',
               alignSelf: 'flex-end',
               transition: 'color 200ms ease',
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#000')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = '#999')}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#2563EB')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.4)')}
           >
             ALL SERVICES →
           </Link>
@@ -118,8 +116,8 @@ export default function ServicesOverview() {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            borderTop: '1px solid #ebebeb',
-            borderLeft: '1px solid #ebebeb',
+            borderTop: '1px solid rgba(255,255,255,0.08)',
+            borderLeft: '1px solid rgba(255,255,255,0.08)',
           }}
         >
           {SERVICES.map((s, i) => (
@@ -129,22 +127,28 @@ export default function ServicesOverview() {
               className="service-card"
               style={{
                 padding: '40px 32px',
-                borderRight: '1px solid #ebebeb',
-                borderBottom: '1px solid #ebebeb',
+                borderRight: '1px solid rgba(255,255,255,0.08)',
+                borderBottom: '1px solid rgba(255,255,255,0.08)',
                 textDecoration: 'none',
                 display: 'block',
-                transition: 'background 200ms ease',
+                transition: 'background 200ms ease, border-color 200ms ease',
                 background: 'transparent',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#fafafa')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(37,99,235,0.08)'
+                e.currentTarget.style.borderColor = 'rgba(37,99,235,0.35)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'transparent'
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'
+              }}
             >
               <div
                 style={{
                   fontFamily: 'var(--font-space-mono, monospace)',
                   fontSize: '9px',
                   letterSpacing: '1px',
-                  color: '#C9A96E',
+                  color: '#2563EB',
                   marginBottom: '20px',
                 }}
               >
@@ -156,7 +160,7 @@ export default function ServicesOverview() {
                   fontSize: 'clamp(22px, 2.5vw, 28px)',
                   fontWeight: 400,
                   textTransform: 'uppercase',
-                  color: '#000',
+                  color: '#fff',
                   marginBottom: '12px',
                   lineHeight: 1,
                 }}
@@ -168,7 +172,7 @@ export default function ServicesOverview() {
                   fontFamily: 'var(--font-dm-sans, sans-serif)',
                   fontSize: '13px',
                   lineHeight: 1.6,
-                  color: '#555',
+                  color: 'rgba(255,255,255,0.45)',
                 }}
               >
                 {s.desc}

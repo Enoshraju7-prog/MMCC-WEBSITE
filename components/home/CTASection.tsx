@@ -61,7 +61,7 @@ export default function CTASection() {
     <section
       ref={sectionRef}
       style={{
-        background: '#0a0a0a',
+        background: '#0a0f1e',
         padding: 'clamp(80px, 10vw, 140px) clamp(24px, 5vw, 80px)',
         borderTop: 'none',
         textAlign: 'center',
@@ -120,9 +120,9 @@ export default function CTASection() {
           <button
             onClick={open}
             style={{
-              background: '#C9A96E',
-              color: '#0a0a0a',
-              border: '1px solid #C9A96E',
+              background: '#2563EB',
+              color: '#0a0f1e',
+              border: '1px solid #2563EB',
               borderRadius: '9999px',
               padding: '16px 40px',
               fontFamily: 'var(--font-space-mono, monospace)',
@@ -131,8 +131,8 @@ export default function CTASection() {
               textTransform: 'uppercase',
               transition: 'background 250ms ease, color 250ms ease',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#C9A96E' }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = '#C9A96E'; e.currentTarget.style.color = '#0a0a0a' }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#2563EB' }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = '#2563EB'; e.currentTarget.style.color = '#0a0f1e' }}
           >
             Book a Service
           </button>
