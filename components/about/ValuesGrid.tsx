@@ -28,7 +28,6 @@ export default function ValuesGrid() {
         ease: 'power3.out',
         scrollTrigger: { trigger: section, start: 'top 80%', once: true },
       })
-
       gsap.from('.value-card', {
         y: 50,
         opacity: 0,
@@ -46,7 +45,7 @@ export default function ValuesGrid() {
   return (
     <section
       ref={sectionRef}
-      style={{ background: '#fff', padding: 'clamp(64px, 8vw, 120px) clamp(24px, 5vw, 80px)' }}
+      style={{ background: '#0a0a0a', padding: 'clamp(64px, 8vw, 120px) clamp(24px, 5vw, 80px)' }}
     >
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
         <div
@@ -56,7 +55,7 @@ export default function ValuesGrid() {
             fontSize: '10px',
             letterSpacing: '1.4px',
             textTransform: 'uppercase',
-            color: '#555',
+            color: 'rgba(255,255,255,0.35)',
             marginBottom: '48px',
           }}
         >
@@ -68,8 +67,8 @@ export default function ValuesGrid() {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            borderTop: '1px solid #ebebeb',
-            borderLeft: '1px solid #ebebeb',
+            borderTop: '1px solid rgba(255,255,255,0.08)',
+            borderLeft: '1px solid rgba(255,255,255,0.08)',
           }}
         >
           {VALUES.map((v) => (
@@ -78,11 +77,11 @@ export default function ValuesGrid() {
               className="value-card"
               style={{
                 padding: 'clamp(28px, 3vw, 44px)',
-                borderRight: '1px solid #ebebeb',
-                borderBottom: '1px solid #ebebeb',
+                borderRight: '1px solid rgba(255,255,255,0.08)',
+                borderBottom: '1px solid rgba(255,255,255,0.08)',
                 transition: 'background 200ms ease',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#f8f8f8')}
+              onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(201,169,110,0.06)')}
               onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
             >
               <div
@@ -90,7 +89,7 @@ export default function ValuesGrid() {
                   fontFamily: 'var(--font-space-mono, monospace)',
                   fontSize: '9px',
                   letterSpacing: '1px',
-                  color: '#333',
+                  color: '#C9A96E',
                   marginBottom: '18px',
                 }}
               >
@@ -102,7 +101,7 @@ export default function ValuesGrid() {
                   fontSize: 'clamp(26px, 2.5vw, 32px)',
                   fontWeight: 400,
                   textTransform: 'uppercase',
-                  color: '#000',
+                  color: '#fff',
                   marginBottom: '14px',
                   lineHeight: 1,
                 }}
@@ -114,7 +113,7 @@ export default function ValuesGrid() {
                   fontFamily: 'var(--font-dm-sans, sans-serif)',
                   fontSize: '13px',
                   lineHeight: 1.65,
-                  color: '#555',
+                  color: 'rgba(255,255,255,0.45)',
                 }}
               >
                 {v.desc}

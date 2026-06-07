@@ -17,7 +17,6 @@ export default function FounderSection() {
     if (!section) return
 
     const ctx = gsap.context(() => {
-      // Image clip-path reveal — top to bottom
       gsap.fromTo(
         '.founder-img-wrap',
         { clipPath: 'inset(0 0 100% 0)' },
@@ -28,8 +27,6 @@ export default function FounderSection() {
           scrollTrigger: { trigger: '.founder-section-inner', start: 'top 70%', once: true },
         }
       )
-
-      // Nameplate slide up
       gsap.from('.founder-nameplate', {
         y: 20,
         opacity: 0,
@@ -38,8 +35,6 @@ export default function FounderSection() {
         scrollTrigger: { trigger: '.founder-section-inner', start: 'top 65%', once: true },
         delay: 0.5,
       })
-
-      // Quote
       gsap.from('.founder-quote-line', {
         y: '105%',
         duration: 0.9,
@@ -47,8 +42,6 @@ export default function FounderSection() {
         stagger: 0.1,
         scrollTrigger: { trigger: '.founder-bio', start: 'top 75%', once: true },
       })
-
-      // Bio paragraphs
       gsap.from('.founder-para', {
         y: 25,
         opacity: 0,
@@ -58,8 +51,6 @@ export default function FounderSection() {
         scrollTrigger: { trigger: '.founder-bio', start: 'top 72%', once: true },
         delay: 0.4,
       })
-
-      // Label
       gsap.from('.founder-bio-label', {
         y: 15,
         opacity: 0,
@@ -68,7 +59,6 @@ export default function FounderSection() {
         scrollTrigger: { trigger: '.founder-bio', start: 'top 75%', once: true },
         delay: 0.3,
       })
-
       gsap.from('.founder-cta', {
         y: 20,
         opacity: 0,
@@ -86,9 +76,9 @@ export default function FounderSection() {
     <section
       ref={sectionRef}
       style={{
-        background: '#fff',
+        background: '#0a0a0a',
         padding: 'clamp(64px, 8vw, 120px) clamp(24px, 5vw, 80px)',
-        borderBottom: '1px solid #ebebeb',
+        borderBottom: '1px solid rgba(255,255,255,0.08)',
       }}
     >
       <div
@@ -111,7 +101,7 @@ export default function FounderSection() {
               paddingBottom: '120%',
               position: 'relative',
               overflow: 'hidden',
-              border: '1px solid #e0e0e0',
+              border: '1px solid rgba(201,169,110,0.2)',
             }}
           >
             <Image
@@ -121,10 +111,8 @@ export default function FounderSection() {
               style={{
                 objectFit: 'cover',
                 objectPosition: 'center top',
-                filter: 'grayscale(100%) contrast(1.05)',
               }}
               onError={(e) => {
-                // Fallback if image not found
                 const target = e.target as HTMLImageElement
                 target.style.display = 'none'
               }}
@@ -133,13 +121,13 @@ export default function FounderSection() {
               style={{
                 position: 'absolute',
                 inset: 0,
-                background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%)',
+                background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%)',
               }}
             />
           </div>
           <div
             className="founder-nameplate"
-            style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid #ebebeb' }}
+            style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.08)' }}
           >
             <div
               style={{
@@ -147,7 +135,7 @@ export default function FounderSection() {
                 fontSize: 'clamp(22px, 2.5vw, 28px)',
                 fontWeight: 400,
                 textTransform: 'uppercase',
-                color: '#000',
+                color: '#fff',
                 marginBottom: '6px',
               }}
             >
@@ -159,7 +147,7 @@ export default function FounderSection() {
                 fontSize: '10px',
                 letterSpacing: '1.4px',
                 textTransform: 'uppercase',
-                color: '#555',
+                color: '#C9A96E',
               }}
             >
               Founder & Chairman
@@ -182,7 +170,7 @@ export default function FounderSection() {
                       fontWeight: 400,
                       lineHeight: 1.1,
                       textTransform: 'uppercase',
-                      color: '#000',
+                      color: '#fff',
                     }}
                   >
                     {line}
@@ -199,7 +187,7 @@ export default function FounderSection() {
               fontSize: '10px',
               letterSpacing: '1.4px',
               textTransform: 'uppercase',
-              color: '#555',
+              color: '#C9A96E',
               marginBottom: '20px',
             }}
           >
@@ -218,7 +206,7 @@ export default function FounderSection() {
                 fontFamily: 'var(--font-dm-sans, sans-serif)',
                 fontSize: '15px',
                 lineHeight: 1.75,
-                color: '#888',
+                color: 'rgba(255,255,255,0.45)',
                 marginBottom: i < 2 ? '24px' : 0,
               }}
             >
@@ -231,9 +219,9 @@ export default function FounderSection() {
             onClick={open}
             style={{
               marginTop: '40px',
-              background: 'transparent',
-              color: '#000',
-              border: '1px solid #000',
+              background: '#C9A96E',
+              color: '#0a0a0a',
+              border: '1px solid #C9A96E',
               borderRadius: '9999px',
               padding: '14px 32px',
               fontFamily: 'var(--font-space-mono, monospace)',
@@ -243,8 +231,8 @@ export default function FounderSection() {
               transition: 'background 250ms ease, color 250ms ease',
               display: 'block',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff' }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#000' }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#C9A96E' }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = '#C9A96E'; e.currentTarget.style.color = '#0a0a0a' }}
           >
             Book a Service
           </button>

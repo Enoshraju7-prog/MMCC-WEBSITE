@@ -18,9 +18,9 @@ const HOURS = [
 
 const inp: React.CSSProperties = {
   width: '100%',
-  background: '#fff',
-  color: '#000',
-  border: '1px solid #e0e0e0',
+  background: '#111',
+  color: '#fff',
+  border: '1px solid rgba(255,255,255,0.1)',
   borderRadius: '6px',
   padding: '14px 16px',
   fontFamily: 'var(--font-dm-sans, sans-serif)',
@@ -107,9 +107,9 @@ export default function ContactGrid() {
       <section
         ref={headerRef}
         style={{
-          background: '#fff',
+          background: '#0a0a0a',
           padding: 'clamp(80px, 10vw, 140px) clamp(24px, 5vw, 80px) clamp(48px, 6vw, 80px)',
-          borderBottom: '1px solid #ebebeb',
+          borderBottom: '1px solid rgba(255,255,255,0.08)',
         }}
       >
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
@@ -120,7 +120,7 @@ export default function ContactGrid() {
               fontSize: '10px',
               letterSpacing: '1.4px',
               textTransform: 'uppercase',
-              color: '#555',
+              color: 'rgba(255,255,255,0.35)',
               marginBottom: '20px',
             }}
           >
@@ -137,7 +137,7 @@ export default function ContactGrid() {
                   fontWeight: 400,
                   lineHeight: 1,
                   textTransform: 'uppercase',
-                  color: '#000',
+                  color: '#fff',
                 }}
               >
                 {line}
@@ -148,7 +148,7 @@ export default function ContactGrid() {
       </section>
 
       {/* Main grid */}
-      <section style={{ background: '#fff', padding: 'clamp(48px, 6vw, 96px) clamp(24px, 5vw, 80px)' }}>
+      <section style={{ background: '#0a0a0a', padding: 'clamp(48px, 6vw, 96px) clamp(24px, 5vw, 80px)' }}>
         <div
           ref={sectionRef}
           style={{
@@ -161,7 +161,6 @@ export default function ContactGrid() {
         >
           {/* Left column */}
           <div className="contact-left">
-            {/* Contact info */}
             <div className="contact-info-block" style={{ marginBottom: '56px' }}>
               <div
                 style={{
@@ -169,7 +168,7 @@ export default function ContactGrid() {
                   fontSize: '10px',
                   letterSpacing: '1.4px',
                   textTransform: 'uppercase',
-                  color: '#555',
+                  color: 'rgba(255,255,255,0.35)',
                   marginBottom: '28px',
                 }}
               >
@@ -188,7 +187,7 @@ export default function ContactGrid() {
                     display: 'flex',
                     gap: '24px',
                     padding: '13px 0',
-                    borderBottom: '1px solid #0d0d0d',
+                    borderBottom: '1px solid rgba(255,255,255,0.06)',
                   }}
                 >
                   <div
@@ -197,7 +196,7 @@ export default function ContactGrid() {
                       fontSize: '9px',
                       letterSpacing: '1px',
                       textTransform: 'uppercase',
-                      color: '#333',
+                      color: '#C9A96E',
                       minWidth: '90px',
                       paddingTop: '2px',
                     }}
@@ -209,7 +208,7 @@ export default function ContactGrid() {
                       fontFamily: 'var(--font-dm-sans, sans-serif)',
                       fontSize: '14px',
                       lineHeight: 1.5,
-                      color: '#888',
+                      color: 'rgba(255,255,255,0.6)',
                     }}
                   >
                     {item.value}
@@ -223,9 +222,9 @@ export default function ContactGrid() {
                 style={{
                   display: 'inline-block',
                   marginTop: '28px',
-                  background: 'transparent',
-                  color: '#000',
-                  border: '1px solid #000',
+                  background: '#C9A96E',
+                  color: '#0a0a0a',
+                  border: '1px solid #C9A96E',
                   borderRadius: '9999px',
                   padding: '12px 28px',
                   fontFamily: 'var(--font-space-mono, monospace)',
@@ -235,8 +234,8 @@ export default function ContactGrid() {
                   textDecoration: 'none',
                   transition: 'background 250ms ease, color 250ms ease',
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff' }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#000' }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#C9A96E' }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = '#C9A96E'; e.currentTarget.style.color = '#0a0a0a' }}
               >
                 Book via WhatsApp
               </a>
@@ -250,7 +249,7 @@ export default function ContactGrid() {
                   fontSize: '10px',
                   letterSpacing: '1.4px',
                   textTransform: 'uppercase',
-                  color: '#555',
+                  color: 'rgba(255,255,255,0.35)',
                   marginBottom: '20px',
                 }}
               >
@@ -266,7 +265,7 @@ export default function ContactGrid() {
                       display: 'flex',
                       justifyContent: 'space-between',
                       padding: '11px 0',
-                      borderBottom: '1px solid #0d0d0d',
+                      borderBottom: '1px solid rgba(255,255,255,0.06)',
                     }}
                   >
                     <div
@@ -275,7 +274,7 @@ export default function ContactGrid() {
                         fontSize: '10px',
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
-                        color: isToday ? '#000' : '#444',
+                        color: isToday ? '#C9A96E' : 'rgba(255,255,255,0.45)',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '10px',
@@ -286,8 +285,8 @@ export default function ContactGrid() {
                         <span
                           style={{
                             fontSize: '7px',
-                            background: '#000',
-                            color: '#fff',
+                            background: '#C9A96E',
+                            color: '#0a0a0a',
                             padding: '2px 7px',
                             borderRadius: '9999px',
                           }}
@@ -302,7 +301,7 @@ export default function ContactGrid() {
                         fontSize: '10px',
                         letterSpacing: '0.5px',
                         textTransform: 'uppercase',
-                        color: h.open ? (isToday ? '#000' : '#444') : '#2a2a2a',
+                        color: h.open ? (isToday ? '#C9A96E' : 'rgba(255,255,255,0.45)') : 'rgba(255,255,255,0.25)',
                       }}
                     >
                       {h.time}
@@ -323,7 +322,7 @@ export default function ContactGrid() {
                   fontSize: '10px',
                   letterSpacing: '1.4px',
                   textTransform: 'uppercase',
-                  color: '#555',
+                  color: 'rgba(255,255,255,0.35)',
                   marginBottom: '16px',
                 }}
               >
@@ -334,27 +333,25 @@ export default function ContactGrid() {
                 style={{
                   width: '100%',
                   height: '240px',
-                  border: '1px solid #e0e0e0',
+                  border: '1px solid rgba(255,255,255,0.08)',
                   borderRadius: '6px',
                   overflow: 'hidden',
                   position: 'relative',
-                  background: '#f9f9f9',
+                  background: '#111',
                   cursor: 'pointer',
                 }}
               >
-                {/* Grid lines */}
                 <div
                   style={{
                     position: 'absolute',
                     inset: 0,
                     backgroundImage:
-                      'linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px)',
+                      'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
                     backgroundSize: '36px 36px',
                   }}
                 />
-                <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: '2px', background: 'rgba(0,0,0,0.07)' }} />
-                <div style={{ position: 'absolute', left: '38%', top: 0, bottom: 0, width: '2px', background: 'rgba(0,0,0,0.07)' }} />
-                {/* Pin */}
+                <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: '1px', background: 'rgba(255,255,255,0.06)' }} />
+                <div style={{ position: 'absolute', left: '38%', top: 0, bottom: 0, width: '1px', background: 'rgba(255,255,255,0.06)' }} />
                 <div
                   style={{
                     position: 'absolute',
@@ -371,11 +368,11 @@ export default function ContactGrid() {
                       width: '8px',
                       height: '8px',
                       borderRadius: '50%',
-                      background: '#000',
-                      boxShadow: '0 0 12px rgba(0,0,0,0.3)',
+                      background: '#C9A96E',
+                      boxShadow: '0 0 12px rgba(201,169,110,0.5)',
                     }}
                   />
-                  <div style={{ width: '1px', height: '14px', background: 'rgba(0,0,0,0.6)' }} />
+                  <div style={{ width: '1px', height: '14px', background: 'rgba(201,169,110,0.5)' }} />
                 </div>
                 <div
                   style={{
@@ -383,8 +380,8 @@ export default function ContactGrid() {
                     top: '50%',
                     left: '38%',
                     transform: 'translate(8px, -80%)',
-                    background: '#000',
-                    color: '#fff',
+                    background: '#C9A96E',
+                    color: '#0a0a0a',
                     fontFamily: 'var(--font-space-mono, monospace)',
                     fontSize: '8px',
                     letterSpacing: '0.5px',
@@ -403,7 +400,7 @@ export default function ContactGrid() {
                     fontSize: '9px',
                     letterSpacing: '1px',
                     textTransform: 'uppercase',
-                    color: '#444',
+                    color: 'rgba(255,255,255,0.35)',
                   }}
                 >
                   Kakinada · Andhra Pradesh
@@ -420,12 +417,12 @@ export default function ContactGrid() {
                     fontSize: '9px',
                     letterSpacing: '1px',
                     textTransform: 'uppercase',
-                    color: '#555',
+                    color: 'rgba(255,255,255,0.35)',
                     textDecoration: 'none',
                     transition: 'color 200ms ease',
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = '#000')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = '#555')}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#C9A96E')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.35)')}
                 >
                   Open Maps →
                 </a>
@@ -440,7 +437,7 @@ export default function ContactGrid() {
                   fontSize: '10px',
                   letterSpacing: '1.4px',
                   textTransform: 'uppercase',
-                  color: '#555',
+                  color: 'rgba(255,255,255,0.35)',
                   marginBottom: '20px',
                 }}
               >
@@ -448,7 +445,7 @@ export default function ContactGrid() {
               </div>
 
               {sent ? (
-                <div style={{ padding: '32px 0', borderTop: '1px solid #ebebeb' }}>
+                <div style={{ padding: '32px 0', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
                   <div
                     style={{
                       fontFamily: 'var(--font-big-shoulders, sans-serif)',
@@ -456,7 +453,7 @@ export default function ContactGrid() {
                       fontWeight: 400,
                       lineHeight: 1,
                       textTransform: 'uppercase',
-                      color: '#000',
+                      color: '#C9A96E',
                       marginBottom: '12px',
                     }}
                   >
@@ -467,7 +464,7 @@ export default function ContactGrid() {
                       fontFamily: 'var(--font-dm-sans, sans-serif)',
                       fontSize: '13px',
                       lineHeight: 1.6,
-                      color: '#555',
+                      color: 'rgba(255,255,255,0.45)',
                     }}
                   >
                     We'll call you back within working hours.
@@ -480,32 +477,32 @@ export default function ContactGrid() {
                     placeholder="Your name"
                     value={form.name}
                     onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                    onFocus={(e) => (e.target.style.borderColor = '#000')}
-                    onBlur={(e) => (e.target.style.borderColor = '#e0e0e0')}
+                    onFocus={(e) => (e.target.style.borderColor = '#C9A96E')}
+                    onBlur={(e) => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')}
                   />
                   <input
                     style={inp}
                     placeholder="Phone number"
                     value={form.phone}
                     onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
-                    onFocus={(e) => (e.target.style.borderColor = '#000')}
-                    onBlur={(e) => (e.target.style.borderColor = '#e0e0e0')}
+                    onFocus={(e) => (e.target.style.borderColor = '#C9A96E')}
+                    onBlur={(e) => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')}
                   />
                   <input
                     style={inp}
                     placeholder="Vehicle (optional)"
                     value={form.vehicle}
                     onChange={(e) => setForm((f) => ({ ...f, vehicle: e.target.value }))}
-                    onFocus={(e) => (e.target.style.borderColor = '#000')}
-                    onBlur={(e) => (e.target.style.borderColor = '#e0e0e0')}
+                    onFocus={(e) => (e.target.style.borderColor = '#C9A96E')}
+                    onBlur={(e) => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')}
                   />
                   <textarea
                     style={{ ...inp, minHeight: '80px', resize: 'vertical', marginBottom: '16px' }}
                     placeholder="Any specific request? (optional)"
                     value={form.message}
                     onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-                    onFocus={(e) => (e.target.style.borderColor = '#000')}
-                    onBlur={(e) => (e.target.style.borderColor = '#e0e0e0')}
+                    onFocus={(e) => (e.target.style.borderColor = '#C9A96E')}
+                    onBlur={(e) => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')}
                   />
                   <button
                     onClick={() => {
@@ -518,9 +515,9 @@ export default function ContactGrid() {
                     }}
                     style={{
                       width: '100%',
-                      background: 'transparent',
-                      color: form.name && form.phone ? '#000' : '#444',
-                      border: `1px solid ${form.name && form.phone ? '#000' : '#dddddd'}`,
+                      background: form.name && form.phone ? '#C9A96E' : 'transparent',
+                      color: form.name && form.phone ? '#0a0a0a' : 'rgba(255,255,255,0.3)',
+                      border: `1px solid ${form.name && form.phone ? '#C9A96E' : 'rgba(255,255,255,0.1)'}`,
                       borderRadius: '9999px',
                       padding: '14px 24px',
                       fontFamily: 'var(--font-space-mono, monospace)',
@@ -531,13 +528,13 @@ export default function ContactGrid() {
                     }}
                     onMouseEnter={(e) => {
                       if (form.name && form.phone) {
-                        e.currentTarget.style.background = '#000'
-                        e.currentTarget.style.color = '#fff'
+                        e.currentTarget.style.background = 'transparent'
+                        e.currentTarget.style.color = '#C9A96E'
                       }
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'transparent'
-                      e.currentTarget.style.color = form.name && form.phone ? '#000' : '#444'
+                      e.currentTarget.style.background = form.name && form.phone ? '#C9A96E' : 'transparent'
+                      e.currentTarget.style.color = form.name && form.phone ? '#0a0a0a' : 'rgba(255,255,255,0.3)'
                     }}
                   >
                     Request Callback

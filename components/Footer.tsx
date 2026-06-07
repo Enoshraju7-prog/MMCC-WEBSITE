@@ -180,8 +180,9 @@ export default function Footer() {
               </div>
               <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: 'rgba(255,255,255,0.4)' }}>Mon – Sat</div>
               <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: '#fff' }}>9:00 AM – 9:00 PM</div>
-              <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: 'rgba(255,255,255,0.4)', marginTop: '8px' }}>Sunday</div>
-              <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: 'rgba(255,255,255,0.4)' }}>Closed</div>
+              <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: 'rgba(255,255,255,0.4)', marginTop: '8px', display: 'flex', justifyContent: 'space-between' }}>
+                <span>Sunday</span><span>Closed</span>
+              </div>
             </div>
           </div>
         </div>
