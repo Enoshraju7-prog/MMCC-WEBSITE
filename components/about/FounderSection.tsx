@@ -115,7 +115,7 @@ export default function FounderSection() {
             }}
           >
             <Image
-              src="/uploads/IMG_2588.jpg"
+              src="/uploads/founder.jpg"
               alt="Devisetty Santosham – Founder & Chairman, MM Car Care"
               fill
               style={{

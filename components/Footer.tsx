@@ -50,8 +50,8 @@ export default function Footer() {
     <footer
       ref={footerRef}
       style={{
-        background: '#fff',
-        borderTop: '1px solid #ebebeb',
+        background: '#0a0a0a',
+        borderTop: '1px solid rgba(255,255,255,0.08)',
         padding: 'clamp(60px, 8vw, 80px) clamp(24px, 5vw, 64px) 48px',
       }}
     >
@@ -74,7 +74,7 @@ export default function Footer() {
                 fontWeight: 400,
                 letterSpacing: '5px',
                 textTransform: 'uppercase',
-                color: '#000',
+                color: '#fff',
                 marginBottom: '16px',
               }}
             >
@@ -85,7 +85,7 @@ export default function Footer() {
                 fontFamily: 'var(--font-dm-sans, sans-serif)',
                 fontSize: '14px',
                 lineHeight: 1.6,
-                color: '#555',
+                color: 'rgba(255,255,255,0.4)',
                 whiteSpace: 'pre-line',
               }}
             >
@@ -103,7 +103,7 @@ export default function Footer() {
                   fontSize: '10px',
                   letterSpacing: '1.4px',
                   textTransform: 'uppercase',
-                  color: '#999',
+                  color: 'rgba(255,255,255,0.3)',
                   marginBottom: '6px',
                 }}
               >
@@ -123,12 +123,12 @@ export default function Footer() {
                     fontSize: '11px',
                     letterSpacing: '1.2px',
                     textTransform: 'uppercase',
-                    color: '#555',
+                    color: 'rgba(255,255,255,0.4)',
                     textDecoration: 'none',
                     transition: 'color 200ms ease',
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = '#000')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = '#555')}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.4)')}
                 >
                   {label}
                 </Link>
@@ -143,7 +143,7 @@ export default function Footer() {
                   fontSize: '10px',
                   letterSpacing: '1.4px',
                   textTransform: 'uppercase',
-                  color: '#999',
+                  color: 'rgba(255,255,255,0.3)',
                   marginBottom: '6px',
                 }}
               >
@@ -156,7 +156,7 @@ export default function Footer() {
                     fontFamily: 'var(--font-dm-sans, sans-serif)',
                     fontSize: '13px',
                     lineHeight: 1.5,
-                    color: '#555',
+                    color: 'rgba(255,255,255,0.4)',
                   }}
                 >
                   {s}
@@ -172,21 +172,21 @@ export default function Footer() {
                   fontSize: '10px',
                   letterSpacing: '1.4px',
                   textTransform: 'uppercase',
-                  color: '#999',
+                  color: 'rgba(255,255,255,0.3)',
                   marginBottom: '6px',
                 }}
               >
                 Hours
               </div>
-              <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: '#555' }}>Mon – Sat</div>
-              <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: '#000' }}>9:00 AM – 9:00 PM</div>
-              <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: '#555', marginTop: '8px' }}>Sunday</div>
-              <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: '#555' }}>Closed</div>
+              <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: 'rgba(255,255,255,0.4)' }}>Mon – Sat</div>
+              <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: '#fff' }}>9:00 AM – 9:00 PM</div>
+              <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: 'rgba(255,255,255,0.4)', marginTop: '8px' }}>Sunday</div>
+              <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', lineHeight: 1.5, color: 'rgba(255,255,255,0.4)' }}>Closed</div>
             </div>
           </div>
         </div>
 
-        <div style={{ height: '1px', background: '#e8e8e8', marginBottom: '28px' }} />
+        <div style={{ height: '1px', background: 'rgba(255,255,255,0.08)', marginBottom: '28px' }} />
 
         <div
           className="footer-bottom"
@@ -203,7 +203,7 @@ export default function Footer() {
               fontFamily: 'var(--font-space-mono, monospace)',
               fontSize: '10px',
               letterSpacing: '0.5px',
-              color: '#333',
+              color: 'rgba(255,255,255,0.3)',
             }}
           >
             © 2026 MM Car Care · Kakinada, Andhra Pradesh
@@ -215,13 +215,13 @@ export default function Footer() {
               fontSize: '11px',
               letterSpacing: '1.4px',
               textTransform: 'uppercase',
-              color: '#555',
+              color: 'rgba(255,255,255,0.4)',
               background: 'none',
               border: 'none',
               transition: 'color 200ms ease',
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#000')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = '#555')}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#C9A96E')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.4)')}
           >
             BOOK A SERVICE →
           </button>

@@ -37,18 +37,18 @@ export default function Nav() {
         left: 0,
         right: 0,
         zIndex: 200,
-        background: '#fff',
+        background: '#0a0a0a',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0 clamp(20px, 4vw, 56px)',
         height: '110px',
-        borderBottom: '1px solid #ebebeb',
+        borderBottom: '1px solid rgba(255,255,255,0.08)',
       }}
     >
       {/* Logo */}
       <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
-        <span style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '18px', fontWeight: 600, letterSpacing: '0.02em', color: '#111' }}>
+        <span style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '18px', fontWeight: 600, letterSpacing: '0.02em', color: '#fff' }}>
           MMCarCare
         </span>
       </Link>
@@ -64,7 +64,7 @@ export default function Nav() {
               fontSize: '11px',
               letterSpacing: '1.2px',
               textTransform: 'uppercase',
-              color: '#000',
+              color: '#fff',
               textDecoration: 'none',
               opacity: pathname === href ? 1 : 0.4,
               transition: 'opacity 200ms ease',
@@ -86,7 +86,7 @@ export default function Nav() {
           title="Find us on Google Maps"
           style={{
             background: 'none',
-            border: '1px solid #ebebeb',
+            border: '1px solid rgba(255,255,255,0.15)',
             borderRadius: '9999px',
             width: '38px',
             height: '38px',
@@ -96,16 +96,16 @@ export default function Nav() {
             transition: 'border-color 200ms ease, background 200ms ease',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#000'
-            e.currentTarget.style.borderColor = '#000'
+            e.currentTarget.style.background = '#C9A96E'
+            e.currentTarget.style.borderColor = '#C9A96E'
             const svg = e.currentTarget.querySelector('svg')
-            if (svg) svg.style.color = '#fff'
+            if (svg) svg.style.color = '#0a0a0a'
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = 'none'
-            e.currentTarget.style.borderColor = '#ebebeb'
+            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'
             const svg = e.currentTarget.querySelector('svg')
-            if (svg) svg.style.color = '#000'
+            if (svg) svg.style.color = '#fff'
           }}
         >
           <svg
@@ -113,7 +113,7 @@ export default function Nav() {
             height="16"
             viewBox="0 0 24 24"
             fill="currentColor"
-            style={{ color: '#000', transition: 'color 200ms ease' }}
+            style={{ color: '#fff', transition: 'color 200ms ease' }}
           >
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
           </svg>
@@ -127,21 +127,23 @@ export default function Nav() {
             fontSize: '11px',
             letterSpacing: '1.4px',
             textTransform: 'uppercase',
-            color: '#000',
+            color: '#fff',
             background: 'transparent',
-            border: '1px solid #000',
+            border: '1px solid rgba(255,255,255,0.25)',
             borderRadius: '9999px',
             padding: '8px 20px',
             whiteSpace: 'nowrap',
-            transition: 'background 250ms ease, color 250ms ease',
+            transition: 'background 250ms ease, color 250ms ease, border-color 250ms ease',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#000'
-            e.currentTarget.style.color = '#fff'
+            e.currentTarget.style.background = '#C9A96E'
+            e.currentTarget.style.color = '#0a0a0a'
+            e.currentTarget.style.borderColor = '#C9A96E'
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = 'transparent'
-            e.currentTarget.style.color = '#000'
+            e.currentTarget.style.color = '#fff'
+            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'
           }}
         >
           BOOK

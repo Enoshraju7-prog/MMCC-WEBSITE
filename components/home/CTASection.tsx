@@ -61,9 +61,9 @@ export default function CTASection() {
     <section
       ref={sectionRef}
       style={{
-        background: '#fff',
+        background: '#0a0a0a',
         padding: 'clamp(80px, 10vw, 140px) clamp(24px, 5vw, 80px)',
-        borderTop: '1px solid #ebebeb',
+        borderTop: 'none',
         textAlign: 'center',
       }}
     >
@@ -75,7 +75,7 @@ export default function CTASection() {
             fontSize: '10px',
             letterSpacing: '1.4px',
             textTransform: 'uppercase',
-            color: '#555',
+            color: 'rgba(255,255,255,0.4)',
             marginBottom: '24px',
           }}
         >
@@ -94,7 +94,7 @@ export default function CTASection() {
                   fontWeight: 400,
                   lineHeight: 1,
                   textTransform: 'uppercase',
-                  color: '#000',
+                  color: '#fff',
                 }}
               >
                 {line}
@@ -109,7 +109,7 @@ export default function CTASection() {
             fontFamily: 'var(--font-dm-sans, sans-serif)',
             fontSize: '16px',
             lineHeight: 1.6,
-            color: '#555',
+            color: 'rgba(255,255,255,0.45)',
             marginBottom: '48px',
           }}
         >
@@ -120,9 +120,9 @@ export default function CTASection() {
           <button
             onClick={open}
             style={{
-              background: 'transparent',
-              color: '#000',
-              border: '1px solid #000',
+              background: '#C9A96E',
+              color: '#0a0a0a',
+              border: '1px solid #C9A96E',
               borderRadius: '9999px',
               padding: '16px 40px',
               fontFamily: 'var(--font-space-mono, monospace)',
@@ -131,8 +131,8 @@ export default function CTASection() {
               textTransform: 'uppercase',
               transition: 'background 250ms ease, color 250ms ease',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff' }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#000' }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#C9A96E' }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = '#C9A96E'; e.currentTarget.style.color = '#0a0a0a' }}
           >
             Book a Service
           </button>
@@ -140,8 +140,8 @@ export default function CTASection() {
             href="/contact"
             style={{
               background: 'transparent',
-              color: '#999',
-              border: '1px solid #ddd',
+              color: 'rgba(255,255,255,0.5)',
+              border: '1px solid rgba(255,255,255,0.15)',
               borderRadius: '9999px',
               padding: '16px 40px',
               fontFamily: 'var(--font-space-mono, monospace)',
@@ -152,8 +152,8 @@ export default function CTASection() {
               display: 'inline-block',
               transition: 'border-color 200ms ease, color 200ms ease',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#000'; e.currentTarget.style.color = '#000' }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#dddddd'; e.currentTarget.style.color = '#999' }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.6)'; e.currentTarget.style.color = '#fff' }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)' }}
           >
             Get in Touch
           </Link>

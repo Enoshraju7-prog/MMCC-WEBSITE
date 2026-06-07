@@ -10,7 +10,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <StatsBar />
-      <MarqueeStrip />
+      <MarqueeStrip inverted />
       <ServicesOverview />
       <ProcessStrip />
       <MarqueeStrip inverted />

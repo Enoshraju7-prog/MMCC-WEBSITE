@@ -144,7 +144,7 @@ export default function ServicesOverview() {
                   fontFamily: 'var(--font-space-mono, monospace)',
                   fontSize: '9px',
                   letterSpacing: '1px',
-                  color: '#333',
+                  color: '#C9A96E',
                   marginBottom: '20px',
                 }}
               >

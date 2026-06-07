@@ -55,7 +55,7 @@ function StatItem({ stat, index }: { stat: typeof STATS[0]; index: number }) {
       style={{
         padding: 'clamp(28px, 3vw, 44px) clamp(16px, 2vw, 32px)',
         textAlign: 'center',
-        borderRight: index < STATS.length - 1 ? '1px solid #ebebeb' : 'none',
+        borderRight: index < STATS.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none',
       }}
     >
       <div
@@ -66,7 +66,7 @@ function StatItem({ stat, index }: { stat: typeof STATS[0]; index: number }) {
           fontWeight: 400,
           lineHeight: 1,
           textTransform: 'uppercase',
-          color: '#000',
+          color: '#C9A96E',
           marginBottom: '8px',
         }}
       >
@@ -78,7 +78,7 @@ function StatItem({ stat, index }: { stat: typeof STATS[0]; index: number }) {
           fontSize: '9px',
           letterSpacing: '1.4px',
           textTransform: 'uppercase',
-          color: '#555',
+          color: 'rgba(255,255,255,0.4)',
         }}
       >
         {stat.label}
@@ -91,9 +91,9 @@ export default function StatsBar() {
   return (
     <div
       style={{
-        background: '#fff',
-        borderTop: '1px solid #ebebeb',
-        borderBottom: '1px solid #ebebeb',
+        background: '#0a0a0a',
+        borderTop: '1px solid rgba(255,255,255,0.08)',
+        borderBottom: '1px solid rgba(255,255,255,0.08)',
         display: 'grid',
         gridTemplateColumns: 'repeat(4, 1fr)',
       }}
