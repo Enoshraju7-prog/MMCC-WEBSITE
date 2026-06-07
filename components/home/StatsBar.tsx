@@ -7,8 +7,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const STATS = [
-  { raw: 1000, display: '1000+', label: 'Loyal Customers', suffix: '+' },
-  { raw: 25, display: '25', label: 'Years Experience', suffix: '' },
+  { raw: 1500, display: '1500+', label: 'Loyal Customers', suffix: '+' },
+  { raw: 25, display: '25+', label: 'Years Experience', suffix: '+' },
   { raw: null, display: 'Full', label: 'Range of Services', suffix: '' },
   { raw: 6, display: '6', label: 'Days a Week', suffix: '' },
 ]

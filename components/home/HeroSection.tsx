@@ -4,7 +4,6 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import Link from 'next/link'
 import { useBooking } from '@/lib/booking-context'
-import Image from 'next/image'
 
 const HEADLINES = [
   ['MM', 'Car', 'Care.'],
@@ -81,7 +80,6 @@ function HeroHeadline() {
 export default function HeroSection() {
   const { open } = useBooking()
   const heroRef = useRef<HTMLElement>(null)
-  const labelRef = useRef<HTMLDivElement>(null)
   const subRef = useRef<HTMLParagraphElement>(null)
   const btnsRef = useRef<HTMLDivElement>(null)
   const decoLine1 = useRef<HTMLDivElement>(null)
@@ -91,14 +89,8 @@ export default function HeroSection() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.15 })
 
-      // Label
-      tl.fromTo(
-        labelRef.current,
-        { y: 24, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }
-      )
       // Sub & buttons
-      tl.fromTo(subRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, 0.7)
+      tl.fromTo(subRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, 0.0)
       tl.fromTo(btnsRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, 0.85)
 
       // Decorative vertical lines draw in
@@ -137,26 +129,6 @@ export default function HeroSection() {
         overflow: 'hidden',
       }}
     >
-      {/* Logo — top right */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '32px',
-          right: 'clamp(24px, 5vw, 80px)',
-          zIndex: 3,
-          opacity: 0.12,
-          pointerEvents: 'none',
-        }}
-      >
-        <Image
-          src="/uploads/logo.png"
-          alt="MM Car Care"
-          width={320}
-          height={90}
-          style={{ objectFit: 'contain', width: 'clamp(180px, 25vw, 320px)', height: 'auto' }}
-        />
-      </div>
-
       {/* Geometric accents */}
       <div
         style={{
@@ -204,18 +176,6 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="hero-content" style={{ position: 'relative', zIndex: 2, maxWidth: '1000px' }}>
-        {/* Logo above headline */}
-        <div ref={labelRef} style={{ marginBottom: '32px' }}>
-          <Image
-            src="/uploads/logo.png"
-            alt="MM Car Care"
-            width={220}
-            height={60}
-            style={{ objectFit: 'contain', height: '180px', width: 'auto' }}
-            priority
-          />
-        </div>
-
         <HeroHeadline />
 
         <p
@@ -229,7 +189,7 @@ export default function HeroSection() {
             maxWidth: '440px',
           }}
         >
-          The right way. Trusted by 1,000+ loyal customers across Kakinada. Professional-grade products and trained hands — every single time.
+          The right way. Trusted by 1,500+ loyal customers across Kakinada. Professional-grade products and trained hands — every single time.
         </p>
 
         <div ref={btnsRef} style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>

@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { gsap } from 'gsap'
 import { useBooking } from '@/lib/booking-context'
@@ -49,14 +48,9 @@ export default function Nav() {
     >
       {/* Logo */}
       <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
-        <Image
-          src="/uploads/logo.png"
-          alt="MM Car Care"
-          width={400}
-          height={110}
-          style={{ objectFit: 'contain', height: '95px', width: 'auto' }}
-          priority
-        />
+        <span style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '18px', fontWeight: 600, letterSpacing: '0.02em', color: '#111' }}>
+          MMCarCare
+        </span>
       </Link>
 
       {/* Centre nav links */}

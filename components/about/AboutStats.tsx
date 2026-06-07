@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const STATS = [
   { raw: 25, display: '25+', label: 'Years in Business', suffix: '+' },
-  { raw: 1000, display: '1000+', label: 'Loyal, Trusted Customers', suffix: '+' },
+  { raw: 1500, display: '1500+', label: 'Loyal, Trusted Customers', suffix: '+' },
   { raw: null, display: 'Full', label: 'Service Garage', suffix: '' },
   { raw: 100, display: '100%', label: 'Mobile Capable', suffix: '%' },
 ]
