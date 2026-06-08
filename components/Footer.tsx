@@ -113,6 +113,7 @@ export default function Footer() {
                 { label: 'HOME', href: '/' },
                 { label: 'SERVICES', href: '/services' },
                 { label: 'ABOUT', href: '/about' },
+                { label: 'BLOG', href: '/blog' },
                 { label: 'CONTACT', href: '/contact' },
               ].map(({ label, href }) => (
                 <Link
