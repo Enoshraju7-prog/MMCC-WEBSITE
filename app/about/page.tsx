@@ -33,9 +33,9 @@ export default function AboutPage() {
       <section
         ref={headerRef}
         style={{
-          background: '#fff',
+          background: '#0a0a0a',
           padding: 'clamp(80px, 10vw, 140px) clamp(24px, 5vw, 80px) clamp(48px, 6vw, 80px)',
-          borderBottom: '1px solid #ebebeb',
+          borderBottom: '1px solid rgba(201,169,110,0.15)',
         }}
       >
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
@@ -46,7 +46,7 @@ export default function AboutPage() {
               fontSize: '10px',
               letterSpacing: '1.4px',
               textTransform: 'uppercase',
-              color: '#555',
+              color: '#C9A96E',
               marginBottom: '20px',
             }}
           >
@@ -62,7 +62,7 @@ export default function AboutPage() {
                 fontWeight: 400,
                 lineHeight: 1,
                 textTransform: 'uppercase',
-                color: '#000',
+                color: '#ffffff',
               }}
             >
               Built on
@@ -78,7 +78,7 @@ export default function AboutPage() {
                 fontWeight: 400,
                 lineHeight: 1,
                 textTransform: 'uppercase',
-                color: '#000',
+                color: '#C9A96E',
               }}
             >
               Craft.

@@ -11,14 +11,14 @@ const HEADLINES = [
   ['We Take', 'Care of', 'Your Car.'],
 ]
 
-// hero-5 (image 10) is featured — stays 6 sec. Others rotate at 4.5 sec.
+// hero-5 is first and featured — stays 7 sec. Others rotate at 4.5 sec.
 const SLIDES = [
+  { src: '/uploads/hero-5.jpg', duration: 7000 },
   { src: '/uploads/hero-1.jpg', duration: 4500 },
   { src: '/uploads/hero-2.jpg', duration: 4500 },
   { src: '/uploads/hero-3.jpg', duration: 4500 },
   { src: '/uploads/hero-4.jpg', duration: 4500 },
   { src: '/uploads/hero-6.jpg', duration: 4500 },
-  { src: '/uploads/hero-5.jpg', duration: 6000 },
 ]
 
 function HeroHeadline() {
