@@ -47,9 +47,22 @@ export default function Nav() {
       }}
     >
       {/* Logo */}
-      <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
-        <span style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '18px', fontWeight: 600, letterSpacing: '0.02em', color: '#fff' }}>
-          MMCarCare
+      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}>
+        <div style={{
+          width: '38px',
+          height: '38px',
+          borderRadius: '50%',
+          background: 'linear-gradient(135deg, #C9A96E, #e8c98a, #C9A96E)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexShrink: 0,
+        }}>
+          <span style={{ fontFamily: 'Georgia, serif', fontSize: '13px', fontWeight: 700, color: '#0a0a0a', letterSpacing: '0.5px' }}>MM</span>
+        </div>
+        <span style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '17px', fontWeight: 600, letterSpacing: '0.02em' }}>
+          <span style={{ color: '#C9A96E' }}>MM</span>
+          <span style={{ color: 'rgba(255,255,255,0.9)' }}>CarCare</span>
         </span>
       </Link>
 
