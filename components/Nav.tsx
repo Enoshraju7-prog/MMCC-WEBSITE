@@ -1,25 +1,22 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { gsap } from 'gsap'
 import { useBooking } from '@/lib/booking-context'
 
-const NAV_LINKS = [
-  { label: 'Home', href: '/' },
-  { label: 'Services', href: '/services' },
-  { label: 'About', href: '/about' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Contact', href: '/contact' },
-]
+const SECTIONS = ['home', 'services', 'about', 'contact']
 
 const MAPS_URL = 'https://maps.app.goo.gl/SRBWNggKuSY9ge8k7'
 
 export default function Nav() {
   const pathname = usePathname()
+  const router = useRouter()
   const { open } = useBooking()
   const navRef = useRef<HTMLElement>(null)
+  const [activeSection, setActiveSection] = useState('home')
+  const isHome = pathname === '/'
 
   useEffect(() => {
     gsap.fromTo(
@@ -28,6 +25,47 @@ export default function Nav() {
       { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: 0.1 }
     )
   }, [])
+
+  // Scroll-spy: track which section is in view on the home page
+  useEffect(() => {
+    if (!isHome) return
+
+    const observers: IntersectionObserver[] = []
+
+    SECTIONS.forEach(id => {
+      const el = document.getElementById(id)
+      if (!el) return
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id) },
+        { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+      )
+      obs.observe(el)
+      observers.push(obs)
+    })
+
+    return () => observers.forEach(obs => obs.disconnect())
+  }, [isHome])
+
+  function handleNavClick(e: React.MouseEvent, section: string) {
+    if (isHome) {
+      e.preventDefault()
+      const el = document.getElementById(section)
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }
+    // If not on home, let the Link navigate normally (href="/#section")
+  }
+
+  function isActive(section: string) {
+    if (isHome) return activeSection === section
+    return pathname.startsWith(`/${section}`) && section !== 'home'
+  }
+
+  const navLinks = [
+    { label: 'Home', href: '/#home', section: 'home' },
+    { label: 'Services', href: '/#services', section: 'services' },
+    { label: 'About', href: '/#about', section: 'about' },
+    { label: 'Contact', href: '/#contact', section: 'contact' },
+  ]
 
   return (
     <nav
@@ -48,7 +86,11 @@ export default function Nav() {
       }}
     >
       {/* Logo */}
-      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}>
+      <Link
+        href="/#home"
+        onClick={(e) => handleNavClick(e, 'home')}
+        style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}
+      >
         <div style={{
           width: '38px',
           height: '38px',
@@ -67,12 +109,13 @@ export default function Nav() {
         </span>
       </Link>
 
-      {/* Centre nav links */}
+      {/* Centre: main nav links + blog separated */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(20px, 3vw, 48px)' }}>
-        {NAV_LINKS.map(({ label, href }) => (
+        {navLinks.map(({ label, href, section }) => (
           <Link
-            key={href}
+            key={section}
             href={href}
+            onClick={(e) => handleNavClick(e, section)}
             style={{
               fontFamily: 'var(--font-space-mono, monospace)',
               fontSize: '11px',
@@ -80,21 +123,78 @@ export default function Nav() {
               textTransform: 'uppercase',
               color: '#fff',
               textDecoration: 'none',
-              opacity: pathname === href ? 1 : 0.4,
+              opacity: isActive(section) ? 1 : 0.4,
               transition: 'opacity 200ms ease',
               whiteSpace: 'nowrap',
+              position: 'relative',
             }}
             onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = pathname === href ? '1' : '0.4')}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = isActive(section) ? '1' : '0.4')}
           >
             {label}
+            {/* Active underline dot */}
+            {isActive(section) && (
+              <span style={{
+                position: 'absolute',
+                bottom: '-4px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '3px',
+                height: '3px',
+                borderRadius: '50%',
+                background: '#C9A96E',
+                display: 'block',
+              }} />
+            )}
           </Link>
         ))}
+
+        {/* Separator */}
+        <span style={{
+          width: '1px',
+          height: '16px',
+          background: 'rgba(255,255,255,0.12)',
+          display: 'inline-block',
+          flexShrink: 0,
+        }} />
+
+        {/* Blog — separate */}
+        <Link
+          href="/blog"
+          style={{
+            fontFamily: 'var(--font-space-mono, monospace)',
+            fontSize: '11px',
+            letterSpacing: '1.2px',
+            textTransform: 'uppercase',
+            color: '#fff',
+            textDecoration: 'none',
+            opacity: pathname.startsWith('/blog') ? 1 : 0.4,
+            transition: 'opacity 200ms ease',
+            whiteSpace: 'nowrap',
+            position: 'relative',
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
+          onMouseLeave={(e) => (e.currentTarget.style.opacity = pathname.startsWith('/blog') ? '1' : '0.4')}
+        >
+          Blog
+          {pathname.startsWith('/blog') && (
+            <span style={{
+              position: 'absolute',
+              bottom: '-4px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '3px',
+              height: '3px',
+              borderRadius: '50%',
+              background: '#C9A96E',
+              display: 'block',
+            }} />
+          )}
+        </Link>
       </div>
 
       {/* Right — location pin + book */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
-        {/* Location pin */}
         <button
           onClick={() => window.open(MAPS_URL, '_blank')}
           title="Find us on Google Maps"
@@ -133,7 +233,6 @@ export default function Nav() {
           </svg>
         </button>
 
-        {/* Book */}
         <button
           onClick={open}
           style={{

@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
 import HeroSection from '@/components/home/HeroSection'
 import StatsBar from '@/components/home/StatsBar'
-import ServicesOverview from '@/components/home/ServicesOverview'
-import ProcessStrip from '@/components/home/ProcessStrip'
-import CTASection from '@/components/home/CTASection'
 import MarqueeStrip from '@/components/MarqueeStrip'
+import ServicesGrid from '@/components/services/ServicesGrid'
+import FounderSection from '@/components/about/FounderSection'
+import AboutStats from '@/components/about/AboutStats'
+import ValuesGrid from '@/components/about/ValuesGrid'
+import ContactGrid from '@/components/contact/ContactGrid'
 import { SITE_URL } from '@/lib/business'
 
 export const metadata: Metadata = {
@@ -23,13 +25,56 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <HeroSection />
-      <StatsBar />
-      <MarqueeStrip inverted />
-      <ServicesOverview />
-      <ProcessStrip />
-      <MarqueeStrip inverted />
-      <CTASection />
+      <section id="home">
+        <HeroSection />
+        <StatsBar />
+        <MarqueeStrip inverted />
+      </section>
+
+      <section id="services">
+        <ServicesGrid />
+      </section>
+
+      <section id="about">
+        <div style={{
+          background: '#0a0a0a',
+          padding: 'clamp(80px, 10vw, 120px) clamp(24px, 5vw, 80px) clamp(40px, 5vw, 60px)',
+          borderBottom: '1px solid rgba(201,169,110,0.15)',
+        }}>
+          <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+            <div style={{
+              fontFamily: 'var(--font-space-mono, monospace)',
+              fontSize: '10px',
+              letterSpacing: '1.4px',
+              textTransform: 'uppercase',
+              color: '#C9A96E',
+              marginBottom: '20px',
+            }}>
+              Our Story
+            </div>
+            <h2 style={{
+              fontFamily: 'var(--font-big-shoulders, sans-serif)',
+              fontSize: 'clamp(48px, 7vw, 96px)',
+              fontWeight: 700,
+              lineHeight: 1.0,
+              textTransform: 'uppercase',
+              letterSpacing: '2px',
+              margin: 0,
+            }}>
+              <span style={{ color: '#ffffff' }}>BUILT ON</span>
+              <br />
+              <span style={{ color: '#C9A96E' }}>CRAFT.</span>
+            </h2>
+          </div>
+        </div>
+        <FounderSection />
+        <AboutStats />
+        <ValuesGrid />
+      </section>
+
+      <section id="contact">
+        <ContactGrid />
+      </section>
     </>
   )
 }

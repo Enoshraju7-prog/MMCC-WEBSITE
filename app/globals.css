@@ -21,6 +21,10 @@ html {
   scroll-behavior: smooth;
 }
 
+section[id] {
+  scroll-margin-top: 110px;
+}
+
 body {
   background: #fff;
   color: #000;
