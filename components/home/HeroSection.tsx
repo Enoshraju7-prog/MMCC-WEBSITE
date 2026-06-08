@@ -88,6 +88,7 @@ function HeroHeadline() {
 
 function HeroSlideshow() {
   const [current, setCurrent] = useState(0)
+  const currentRef = useRef(0)
   const imgRefs = useRef<(HTMLDivElement | null)[]>([])
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const wrapRef = useRef<HTMLDivElement>(null)
@@ -99,29 +100,35 @@ function HeroSlideshow() {
     }
   }, [])
 
+  const advance = (from: number) => {
+    const next = (from + 1) % SLIDES.length
+    const outEl = imgRefs.current[from]
+    const inEl = imgRefs.current[next]
+
+    if (outEl) gsap.to(outEl, { opacity: 0, duration: 0.9, ease: 'power2.inOut' })
+    if (inEl) gsap.to(inEl, { opacity: 1, duration: 0.9, ease: 'power2.inOut' })
+
+    currentRef.current = next
+    setCurrent(next)
+    if (timerRef.current) clearTimeout(timerRef.current)
+    timerRef.current = setTimeout(() => advance(next), SLIDES[next].duration)
+  }
+
   useEffect(() => {
-    const advance = (from: number) => {
-      const next = (from + 1) % SLIDES.length
-      const outEl = imgRefs.current[from]
-      const inEl = imgRefs.current[next]
-
-      if (outEl) gsap.to(outEl, { opacity: 0, duration: 0.9, ease: 'power2.inOut' })
-      if (inEl) gsap.to(inEl, { opacity: 1, duration: 0.9, ease: 'power2.inOut' })
-
-      setCurrent(next)
-      timerRef.current = setTimeout(() => advance(next), SLIDES[next].duration)
-    }
-
     timerRef.current = setTimeout(() => advance(0), SLIDES[0].duration)
-
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current)
-    }
+    return () => { if (timerRef.current) clearTimeout(timerRef.current) }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const handleClick = () => {
+    if (timerRef.current) clearTimeout(timerRef.current)
+    advance(currentRef.current)
+  }
 
   return (
     <div
       ref={wrapRef}
+      onClick={handleClick}
       style={{
         position: 'relative',
         width: '100%',
@@ -129,6 +136,7 @@ function HeroSlideshow() {
         borderRadius: '4px',
         overflow: 'hidden',
         border: '1px solid rgba(201,169,110,0.18)',
+        cursor: 'pointer',
       }}
     >
       {SLIDES.map((slide, i) => (
@@ -342,7 +350,7 @@ export default function HeroSection() {
         </div>
 
         {/* Right: Slideshow */}
-        <div style={{
+        <div className="hero-image-wrap" style={{
           height: 'clamp(380px, 55vh, 640px)',
           position: 'relative',
         }}>
@@ -355,6 +363,14 @@ export default function HeroSection() {
         @media (max-width: 768px) {
           .hero-content {
             grid-template-columns: 1fr !important;
+            padding-top: 100px !important;
+            padding-bottom: 40px !important;
+            gap: 28px !important;
+          }
+          .hero-image-wrap {
+            height: 56vw !important;
+            min-height: 260px !important;
+            max-height: 420px !important;
           }
         }
       `}</style>
