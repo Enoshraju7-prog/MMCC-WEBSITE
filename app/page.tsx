@@ -28,7 +28,7 @@ export default function HomePage() {
       <section id="home">
         <HeroSection />
         <StatsBar />
-        <MarqueeStrip inverted />
+        <MarqueeStrip />
       </section>
 
       <section id="services">

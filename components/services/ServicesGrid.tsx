@@ -45,6 +45,20 @@ const SERVICES = [
     duration: '2 days',
   },
   {
+    id: 'ppf',
+    title: 'Paint Protection Film',
+    desc: 'Self-healing transparent film bonded to painted surfaces. Guards against stone chips, scratches, and UV damage without altering your car\'s colour or finish.',
+    detail: ['Surface decontamination', 'Custom-cut PPF application', 'Edge sealing', 'Post-install inspection'],
+    duration: '1–2 days',
+  },
+  {
+    id: 'headlight',
+    title: 'Headlight Restoration',
+    desc: 'Oxidised, yellowed headlights sanded back and polished clear. Restores light output and gives the front of your car a clean, sharp look.',
+    detail: ['Multi-stage wet sanding', 'Machine polish', 'UV sealant coat', 'Before & after check'],
+    duration: '45 min',
+  },
+  {
     id: 'oil',
     title: 'Oil Change',
     desc: "Correct-grade engine oil, OEM-spec filter, and a full fluid top-up check. Done right, without shortcuts. We consult your vehicle manual — not guesswork.",
@@ -52,18 +66,67 @@ const SERVICES = [
     duration: '30 min',
   },
   {
-    id: 'battery',
-    title: 'Battery Check',
-    desc: 'Full battery health diagnostic using a calibrated load tester. Voltage, cold cranking amps, and charge state — all measured and reported to you clearly.',
-    detail: ['Load test', 'Voltage reading', 'CCA measurement', 'Written health report'],
-    duration: '15 min',
+    id: 'engine',
+    title: 'Engine Service',
+    desc: 'Complete engine health check — spark plugs, air filter, throttle body, belt condition, and cooling system. Identifies issues before they become breakdowns.',
+    detail: ['Spark plug inspection & replacement', 'Air & fuel filter service', 'Throttle body cleaning', 'Cooling system flush & refill'],
+    duration: '2–3 hrs',
   },
   {
-    id: 'tyre',
-    title: 'Tyre Pressure',
-    desc: "All four tyres checked and inflated to manufacturer specification. Spare checked too. Simple, but most garages skip it. We don't.",
-    detail: ['All 4 tyres checked', 'Inflated to spec', 'Spare tyre included', 'Visual tread inspection'],
-    duration: '10 min',
+    id: 'battery',
+    title: 'Battery Service',
+    desc: 'Full battery health diagnostic using a calibrated load tester. Voltage, cold cranking amps, and charge state checked. Replacement if needed, fitted and tested.',
+    detail: ['Load test & CCA measurement', 'Voltage & charge check', 'Terminal cleaning', 'Replacement & fitment if required'],
+    duration: '30 min',
+  },
+  {
+    id: 'brakes',
+    title: 'Brake Service',
+    desc: 'Front and rear brake pads measured for wear. Discs checked for scoring and run-out. Brake fluid tested for moisture content and replaced if needed.',
+    detail: ['Pad wear measurement', 'Disc & rotor inspection', 'Brake fluid moisture test', 'Pad & fluid replacement if due'],
+    duration: '1–2 hrs',
+  },
+  {
+    id: 'suspension',
+    title: 'Suspension & Steering',
+    desc: 'Full undercarriage inspection — shocks, struts, ball joints, tie rod ends, and bushings. Identifies the real cause of vibrations, pulling, or uneven tyre wear.',
+    detail: ['Shock & strut inspection', 'Ball joint & tie rod check', 'Bushing condition assessment', 'Steering play measurement'],
+    duration: '45 min',
+  },
+  {
+    id: 'ac',
+    title: 'AC Service',
+    desc: 'Complete air conditioning service — refrigerant level check, compressor inspection, cabin filter replacement, and duct cleaning. Cool cabin, clean air.',
+    detail: ['Refrigerant check & recharge', 'Compressor & condenser inspection', 'Cabin air filter replacement', 'AC duct & evaporator cleaning'],
+    duration: '1–2 hrs',
+  },
+  {
+    id: 'alignment',
+    title: 'Wheel Alignment',
+    desc: '4-wheel computerised alignment to manufacturer specification. Corrects pulling, uneven tyre wear, and steering drift. Protects tyres and improves fuel efficiency.',
+    detail: ['4-wheel computerised alignment', 'Camber, caster & toe adjustment', 'Steering centre check', 'Test drive confirmation'],
+    duration: '45 min',
+  },
+  {
+    id: 'balancing',
+    title: 'Tyre Balancing',
+    desc: 'Dynamic balance of all four wheels using precision equipment. Eliminates steering wheel vibration at speed and prevents uneven tread wear.',
+    detail: ['Dynamic balance of all 4 wheels', 'Weight placement & verification', 'Valve stem check', 'Post-balance test drive'],
+    duration: '30 min',
+  },
+  {
+    id: 'rotation',
+    title: 'Tyre Rotation',
+    desc: 'Tyres rotated to the correct pattern for your drivetrain — cross, straight, or rearward. Extends tyre life and keeps wear even across all four corners.',
+    detail: ['Drivetrain-correct rotation pattern', 'Torque-spec re-fitment', 'Tread depth measurement', 'Tyre pressure set to spec'],
+    duration: '20 min',
+  },
+  {
+    id: 'fluids',
+    title: 'Fluid Service',
+    desc: 'Full check and top-up of all vehicle fluids: coolant, power steering, brake fluid, windscreen wash, and transmission. The kind of check most owners skip until something fails.',
+    detail: ['Coolant level & condition', 'Power steering fluid check', 'Brake fluid moisture test', 'Transmission & windscreen wash top-up'],
+    duration: '30 min',
   },
 ]
 
@@ -163,7 +226,7 @@ export default function ServicesGrid() {
               maxWidth: '520px',
             }}
           >
-            Eight services. All performed by trained hands using professional-grade products. No shortcuts. No exceptions.
+Every service performed by trained hands using professional-grade products. No shortcuts. No exceptions.
           </p>
         </div>
       </section>
