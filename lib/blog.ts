@@ -25,7 +25,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'Car Care Tips',
     pexelsQuery: 'car parked hot sunny day heat',
     content: [
-      { type: 'p', text: 'Kakinada summers are brutal — temperatures cross 40°C easily, and the combination of heat, humidity, and coastal salt air can do serious damage to your car if you\'re not prepared. Here\'s what every car owner in Kakinada should do before and during summer.' },
+      { type: 'p', text: 'Kakinada summer arrives like an uninvited relative — loud, unavoidable, and already doing damage before you\'ve had time to prepare. Temperatures hit 40°C in April and don\'t apologise about it until October. Here\'s what to do before it gets that bad.' },
       { type: 'h2', text: '1. Protect Your Paint with a Ceramic Coating or Wax' },
       { type: 'p', text: 'UV rays are the biggest enemy of your car\'s paint. Prolonged sun exposure causes the paint to fade, oxidise, and eventually develop tiny cracks. A ceramic coating creates a hard, UV-resistant layer on top of your paint that lasts 2–3 years. If ceramic coating isn\'t in your budget, at minimum get your car waxed before summer — it adds a sacrificial layer that absorbs UV before your paint does.' },
       { type: 'h2', text: '2. Park in Shade Whenever Possible' },
@@ -59,7 +59,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'Detailing',
     pexelsQuery: 'car ceramic coating glossy shine',
     content: [
-      { type: 'p', text: 'If you\'ve ever asked "is ceramic coating worth it?" — you\'re not alone. It\'s one of the most common questions we get at MM Car Care. Here\'s a clear, honest comparison to help you decide.' },
+      { type: 'p', text: 'Short answer: if you park outdoors in Kakinada, ceramic coating is worth it. Long answer: read this article. (The long answer also involves wax, which is fine — just not the same thing, regardless of what the petrol bunk guy tells you.)' },
       { type: 'h2', text: 'What Does Each One Actually Do?' },
       { type: 'p', text: 'Both ceramic coatings and waxes protect your car\'s paint from the elements. But they work very differently.' },
       { type: 'p', text: 'Wax sits on top of your paint as a soft, thin layer. It repels water, gives your car shine, and offers some UV protection. It works well — but it wears off in 1–3 months and needs to be reapplied regularly.' },
@@ -100,7 +100,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'AC Service',
     pexelsQuery: 'car air conditioning mechanic repair',
     content: [
-      { type: 'p', text: 'In Kakinada, a working car AC isn\'t a luxury — it\'s a necessity. Temperatures regularly cross 40°C from April to June, and a failed AC on the highway can be genuinely dangerous. The good news: your AC gives warning signs well before it fails. Here\'s what to watch for.' },
+      { type: 'p', text: 'Your car AC will tell you it\'s struggling well before it stops completely. The problem is most people interpret "takes a bit longer to cool" as "probably fine" — right until it\'s May, it\'s 42°C, and it\'s definitely not fine. Here are the five signs to catch it before that happens.' },
       { type: 'h2', text: '1. AC Takes Too Long to Cool the Cabin' },
       { type: 'p', text: 'If your AC used to cool the car quickly but now takes 10–15 minutes to bring the temperature down, the refrigerant level is likely low. Refrigerant is what actually transfers heat out of your car. As it drops, cooling efficiency drops. This is the most common issue and the easiest to fix — just a refrigerant top-up at any good service centre.' },
       { type: 'h2', text: '2. Weak Airflow Even on Maximum Fan Speed' },
@@ -126,7 +126,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'Car Wash',
     pexelsQuery: 'professional car wash cleaning service',
     content: [
-      { type: 'p', text: 'There\'s no single right answer for everyone, but Kakinada\'s environment — coastal salt air, summer dust, monsoon mud, and strong UV — means most car owners should be washing more often than they do. Here\'s a practical guide.' },
+      { type: 'p', text: 'Once a week. That\'s the answer for Kakinada. You came here for a recommendation, there it is. Now — here\'s why, and what happens when you stretch it to "whenever it looks dirty." (Spoiler: it doesn\'t look dirty until it\'s too late.)' },
       { type: 'h2', text: 'The General Rule: Once a Week' },
       { type: 'p', text: 'For most car owners in Kakinada who park outdoors, a weekly wash is the right cadence. Weekly washing removes the layer of dust, salt, and pollutants that accumulate on your car before they have a chance to embed in the paint or cause corrosion. If you park in a garage and drive short distances, you can stretch to once every two weeks.' },
       { type: 'h2', text: 'Wash More Often During These Times' },
@@ -160,7 +160,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'Body Repair',
     pexelsQuery: 'car dent body repair workshop',
     content: [
-      { type: 'p', text: 'Whether it\'s a parking lot scrape, a monsoon hailstone, or a slow-speed bump — dents are one of the most common car problems in Kakinada. The good news: most dents are fixable without repainting. Here\'s everything you need to know before you bring your car in.' },
+      { type: 'p', text: 'A dent in a Kakinada parking lot is basically a rite of passage. Autorickshaw wing mirrors have claimed more door panels in this city than potholes have — and that\'s saying something. The good news: most dents are fixable without repainting, if you bring it in before the rust files a claim.' },
       { type: 'h2', text: 'The Two Main Dent Repair Methods' },
       { type: 'h3', text: 'Paintless Dent Repair (PDR)' },
       { type: 'p', text: 'PDR is the preferred method for dents where the paint is intact — no chips, no cracks, just a dent in the metal. A technician uses specialised metal rods and tools to push the dent out from behind the panel, restoring the original shape without any filler or paint. It\'s faster, cheaper, and leaves no trace. Most simple dents in Kakinada can be fixed this way.' },
@@ -191,7 +191,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'AC Service',
     pexelsQuery: 'car mechanic engine repair garage',
     content: [
-      { type: 'p', text: 'Car AC repair is one of the most in-demand services in Kakinada — and for good reason. With temperatures hitting 42°C in summer and humidity staying high all year, a faulty AC is not just uncomfortable; it\'s a safety problem on long drives. Here\'s a complete guide to car AC repair in Kakinada.' },
+      { type: 'p', text: 'At some point between March and June, you will turn on your car AC and discover it has opinions about cooling the cabin. Specifically: it doesn\'t. Book your AC service in March — not June. By June, every good workshop in Kakinada has a two-week queue and no sympathy.' },
       { type: 'h2', text: 'The Most Common Car AC Problems' },
       { type: 'h3', text: '1. Low Refrigerant (Gas Leak or Normal Depletion)' },
       { type: 'p', text: 'This is the single most common AC complaint — the car blows air but it\'s not cold enough. Refrigerant is the gas that actually transfers heat out of your cabin. Over time, it depletes or can leak from a damaged line or fitting. The fix is a refrigerant recharge — topping up the gas to the correct level. If there\'s a leak, the source needs to be found and sealed first.' },
@@ -227,7 +227,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'Mechanical',
     pexelsQuery: 'car suspension mechanic underneath lift',
     content: [
-      { type: 'p', text: 'If you\'ve driven on Kakinada\'s roads, you know what we\'re dealing with — potholes, speed bumps every 50 metres, and road surfaces that take a beating every monsoon. All of this puts serious stress on your car\'s suspension. The good news: suspension problems give clear warning signs before they become dangerous.' },
+      { type: 'p', text: 'Kakinada roads don\'t break suspension — they just expedite the process. Every pothole, every monsoon crossing, every speed bump hit a little too fast is doing work on your suspension that you\'ll eventually have to undo. Here\'s how to know when that bill has come due.' },
       { type: 'h2', text: 'What Your Car Suspension Actually Does' },
       { type: 'p', text: 'Your suspension system connects your car\'s body to its wheels. It absorbs road impacts (so you don\'t feel every bump directly), keeps your tyres in contact with the road (critical for braking), and maintains handling stability. When it starts to fail, you feel it immediately — and it affects safety.' },
       { type: 'h2', text: 'Warning Signs of Suspension Problems' },
@@ -264,7 +264,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'Body Repair',
     pexelsQuery: 'car bumper damage scratches repair',
     content: [
-      { type: 'p', text: 'Bumper damage is almost inevitable in Kakinada\'s traffic — tight parking, autorickshaws, and narrow streets mean low-speed contact is common. The front and rear bumpers take most of the hit. Here\'s everything you need to know about getting yours fixed properly.' },
+      { type: 'p', text: 'The front bumper of a car in Kakinada traffic is doing a lot of diplomatic work. Tight lanes, autorickshaws, reverse parking by optimists — the bumper catches what your attention missed. Here\'s what repair actually involves, when to fix vs replace, and why the paint match matters more than most shops tell you.' },
       { type: 'h2', text: 'Types of Bumper Damage' },
       { type: 'h3', text: 'Scuffs and Scratches' },
       { type: 'p', text: 'Surface-level scuffs that haven\'t broken through the plastic are the easiest to fix. The area is sanded, filled, and resprayed to match the original colour. A good paint match is invisible — a poor one is obvious from 3 metres away.' },
