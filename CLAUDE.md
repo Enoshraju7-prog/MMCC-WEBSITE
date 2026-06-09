@@ -17,9 +17,89 @@ Every generated page must satisfy every item on that checklist automatically.
 
 ---
 
-# Blog Writing Rules
+# Blog Generation — Fully Automated Pipeline
 
-When writing any blog post for MM Car Care:
+**Trigger phrases:** "generate blog post", "write next post", "publish next article", "generate the next blog post"
+
+When triggered, run ALL steps below without stopping to ask for confirmation. Do not ask "shall I proceed?" — just do it.
+
+## Step 1 — Read keywords.csv
+- Open `keywords.csv`
+- Find the **first row** where `status = pending` (lowest priority number with pending status)
+- That is the keyword to write about
+- Note: keyword, volume, kd, cluster, intent
+
+## Step 2 — Read all reference files (every single time, no shortcuts)
+Read ALL of these before writing a single word:
+1. `references/on-page-seo.md` — 80-item SEO checklist, every item must be satisfied
+2. `references/blog-process.md` — 8-step research process, run every step
+3. `references/humour.md` — dad joke mandatory in first 50 words
+4. `references/voice.md` — sentence style and what words to avoid
+5. `references/stats.md` — real numbers only, never invent statistics
+6. `references/stories.md` — real workshop anecdotes for grounding
+7. `references/opinions.md` — strong positions stated as facts, not suggestions
+
+## Step 3 — Run blog-process.md research (all 8 steps)
+- WebSearch the primary keyword from keywords.csv
+- WebFetch top 3 results — read the full content
+- Match their format (listicle / guide / comparison) and length (within 20%)
+- Note every H2/H3 topic across the 3 pages — cover all of them
+- Find People Also Ask questions — use 4–8 as the FAQ section
+- Add 1–2 Kakinada-specific angles the top 3 missed
+
+## Step 4 — Generate the BlogPost entry
+Add a new entry to `BLOG_POSTS` in `lib/blog.ts`. Use this exact structure:
+
+```typescript
+{
+  slug: 'keyword-as-slug',           // hyphens only, lowercase, no stop words
+  title: 'SEO Title Here',           // 50-60 chars, primary keyword near start
+  description: 'Meta description.', // 150-160 chars, keyword + benefit + CTA
+  date: 'YYYY-MM-DD',               // today's date
+  readTime: 'X min read',
+  category: 'Category Name',
+  author: 'Santosham Devisetty',
+  pexelsQuery: 'specific image description',
+  relatedSlugs: ['slug-1', 'slug-2', 'slug-3'],  // 3 published posts
+  faqs: [
+    { q: 'Question from People Also Ask?', a: 'Direct 2-4 sentence answer.' },
+    // 4-8 FAQs total
+  ],
+  content: [
+    // Full article — see existing posts for content format
+    // First paragraph must answer the primary keyword query directly
+    // h2 sections target supporting keywords from the cluster
+    // tip blocks for MM Car Care-specific insights
+    // Minimum 1,000 words of content sections
+  ],
+}
+```
+
+**Writing rules (from voice.md + humour.md):**
+- First 50 words must contain a dad joke or human wink — no exceptions
+- Short sentences. Active voice. No corporate filler.
+- Every section grounded in Kakinada: coastal air, monsoon roads, 42°C heat
+- Real numbers from stats.md — never invent a statistic
+- End every post with the CTA: phone 9848377309, Opp. APSP Petrol Bunk
+
+## Step 5 — Update keywords.csv
+Change the row's `status` from `pending` to `published`.
+Add today's date to `date_published` and the slug to `slug`.
+
+## Step 6 — Commit and deploy
+```bash
+git add lib/blog.ts keywords.csv
+git commit -m "Add blog post: [Post Title]"
+git push origin main
+```
+
+Vercel auto-deploys on push. Post is live within 2 minutes.
+
+---
+
+# Blog Writing Rules (manual reference)
+
+When writing any blog post for MM Car Care manually:
 
 **Step 1 — Read these reference files first:**
 - `references/on-page-seo.md` — full on-page SEO checklist (mandatory — read this first)
@@ -29,7 +109,7 @@ When writing any blog post for MM Car Care:
 - `references/stats.md` — real numbers to use; never invent figures
 - `references/stories.md` — real workshop anecdotes to open or ground articles
 - `references/opinions.md` — strong positions to state as facts, not suggestions
-- `seo-keywords.md` — keyword clusters, target terms, and priority order
+- `keywords.csv` — next pending keyword to write about
 
 **Step 2 — Run the blog-process.md research steps:**
 - WebSearch the primary keyword
