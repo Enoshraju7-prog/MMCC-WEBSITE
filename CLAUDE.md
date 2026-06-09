@@ -8,11 +8,21 @@ Each feature does one thing, the code is easy to follow, and the app is easy to 
 ---
 
 
+# Page Generation Rule (applies to ALL pages, blog posts, and service pages)
+
+Before generating any page, blog post, or service page, read:
+- `references/on-page-seo.md` — the full on-page SEO checklist (mandatory for every page)
+
+Every generated page must satisfy every item on that checklist automatically.
+
+---
+
 # Blog Writing Rules
 
 When writing any blog post for MM Car Care:
 
 **Step 1 — Read these reference files first:**
+- `references/on-page-seo.md` — full on-page SEO checklist (mandatory — read this first)
 - `references/blog-process.md` — the 8-step research process to run before writing (mandatory)
 - `references/humour.md` — dad jokes are mandatory; first 50 words must land one
 - `references/voice.md` — sentence style, words to avoid, what MM Car Care sounds like

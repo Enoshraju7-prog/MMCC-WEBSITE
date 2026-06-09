@@ -120,7 +120,7 @@ export default function ContactGrid() {
               fontSize: '10px',
               letterSpacing: '1.4px',
               textTransform: 'uppercase',
-              color: 'rgba(255,255,255,0.35)',
+              color: 'rgba(255,255,255,0.6)',
               marginBottom: '20px',
             }}
           >

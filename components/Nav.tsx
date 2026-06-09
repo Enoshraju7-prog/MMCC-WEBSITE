@@ -349,6 +349,8 @@ export default function Nav() {
           <button
             className="nav-hamburger"
             onClick={() => setMenuOpen(v => !v)}
+            aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+            aria-expanded={menuOpen}
             style={{
               display: 'none',
               background: 'none',

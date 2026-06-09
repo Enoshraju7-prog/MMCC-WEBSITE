@@ -276,7 +276,7 @@ export default function HeroSection() {
               fontFamily: 'var(--font-dm-sans, sans-serif)',
               fontSize: 'clamp(15px, 1.5vw, 18px)',
               lineHeight: 1.6,
-              color: 'rgba(255,255,255,0.45)',
+              color: 'rgba(255,255,255,0.72)',
               marginBottom: '40px',
               maxWidth: '440px',
             }}
