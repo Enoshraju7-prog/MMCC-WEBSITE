@@ -53,12 +53,12 @@ export default function HomePage() {
               Our Story
             </div>
             <h2 style={{
-              fontFamily: 'var(--font-barlow, sans-serif)',
+              fontFamily: 'var(--font-big-shoulders, sans-serif)',
               fontSize: 'clamp(48px, 7vw, 96px)',
-              fontWeight: 900,
+              fontWeight: 700,
               lineHeight: 1.0,
               textTransform: 'uppercase',
-              letterSpacing: '1px',
+              letterSpacing: '2px',
               margin: 0,
             }}>
               <span style={{ color: '#ffffff' }}>BUILT ON</span>
