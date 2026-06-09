@@ -1,68 +1,73 @@
-# MM Car Care — Humour Reference
+# Humour
 
-Use this to make blog posts sound like a real person who works on cars in Kakinada, not a robot summarising Wikipedia.
-
----
-
-## The Tone
-
-Warm, confident, slightly cheeky. Like the guy at the workshop who's seen everything, doesn't panic, and has a dry one-liner ready when he tells you your AC compressor is gone.
-
-Not stand-up comedy. Not corporate "did you know?" copy. Just a real person who knows their stuff and isn't afraid to say the obvious thing with a little edge.
+> Car maintenance is boring. Your job is to make it fun. Every blog post is funny — this isn't optional.
+> Read this file **before** writing the first sentence.
 
 ---
 
-## What Works for MM Car Care
+## The north-star
 
-**Kakinada-specific situations everyone relates to:**
-- Discovering your AC is dead the first week of May, when it hits 42°C and every workshop in town suddenly has a 2-week queue
-- Hitting a pothole so deep it felt personal
-- The monsoon that "wasn't supposed to be that bad this year"
-- Parking in a tight spot and walking back to a mystery dent with no note
-- Driving past the petrol bunk, thinking the car "sounds fine", and then it doesn't
+Raju is 50-something. Kakinada mechanic since before you were driving. Has seen more dead batteries on Sunday mornings than he can count (and he's stopped counting). His apprentice rolls his eyes at least twice per job. His wife says his puns are "worse than the roads." His customers come back every year anyway.
 
-**Universal car owner truths:**
-- Every car owner thinks their car is fine right up until it isn't
-- Everyone delays the service "just one more month" until something breaks
-- Everyone Googles "is this noise normal" at 11pm instead of calling a mechanic
+Kakinada roads have personally offended him. Monsoon season is his villain origin story. He calls every car AC compressor that died in June "a casualty of poor planning."
+
+This is the voice. **Embrace the dad energy. Own it.**
 
 ---
 
-## How to Use It
+## The opening rule
 
-**Opening lines** — don't start with "Car AC repair is important in summer." Start with the moment. The problem. The feeling.
-
-> Bad: "Car air conditioning is essential during Kakinada summers."
-> Good: "You turned on the AC. It blew. It was not cold. It is May. This is a problem."
-
-**Sprinkle, don't slather** — one or two lines per article max. The rest is useful information. Humor is the seasoning, not the meal.
-
-**Local beats generic** — a joke about Kakinada roads lands harder than a joke about "roads in general." Use it.
-
-**Relatable > clever** — a line that makes someone think "yep, that's me" is better than a pun. The pun is a bonus if it's genuinely good.
+If the first 50 words don't land at least one dad joke, a self-aware wink, or a parenthetical aside — rewrite them. We are not a brochure. We are a guy at the workshop who's been doing this 25 years and now he's explaining why your AC died the first week of May.
 
 ---
 
-## Examples to Riff On
+## Five rules for humour in every post
 
-- "Kakinada roads will find every weakness in your suspension. They are thorough like that."
-- "The best time to service your AC was last March. The second best time is right now, before the queue hits."
-- "A dent in a parking lot is basically Kakinada's version of a firm handshake — it happens to everyone eventually."
-- "Your car's battery doesn't care that it's a Sunday. Just something to keep in mind."
-- "Potholes here don't have names, but some of them probably should."
+### 1. Dad jokes are **mandatory**, not optional.
+
+Every post needs at least one pun on the topic. Car AC not cooling? "Cool story, except it isn't." Suspension damage from a pothole? "Kakinada roads have a personal vendetta — and your car owes them nothing." Dent in the parking lot? "A firm handshake from an unknown stranger."
+
+Don't apologise. Don't explain the joke. Drop the pun and walk away from it like nothing happened. The reader will either laugh (ideal) or groan and keep reading (also ideal — they're still reading).
+
+### 2. Parenthetical asides are free real estate.
+
+Examples:
+- "I've been doing this 25 years and every June feels like a surprise to someone. (It is not a surprise.)"
+- "Your AC compressor doesn't care that it's exam season. (We've had that conversation. It won.)"
+- "Kakinada roads don't have names — but some of them probably should. (We're looking at you, the stretch near the bunk.)"
+
+### 3. Laugh at yourself. Never at the reader.
+
+The mechanic is the one with the punchline. The reader is always in on the joke, never the butt of it. They came in good faith. Reward them.
+
+### 4. Self-aware beats try-hard.
+
+"I'd make a suspension pun but I don't want this article to drag." — Good.
+"Why did the car go to therapy? It had too many issues!" — Delete immediately.
+
+The joke should sound like something a real person said at 11am while holding a wrench. Not something generated by a website called "1000 car puns."
+
+### 5. One or two per article. Sprinkle. Don't drown.
+
+Unless you're writing an article *about* humour, the jokes are seasoning not the meal. One strong opener, one mid-article wink, done. If every paragraph has a pun, you've written a comedy sketch — not a car care guide. We want people to call 9848377309, not to forward the article to their friends as "lol look at this."
 
 ---
 
-## What to Avoid
+## Car-specific puns to riff on
 
-- Anything that punches down or could offend a customer
-- Jokes that require context outside of Kakinada / car ownership
-- Sarcasm aimed at the reader (they're the customer, not the punchline)
-- Dad jokes for the sake of it — only if it's genuinely good
-- Humor in the middle of a serious warning (e.g., brake failure, rust, safety issues — keep those straight)
+- AC not cooling → "Cool story, except it isn't." / "This one's going to cost you — both financially and comfort-wise."
+- Suspension damage → "Your car's having a rough time. Literally." / "Kakinada roads don't miss."
+- Dent repair → "Every dent tells a story. Most of them involve parking."
+- Battery dead → "Your battery has decided it's done. No notice. No goodbye. Just silence."
+- Oil overdue → "Skipping an oil change is like skipping sleep — you can do it, but the car remembers."
+- Brakes grinding → "Your brakes are talking. You should probably listen."
+- Tyre pressure in summer → "Heat expands things. Your tyres know this. Do you?"
 
 ---
 
-## The Rule
+## What to avoid
 
-If it sounds like something a mechanic who's been doing this for 25 years would actually say to a customer — it belongs. If it sounds like a copywriter trying to be funny — cut it.
+- Jokes about the customer's driving ("maybe you shouldn't hit potholes" — never)
+- Anything that could read as dismissive of a real safety issue (brake failure, suspension collapse — keep those straight)
+- Puns so obscure they need explaining
+- Two puns in the same sentence — that's not comedy, that's punishment
