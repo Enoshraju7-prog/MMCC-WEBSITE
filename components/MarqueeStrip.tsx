@@ -61,9 +61,10 @@ export default function MarqueeStrip({ inverted = false }: { inverted?: boolean 
             style={{
               fontFamily: 'var(--font-space-mono, monospace)',
               fontSize: '11px',
+              fontWeight: 700,
               letterSpacing: '1.8px',
               textTransform: 'uppercase',
-              color: inverted ? '#fff' : '#333',
+              color: inverted ? '#fff' : '#000',
               paddingRight: '0',
             }}
           >

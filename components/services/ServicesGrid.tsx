@@ -45,11 +45,25 @@ const SERVICES = [
     duration: '2 days',
   },
   {
-    id: 'ppf',
-    title: 'Paint Protection Film',
-    desc: 'Self-healing transparent film bonded to painted surfaces. Guards against stone chips, scratches, and UV damage without altering your car\'s colour or finish.',
-    detail: ['Surface decontamination', 'Custom-cut PPF application', 'Edge sealing', 'Post-install inspection'],
-    duration: '1–2 days',
+    id: 'rebore',
+    title: 'Engine Reboring',
+    desc: 'For high-mileage engines where cylinders have worn beyond tolerance. Cylinders are precision-bored, honed to specification, and fitted with oversized pistons and rings — restoring full compression and engine life.',
+    detail: ['Cylinder bore measurement & assessment', 'Precision reboring & honing', 'Oversized piston & ring fitment', 'Compression test post-rebuild'],
+    duration: '3–5 days',
+  },
+  {
+    id: 'seat-mats',
+    title: 'Seat Covers & Floor Mats',
+    desc: 'Custom-fit leatherette seat covers and 7D floor mats tailored to your vehicle model. Better than showroom accessories — professionally fitted, exact dimensions, with no gaps or loose ends.',
+    detail: ['Vehicle-specific leatherette seat covers', '7D custom-fit floor mats', 'Professional fitting & finishing', 'Full cabin coverage'],
+    duration: '2–3 hrs',
+  },
+  {
+    id: 'audio',
+    title: 'Audio & Infotainment',
+    desc: 'Full car audio upgrade and infotainment installation — head unit, component speakers, subwoofer, amplifier, and wiring. Clean factory-level install with no exposed cables.',
+    detail: ['Head unit / Android display fitment', 'Component speaker installation', 'Subwoofer & amplifier wiring', 'Clean harness integration'],
+    duration: '3–6 hrs',
   },
   {
     id: 'headlight',
@@ -193,11 +207,11 @@ export default function ServicesGrid() {
               fontSize: '10px',
               letterSpacing: '1.4px',
               textTransform: 'uppercase',
-              color: 'rgba(255,255,255,0.35)',
+              color: '#C9A96E',
               marginBottom: '20px',
             }}
           >
-            Every Service
+            What We Offer
           </div>
           <div style={{ overflow: 'hidden' }}>
             <h1
@@ -205,15 +219,15 @@ export default function ServicesGrid() {
               style={{
                 fontFamily: 'var(--font-big-shoulders, sans-serif)',
                 fontSize: 'clamp(52px, 10vw, 130px)',
-                fontWeight: 400,
-                lineHeight: 1,
+                fontWeight: 700,
+                lineHeight: 1.0,
                 textTransform: 'uppercase',
-                color: '#fff',
-                marginBottom: '28px',
+                margin: 0,
                 display: 'block',
               }}
             >
-              Services
+              <span style={{ color: '#ffffff', display: 'block' }}>EVERY</span>
+              <span style={{ color: '#C9A96E', display: 'block' }}>SERVICE.</span>
             </h1>
           </div>
           <p
@@ -224,9 +238,10 @@ export default function ServicesGrid() {
               lineHeight: 1.6,
               color: 'rgba(255,255,255,0.45)',
               maxWidth: '520px',
+              marginTop: '28px',
             }}
           >
-Every service performed by trained hands using professional-grade products. No shortcuts. No exceptions.
+            Performed by trained hands using professional-grade products. No shortcuts. No exceptions.
           </p>
         </div>
       </section>

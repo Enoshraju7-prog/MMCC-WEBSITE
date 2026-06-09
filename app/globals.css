@@ -25,6 +25,28 @@ section[id] {
   scroll-margin-top: 110px;
 }
 
+@media (max-width: 768px) {
+  .main-nav {
+    height: 72px !important;
+  }
+
+  section[id] {
+    scroll-margin-top: 72px;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+
+  .nav-location {
+    display: none !important;
+  }
+
+  .nav-hamburger {
+    display: flex !important;
+  }
+}
+
 body {
   background: #fff;
   color: #000;
