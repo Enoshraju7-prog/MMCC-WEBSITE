@@ -210,16 +210,11 @@ export default function HeroSection() {
   const heroRef = useRef<HTMLElement>(null)
   const subRef = useRef<HTMLParagraphElement>(null)
   const btnsRef = useRef<HTMLDivElement>(null)
-  const decoLine1 = useRef<HTMLDivElement>(null)
-  const decoLine2 = useRef<HTMLDivElement>(null)
-
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.15 })
       tl.fromTo(subRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, 0.0)
       tl.fromTo(btnsRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, 0.85)
-      tl.fromTo(decoLine1.current, { scaleY: 0, transformOrigin: 'top' }, { scaleY: 1, duration: 1.2, ease: 'power3.inOut' }, 0.3)
-      tl.fromTo(decoLine2.current, { scaleY: 0, transformOrigin: 'top' }, { scaleY: 1, duration: 1.0, ease: 'power3.inOut' }, 0.5)
     }, heroRef)
 
     return () => ctx.revert()
@@ -257,19 +252,6 @@ export default function HeroSection() {
         pointerEvents: 'none',
       }} />
 
-      {/* Decorative lines */}
-      <div ref={decoLine1} style={{
-        position: 'absolute', left: '48%', top: '20%',
-        width: '1px', height: '30%',
-        background: 'linear-gradient(to bottom, transparent, rgba(201,169,110,0.25), transparent)',
-        pointerEvents: 'none',
-      }} />
-      <div ref={decoLine2} style={{
-        position: 'absolute', left: '49.5%', top: '30%',
-        width: '1px', height: '20%',
-        background: 'linear-gradient(to bottom, transparent, rgba(201,169,110,0.12), transparent)',
-        pointerEvents: 'none',
-      }} />
 
       {/* Split layout */}
       <div
