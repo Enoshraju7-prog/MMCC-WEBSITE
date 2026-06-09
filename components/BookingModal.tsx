@@ -23,6 +23,8 @@ const SERVICES = [
   { id: 'rebore',     label: 'Engine Reboring' },
   { id: 'seat-mats',  label: 'Seat Covers & Mats' },
   { id: 'audio',      label: 'Audio & Infotainment' },
+  { id: 'ecm',        label: 'ECM Diagnostics' },
+  { id: 'parts',      label: 'Parts Sourcing' },
   { id: 'other',      label: 'Other / Not Sure' },
 ]
 

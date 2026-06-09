@@ -142,6 +142,20 @@ const SERVICES = [
     detail: ['Coolant level & condition', 'Power steering fluid check', 'Brake fluid moisture test', 'Transmission & windscreen wash top-up'],
     duration: '30 min',
   },
+  {
+    id: 'ecm',
+    title: 'ECM Diagnostics',
+    desc: 'Full electronic control module scan using OBD-II diagnostic tools. Reads all fault codes across engine, transmission, ABS, and airbag systems. Clears codes after repair and confirms fix.',
+    detail: ['Full OBD-II fault code scan', 'Engine, ABS & airbag modules', 'Live data monitoring', 'Code clear & post-repair verification'],
+    duration: '30–45 min',
+  },
+  {
+    id: 'parts',
+    title: 'Parts Sourcing',
+    desc: 'Can\'t find the right part? We source OEM and quality aftermarket parts for all car makes and models. No running around — we handle the order, you bring the car when the part arrives.',
+    detail: ['OEM & quality aftermarket parts', 'All makes and models covered', 'Direct sourcing, no middleman markup', 'Fitment included on ordered parts'],
+    duration: 'As required',
+  },
 ]
 
 export default function ServicesGrid() {
