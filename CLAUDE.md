@@ -10,16 +10,26 @@ Each feature does one thing, the code is easy to follow, and the app is easy to 
 
 # Blog Writing Rules
 
-When writing any blog post for MM Car Care, always read these reference files first:
+When writing any blog post for MM Car Care:
 
-- `references/humour.md` — how to make articles sound human, not AI-generated
+**Step 1 — Read these reference files first:**
+- `references/blog-process.md` — the 8-step research process to run before writing (mandatory)
+- `references/humour.md` — dad jokes are mandatory; first 50 words must land one
 - `references/voice.md` — sentence style, words to avoid, what MM Car Care sounds like
 - `references/stats.md` — real numbers to use; never invent figures
 - `references/stories.md` — real workshop anecdotes to open or ground articles
 - `references/opinions.md` — strong positions to state as facts, not suggestions
 - `seo-keywords.md` — keyword clusters, target terms, and priority order
 
-Blog posts must sound like a real person who works on cars in Kakinada. Not generic. Not AI. Use humour sparingly — one or two lines per article max. Always ground the article in Kakinada's specific climate, roads, and conditions.
+**Step 2 — Run the blog-process.md research steps:**
+- WebSearch the primary keyword
+- WebFetch the top 3 results and read them
+- Match their format and length
+- Cover all their topics + add 1–2 Kakinada-specific extras
+- Answer the main question directly in the first paragraph (featured snippet)
+- Add a FAQ section from People Also Ask
+
+Blog posts must sound like a real person who works on cars in Kakinada. Not generic. Not AI. Always ground the article in Kakinada's specific climate, roads, and conditions.
 
 
 ---
