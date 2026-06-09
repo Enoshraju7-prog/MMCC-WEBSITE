@@ -42,8 +42,8 @@ function BlogCard({ post }: { post: BlogPost }) {
         {/* Thumbnail */}
         <div style={{
           width: '100%',
-          height: '200px',
-          background: 'rgba(201,169,110,0.05)',
+          height: '220px',
+          background: '#111',
           overflow: 'hidden',
           flexShrink: 0,
         }}>
@@ -51,21 +51,24 @@ function BlogCard({ post }: { post: BlogPost }) {
             <img
               src={thumb}
               alt={post.title}
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.8 }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
           ) : (
             <div style={{
               width: '100%',
               height: '100%',
+              background: 'linear-gradient(135deg, #111 0%, #181208 100%)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
             }}>
               <div style={{
-                width: '40px',
-                height: '1px',
-                background: 'rgba(201,169,110,0.3)',
-              }} />
+                fontFamily: 'var(--font-big-shoulders, sans-serif)',
+                fontSize: '11px',
+                letterSpacing: '3px',
+                color: 'rgba(201,169,110,0.25)',
+                textTransform: 'uppercase',
+              }}>MM Car Care</div>
             </div>
           )}
         </div>
@@ -194,18 +197,26 @@ export default function BlogPage() {
       </div>
 
       {/* Posts grid */}
-      <div style={{
-        maxWidth: '1100px',
-        margin: '0 auto',
-        padding: 'clamp(48px, 6vw, 80px) clamp(24px, 5vw, 80px) 0',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 480px), 1fr))',
-        gap: '2px',
-      }}>
+      <div
+        className="blog-grid"
+        style={{
+          maxWidth: '1100px',
+          margin: '0 auto',
+          padding: 'clamp(48px, 6vw, 80px) clamp(24px, 5vw, 80px) 0',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '2px',
+        }}
+      >
         {BLOG_POSTS.map((post) => (
           <BlogCard key={post.slug} post={post} />
         ))}
       </div>
+      <style>{`
+        @media (max-width: 640px) {
+          .blog-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </div>
   )
 }
