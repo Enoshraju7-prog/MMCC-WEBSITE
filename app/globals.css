@@ -26,9 +26,17 @@ section[id] {
   scroll-margin-top: 110px;
 }
 
+.nav-spacer {
+  height: 110px;
+}
+
 @media (max-width: 768px) {
   .main-nav {
     height: 72px !important;
+  }
+
+  .nav-spacer {
+    height: 72px;
   }
 
   section[id] {
@@ -49,7 +57,7 @@ section[id] {
 }
 
 body {
-  background: #fff;
+  background: #0a0a0a;
   color: #000;
   font-family: var(--font-dm-sans, 'DM Sans', sans-serif);
   -webkit-font-smoothing: antialiased;

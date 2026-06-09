@@ -134,7 +134,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CustomCursor />
           <ScrollProgress />
           <Nav />
-          <div style={{ height: '110px' }} />
+          <div className="nav-spacer" />
           <main>{children}</main>
           <Footer />
         </Providers>
