@@ -123,7 +123,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700&family=Space+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,300..700&family=Barlow:wght@700;800;900&display=swap"
           rel="stylesheet"
         />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />

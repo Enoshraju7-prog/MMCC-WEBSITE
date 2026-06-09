@@ -15,9 +15,21 @@ export default function Nav() {
   const navRef = useRef<HTMLElement>(null)
   const [activeSection, setActiveSection] = useState('home')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [callOpen, setCallOpen] = useState(false)
+  const callRef = useRef<HTMLDivElement>(null)
   const isHome = pathname === '/'
 
   useEffect(() => { setMenuOpen(false) }, [pathname])
+
+  useEffect(() => {
+    function handleOutside(e: MouseEvent) {
+      if (callRef.current && !callRef.current.contains(e.target as Node)) {
+        setCallOpen(false)
+      }
+    }
+    if (callOpen) document.addEventListener('mousedown', handleOutside)
+    return () => document.removeEventListener('mousedown', handleOutside)
+  }, [callOpen])
 
   useEffect(() => {
     gsap.fromTo(
@@ -180,6 +192,97 @@ export default function Nav() {
 
         {/* Right: location + book + hamburger */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
+          {/* Call button with dropdown */}
+          <div ref={callRef} style={{ position: 'relative' }}>
+            <button
+              onClick={() => setCallOpen(v => !v)}
+              title="Call us"
+              style={{
+                background: callOpen ? '#C9A96E' : 'none',
+                border: '1px solid rgba(255,255,255,0.15)',
+                borderRadius: '9999px',
+                width: '38px',
+                height: '38px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'background 200ms ease, border-color 200ms ease',
+              }}
+              onMouseEnter={(e) => { if (!callOpen) { e.currentTarget.style.background = '#C9A96E'; e.currentTarget.style.borderColor = '#C9A96E' } }}
+              onMouseLeave={(e) => { if (!callOpen) { e.currentTarget.style.background = 'none'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)' } }}
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style={{ color: callOpen ? '#0a0a0a' : '#fff' }}>
+                <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
+              </svg>
+            </button>
+
+            {callOpen && (
+              <div style={{
+                position: 'absolute',
+                top: '48px',
+                right: 0,
+                background: '#0d0d0d',
+                border: '1px solid rgba(201,169,110,0.25)',
+                borderRadius: '8px',
+                padding: '8px',
+                minWidth: '200px',
+                zIndex: 300,
+                boxShadow: '0 8px 32px rgba(0,0,0,0.6)',
+              }}>
+                <div style={{
+                  fontFamily: 'var(--font-space-mono, monospace)',
+                  fontSize: '8px',
+                  letterSpacing: '1.2px',
+                  textTransform: 'uppercase',
+                  color: 'rgba(255,255,255,0.3)',
+                  padding: '6px 10px 8px',
+                }}>
+                  Call Us
+                </div>
+                {[
+                  { label: 'Primary', number: '9848377309' },
+                  { label: 'Secondary', number: '6304104489' },
+                ].map(({ label, number }) => (
+                  <a
+                    key={number}
+                    href={`tel:+91${number}`}
+                    onClick={() => setCallOpen(false)}
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      padding: '10px 12px',
+                      borderRadius: '6px',
+                      textDecoration: 'none',
+                      transition: 'background 150ms ease',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(201,169,110,0.08)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+                  >
+                    <span style={{
+                      fontFamily: 'var(--font-space-mono, monospace)',
+                      fontSize: '8px',
+                      letterSpacing: '1px',
+                      textTransform: 'uppercase',
+                      color: '#C9A96E',
+                      marginBottom: '2px',
+                    }}>
+                      {label}
+                    </span>
+                    <span style={{
+                      fontFamily: 'var(--font-dm-sans, sans-serif)',
+                      fontSize: '14px',
+                      fontWeight: 600,
+                      color: '#fff',
+                      letterSpacing: '0.5px',
+                    }}>
+                      {number}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+
           <button
             className="nav-location"
             onClick={() => window.open(MAPS_URL, '_blank')}

@@ -217,9 +217,9 @@ export default function ServicesGrid() {
             <h1
               className="svc-header-line"
               style={{
-                fontFamily: 'var(--font-big-shoulders, sans-serif)',
+                fontFamily: 'var(--font-barlow, sans-serif)',
                 fontSize: 'clamp(52px, 10vw, 130px)',
-                fontWeight: 700,
+                fontWeight: 900,
                 lineHeight: 1.0,
                 textTransform: 'uppercase',
                 margin: 0,
