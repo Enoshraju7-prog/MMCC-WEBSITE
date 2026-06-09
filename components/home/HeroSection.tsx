@@ -16,7 +16,6 @@ const SLIDES = [
   { src: '/uploads/hero-5.jpg', duration: 7000, pos: 'center' },
   { src: '/uploads/hero-1.jpg', duration: 4500, pos: 'center' },
   { src: '/uploads/hero-2.jpg', duration: 4500, pos: 'center' },
-  { src: '/uploads/hero-3.jpg', duration: 4500, pos: 'center' },
   { src: '/uploads/hero-6.jpg', duration: 4500, pos: 'center' },
 ]
 
