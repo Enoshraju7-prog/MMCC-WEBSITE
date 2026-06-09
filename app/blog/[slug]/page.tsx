@@ -1,12 +1,19 @@
 'use client'
 
-import { use } from 'react'
+import { use, useState, useEffect } from 'react'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getPost } from '@/lib/blog'
-import { SITE_URL } from '@/lib/business'
 
 type Props = { params: Promise<{ slug: string }> }
+
+type CoverImage = {
+  url: string
+  small: string
+  alt: string
+  photographer: string
+  photographerUrl: string
+}
 
 function formatDate(dateStr: string) {
   const d = new Date(dateStr)
@@ -18,11 +25,20 @@ export default function BlogPostPage({ params }: Props) {
   const post = getPost(slug)
   if (!post) notFound()
 
+  const [cover, setCover] = useState<CoverImage | null>(null)
+
+  useEffect(() => {
+    fetch(`/api/pexels?q=${encodeURIComponent(post.pexelsQuery)}`)
+      .then(r => r.json())
+      .then(data => { if (data.url) setCover(data) })
+      .catch(() => {})
+  }, [post.pexelsQuery])
+
   return (
     <div style={{ background: '#0a0a0a', minHeight: '100vh', paddingBottom: '120px' }}>
         {/* Header */}
         <div style={{
-          borderBottom: '1px solid rgba(201,169,110,0.12)',
+          borderBottom: cover ? 'none' : '1px solid rgba(201,169,110,0.12)',
           padding: 'clamp(60px, 8vw, 100px) clamp(24px, 5vw, 80px) clamp(40px, 5vw, 60px)',
         }}>
           <div style={{ maxWidth: '760px', margin: '0 auto' }}>
@@ -97,6 +113,34 @@ export default function BlogPostPage({ params }: Props) {
             </div>
           </div>
         </div>
+
+        {/* Cover image */}
+        {cover && (
+          <div style={{ position: 'relative', width: '100%', maxHeight: '460px', overflow: 'hidden', borderBottom: '1px solid rgba(201,169,110,0.12)' }}>
+            <img
+              src={cover.url}
+              alt={cover.alt}
+              style={{ width: '100%', height: '460px', objectFit: 'cover', display: 'block', opacity: 0.75 }}
+            />
+            <a
+              href={cover.photographerUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                position: 'absolute',
+                bottom: '10px',
+                right: '14px',
+                fontFamily: 'var(--font-space-mono, monospace)',
+                fontSize: '9px',
+                color: 'rgba(255,255,255,0.35)',
+                textDecoration: 'none',
+                letterSpacing: '0.5px',
+              }}
+            >
+              Photo: {cover.photographer} / Pexels
+            </a>
+          </div>
+        )}
 
         {/* Content */}
         <div style={{ maxWidth: '760px', margin: '0 auto', padding: 'clamp(48px, 6vw, 72px) clamp(24px, 5vw, 80px) 0' }}>

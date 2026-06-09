@@ -5,6 +5,7 @@ export type BlogPost = {
   date: string
   readTime: string
   category: string
+  pexelsQuery: string
   content: BlogSection[]
 }
 
@@ -22,6 +23,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-06-01',
     readTime: '5 min read',
     category: 'Car Care Tips',
+    pexelsQuery: 'car parked hot sunny day heat',
     content: [
       { type: 'p', text: 'Kakinada summers are brutal — temperatures cross 40°C easily, and the combination of heat, humidity, and coastal salt air can do serious damage to your car if you\'re not prepared. Here\'s what every car owner in Kakinada should do before and during summer.' },
       { type: 'h2', text: '1. Protect Your Paint with a Ceramic Coating or Wax' },
@@ -55,6 +57,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-06-03',
     readTime: '4 min read',
     category: 'Detailing',
+    pexelsQuery: 'car ceramic coating glossy shine',
     content: [
       { type: 'p', text: 'If you\'ve ever asked "is ceramic coating worth it?" — you\'re not alone. It\'s one of the most common questions we get at MM Car Care. Here\'s a clear, honest comparison to help you decide.' },
       { type: 'h2', text: 'What Does Each One Actually Do?' },
@@ -95,6 +98,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-06-05',
     readTime: '4 min read',
     category: 'AC Service',
+    pexelsQuery: 'car air conditioning mechanic repair',
     content: [
       { type: 'p', text: 'In Kakinada, a working car AC isn\'t a luxury — it\'s a necessity. Temperatures regularly cross 40°C from April to June, and a failed AC on the highway can be genuinely dangerous. The good news: your AC gives warning signs well before it fails. Here\'s what to watch for.' },
       { type: 'h2', text: '1. AC Takes Too Long to Cool the Cabin' },
@@ -120,6 +124,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-06-07',
     readTime: '3 min read',
     category: 'Car Wash',
+    pexelsQuery: 'professional car wash cleaning service',
     content: [
       { type: 'p', text: 'There\'s no single right answer for everyone, but Kakinada\'s environment — coastal salt air, summer dust, monsoon mud, and strong UV — means most car owners should be washing more often than they do. Here\'s a practical guide.' },
       { type: 'h2', text: 'The General Rule: Once a Week' },
@@ -153,6 +158,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-06-09',
     readTime: '5 min read',
     category: 'Body Repair',
+    pexelsQuery: 'car dent body repair workshop',
     content: [
       { type: 'p', text: 'Whether it\'s a parking lot scrape, a monsoon hailstone, or a slow-speed bump — dents are one of the most common car problems in Kakinada. The good news: most dents are fixable without repainting. Here\'s everything you need to know before you bring your car in.' },
       { type: 'h2', text: 'The Two Main Dent Repair Methods' },
@@ -183,6 +189,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-06-09',
     readTime: '5 min read',
     category: 'AC Service',
+    pexelsQuery: 'car mechanic engine repair garage',
     content: [
       { type: 'p', text: 'Car AC repair is one of the most in-demand services in Kakinada — and for good reason. With temperatures hitting 42°C in summer and humidity staying high all year, a faulty AC is not just uncomfortable; it\'s a safety problem on long drives. Here\'s a complete guide to car AC repair in Kakinada.' },
       { type: 'h2', text: 'The Most Common Car AC Problems' },
@@ -218,6 +225,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-06-09',
     readTime: '5 min read',
     category: 'Mechanical',
+    pexelsQuery: 'car suspension mechanic underneath lift',
     content: [
       { type: 'p', text: 'If you\'ve driven on Kakinada\'s roads, you know what we\'re dealing with — potholes, speed bumps every 50 metres, and road surfaces that take a beating every monsoon. All of this puts serious stress on your car\'s suspension. The good news: suspension problems give clear warning signs before they become dangerous.' },
       { type: 'h2', text: 'What Your Car Suspension Actually Does' },
@@ -254,6 +262,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-06-09',
     readTime: '4 min read',
     category: 'Body Repair',
+    pexelsQuery: 'car bumper damage scratches repair',
     content: [
       { type: 'p', text: 'Bumper damage is almost inevitable in Kakinada\'s traffic — tight parking, autorickshaws, and narrow streets mean low-speed contact is common. The front and rear bumpers take most of the hit. Here\'s everything you need to know about getting yours fixed properly.' },
       { type: 'h2', text: 'Types of Bumper Damage' },
