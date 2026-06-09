@@ -40,6 +40,7 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: SITE_URL },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
+  verification: { google: 'iRor2cUnDNPcDT46rulF1FTiEGhKMqcWXfwXDrA5jZU' },
 }
 
 const localBusinessSchema = {
