@@ -123,13 +123,13 @@ export default function Footer() {
             <div className="footer-col" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <div style={colHead}>Services</div>
               {[
-                '& Others',
                 'Exterior Wash',
                 'Ceramic Coating',
                 'Engine Service',
                 'AC Service',
                 'Wheel Alignment',
                 'Audio & Infotainment',
+                '& Others',
               ].map((s) => (
                 <div key={s} style={linkStyle}>{s}</div>
               ))}
