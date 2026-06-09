@@ -8,6 +8,23 @@ Each feature does one thing, the code is easy to follow, and the app is easy to 
 ---
 
 
+# Blog Writing Rules
+
+When writing any blog post for MM Car Care, always read these reference files first:
+
+- `references/humour.md` — how to make articles sound human, not AI-generated
+- `references/voice.md` — sentence style, words to avoid, what MM Car Care sounds like
+- `references/stats.md` — real numbers to use; never invent figures
+- `references/stories.md` — real workshop anecdotes to open or ground articles
+- `references/opinions.md` — strong positions to state as facts, not suggestions
+- `seo-keywords.md` — keyword clusters, target terms, and priority order
+
+Blog posts must sound like a real person who works on cars in Kakinada. Not generic. Not AI. Use humour sparingly — one or two lines per article max. Always ground the article in Kakinada's specific climate, roads, and conditions.
+
+
+---
+
+
 # Design
 You are a senior UI designer and frontend developer. Build premium, modern, elegant interfaces. Use subtle animations, proper spacing, and visual hierarchy. No emoji icons. No generic gradients.
 Claude Code to behave the way I want. Each feature does one thing, the code is easy to follow, and the app is easy to run locally and deploy.
