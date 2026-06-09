@@ -123,6 +123,7 @@ export default function Footer() {
             <div className="footer-col" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <div style={colHead}>Services</div>
               {[
+                '& Others',
                 'Exterior Wash',
                 'Ceramic Coating',
                 'Engine Service',
@@ -155,8 +156,7 @@ export default function Footer() {
                 color: 'rgba(255,255,255,0.5)',
                 marginTop: '8px',
                 display: 'flex',
-                justifyContent: 'space-between',
-                gap: '24px',
+                gap: '10px',
               }}>
                 <span>Sunday</span><span>Closed</span>
               </div>
