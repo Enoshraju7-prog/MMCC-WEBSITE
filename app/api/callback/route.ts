@@ -32,22 +32,19 @@ export async function POST(req: NextRequest) {
 
 మీరు ఇప్పటికే "మీ వాహనానికి ఏమి సమస్య ఉంది?" అని అడిగారు.
 
-కస్టమర్ సమస్య చెప్పినప్పుడు: "అర్థమైంది." అని చెప్పి ఆగండి, తర్వాత "ఇంకేమైనా చూడాలా?" అని అడగండి.
+కస్టమర్ సమస్య చెప్పినప్పుడు: "అర్థమైంది, [సమస్య పేరు] నమోదు చేశాం. ఇంకేమైనా చూడాలా?" అని ఒకే వాక్యంలో చెప్పండి. "అర్థమైందా" అనకండి — అది తప్పు.
 
 కస్టమర్ "లేదు" అన్నప్పుడు: "మీకు ఏ రోజు రావడం సులభంగా ఉంటుంది?" అని అడగండి.
 
-కస్టమర్ రోజు చెప్పినప్పుడు: "సరే, నమోదు చేశాం. మా team confirm చేస్తుంది. ధన్యవాదాలు, వెళ్ళొస్తాం!" అని చెప్పి call ముగించండి.
+కస్టమర్ ఇంకో సమస్య చెప్పినప్పుడు (AC, oil, tyres, battery లాంటివి): "అర్థమైంది. ఇంకేమైనా?" అని అడగండి.
 
-కస్టమర్ "అవును ఇంకా ఉంది" అన్నప్పుడు: వినండి, తర్వాత "ఇంకేమైనా?" అని అడగండి, అన్నీ అయిన తర్వాత రోజు అడగండి.
+కస్టమర్ రోజు చెప్పినప్పుడు: "సరే, నమోదు చేశాం. మా team త్వరలో మీతో సంప్రదిస్తుంది. ధన్యవాదాలు, వెళ్ళొస్తాం!" అని చెప్పండి.
 
-ముఖ్యం: కస్టమర్ "bye" అని మీరు రోజు అడగకముందే అంటే — "ఒక్క నిమిషం, మీకు ఏ రోజు రావడం సులభంగా ఉంటుంది?" అని అడగండి. రోజు తెలుసుకున్న తర్వాతే call ముగించండి.
-
-తెలుగు రోజుల పదాలు (STT వీటిని వేరేగా transcribe చేయవచ్చు — అర్థం తెలుసుకోండి):
-- repu / రేపు = tomorrow
-- ee roju / ఈ రోజు = today
-- ellundi / ఎల్లుండి = day after tomorrow
-- somavaram = Monday, mangalavaram = Tuesday, budhavaram = Wednesday
-- guruvaram = Thursday, shukravaram = Friday, shanivaram = Saturday`
+ముఖ్యమైన నియమాలు:
+- ఒకే వాక్యంలో acknowledge + next question కలిపి చెప్పండి — రెండు సార్లు మాట్లాడకండి
+- కస్టమర్ "bye" అంటే రోజు అడగండి, తర్వాతే ముగించండి
+- STT కొన్నిసార్లు తప్పుగా వినవచ్చు — "AC", "oil", "tyre", "battery", "service" అని వినిపిస్తే సరిగ్గానే వినిపించింది
+- రోజుల పదాలు: repu=tomorrow, ee roju=today, ellundi=day after tomorrow, somavaram=Monday, mangalavaram=Tuesday, budhavaram=Wednesday, guruvaram=Thursday, shukravaram=Friday, shanivaram=Saturday`
     : `You are on a LIVE phone call from MM Car Care Kakinada. You called ${name}.
 
 Critical rules:
@@ -85,9 +82,9 @@ If customer says goodbye or thanks at any point: Immediately say "Goodbye ${name
           number: formattedPhone,
           name,
         },
-        serverUrl: 'https://mmcarcarekakinada.co.in/api/vapi-webhook',
         assistant: {
           name: 'MM Car Care Agent',
+          serverUrl: 'https://mmcarcarekakinada.co.in/api/vapi-webhook',
           firstMessage,
           transcriber: isTelugu
             ? { provider: 'google', model: 'gemini-2.5-flash', language: 'Multilingual' }
@@ -106,7 +103,7 @@ If customer says goodbye or thanks at any point: Immediately say "Goodbye ${name
             ? 'ధన్యవాదాలు. మరిన్ని సమస్యలు ఉంటే 9848377309 కి call చేయండి. వెళ్ళొస్తాం!'
             : 'Thank you. For anything else call us at 9848377309. Goodbye!',
           maxDurationSeconds: 600,
-          silenceTimeoutSeconds: 25,
+          silenceTimeoutSeconds: 35,
           endCallPhrases: [
             'వెళ్ళొస్తాం',
             'goodbye',
