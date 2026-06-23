@@ -120,15 +120,21 @@ export default function ReviewsPage() {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const total = REVIEWS.length
-  const maxIndex = total - cardsPerSlide
+  const totalPages = Math.ceil(total / cardsPerSlide)
 
   const advance = useCallback(() => {
-    setIndex((i) => (i >= maxIndex ? 0 : i + 1))
-  }, [maxIndex])
+    setIndex((i) => {
+      const nextPage = (Math.floor(i / cardsPerSlide) + 1) % totalPages
+      return nextPage * cardsPerSlide
+    })
+  }, [totalPages, cardsPerSlide])
 
   const back = useCallback(() => {
-    setIndex((i) => (i <= 0 ? maxIndex : i - 1))
-  }, [maxIndex])
+    setIndex((i) => {
+      const prevPage = (Math.floor(i / cardsPerSlide) - 1 + totalPages) % totalPages
+      return prevPage * cardsPerSlide
+    })
+  }, [totalPages, cardsPerSlide])
 
   // Responsive cards per slide
   useEffect(() => {
@@ -218,7 +224,7 @@ export default function ReviewsPage() {
                 position: 'absolute',
                 top: 0, left: 0, height: '100%',
                 background: '#C9A96E',
-                width: `${((index + cardsPerSlide) / total) * 100}%`,
+                width: `${((Math.floor(index / cardsPerSlide) + 1) / totalPages) * 100}%`,
                 transition: 'width 500ms ease',
               }}
             />
