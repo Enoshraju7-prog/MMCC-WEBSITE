@@ -208,7 +208,7 @@ export default function ContactGrid() {
                       fontFamily: 'var(--font-dm-sans, sans-serif)',
                       fontSize: '14px',
                       lineHeight: 1.5,
-                      color: 'rgba(255,255,255,0.6)',
+                      color: '#fff',
                     }}
                   >
                     {item.value}
@@ -274,7 +274,7 @@ export default function ContactGrid() {
                         fontSize: '10px',
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
-                        color: isToday ? '#C9A96E' : 'rgba(255,255,255,0.45)',
+                        color: isToday ? '#C9A96E' : '#fff',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '10px',
@@ -301,7 +301,7 @@ export default function ContactGrid() {
                         fontSize: '10px',
                         letterSpacing: '0.5px',
                         textTransform: 'uppercase',
-                        color: h.open ? (isToday ? '#C9A96E' : 'rgba(255,255,255,0.45)') : 'rgba(255,255,255,0.25)',
+                        color: h.open ? (isToday ? '#C9A96E' : '#fff') : 'rgba(255,255,255,0.35)',
                       }}
                     >
                       {h.time}
@@ -516,8 +516,8 @@ export default function ContactGrid() {
                     style={{
                       width: '100%',
                       background: form.name && form.phone ? '#C9A96E' : 'transparent',
-                      color: form.name && form.phone ? '#0a0a0a' : 'rgba(255,255,255,0.3)',
-                      border: `1px solid ${form.name && form.phone ? '#C9A96E' : 'rgba(255,255,255,0.1)'}`,
+                      color: form.name && form.phone ? '#0a0a0a' : '#fff',
+                      border: `1px solid ${form.name && form.phone ? '#C9A96E' : 'rgba(255,255,255,0.3)'}`,
                       borderRadius: '9999px',
                       padding: '14px 24px',
                       fontFamily: 'var(--font-space-mono, monospace)',
@@ -534,7 +534,7 @@ export default function ContactGrid() {
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.background = form.name && form.phone ? '#C9A96E' : 'transparent'
-                      e.currentTarget.style.color = form.name && form.phone ? '#0a0a0a' : 'rgba(255,255,255,0.3)'
+                      e.currentTarget.style.color = form.name && form.phone ? '#0a0a0a' : '#fff'
                     }}
                   >
                     Request Callback
