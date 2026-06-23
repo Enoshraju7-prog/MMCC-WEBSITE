@@ -78,6 +78,7 @@ export default function Nav() {
 
   const allLinks = [
     ...navLinks,
+    { label: 'Reviews', href: '/reviews', section: 'reviews' },
     { label: 'Blog', href: '/blog', section: 'blog' },
   ]
 
@@ -167,6 +168,22 @@ export default function Nav() {
           ))}
 
           <span style={{ width: '1px', height: '16px', background: 'rgba(255,255,255,0.12)', display: 'inline-block', flexShrink: 0 }} />
+
+          <Link
+            href="/reviews"
+            style={{ ...desktopLinkStyle, color: pathname.startsWith('/reviews') ? '#C9A96E' : '#fff' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#C9A96E')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = pathname.startsWith('/reviews') ? '#C9A96E' : '#fff')}
+          >
+            Reviews
+            {pathname.startsWith('/reviews') && (
+              <span style={{
+                position: 'absolute', bottom: '-4px', left: '50%',
+                transform: 'translateX(-50%)', width: '3px', height: '3px',
+                borderRadius: '50%', background: '#C9A96E', display: 'block',
+              }} />
+            )}
+          </Link>
 
           <Link
             href="/blog"
