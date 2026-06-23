@@ -84,7 +84,6 @@ If customer says goodbye or thanks at any point: Immediately say "Goodbye ${name
           name: 'MM Car Care Agent',
           serverUrl: 'https://mmcarcarekakinada.co.in/api/vapi-webhook',
           responseDelaySeconds: 0,
-          backchannel: { enabled: true },
           firstMessage,
           transcriber: isTelugu
             ? { provider: 'google', model: 'gemini-2.5-flash', language: 'Multilingual' }
