@@ -84,11 +84,12 @@ export default function Nav() {
   const desktopLinkStyle = {
     fontFamily: 'var(--font-space-mono, monospace)',
     fontSize: '11px',
+    fontWeight: 700,
     letterSpacing: '1.2px',
     textTransform: 'uppercase' as const,
     color: '#fff',
     textDecoration: 'none',
-    transition: 'opacity 200ms ease',
+    transition: 'color 200ms ease',
     whiteSpace: 'nowrap' as const,
     position: 'relative' as const,
   }
@@ -144,9 +145,9 @@ export default function Nav() {
               key={section}
               href={href}
               onClick={(e) => handleNavClick(e, section)}
-              style={{ ...desktopLinkStyle, opacity: isActive(section) ? 1 : 0.4 }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = isActive(section) ? '1' : '0.4')}
+              style={{ ...desktopLinkStyle, color: isActive(section) ? '#C9A96E' : '#fff' }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#C9A96E')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = isActive(section) ? '#C9A96E' : '#fff')}
             >
               {label}
               {isActive(section) && (
@@ -169,9 +170,9 @@ export default function Nav() {
 
           <Link
             href="/blog"
-            style={{ ...desktopLinkStyle, opacity: pathname.startsWith('/blog') ? 1 : 0.4 }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = pathname.startsWith('/blog') ? '1' : '0.4')}
+            style={{ ...desktopLinkStyle, color: pathname.startsWith('/blog') ? '#C9A96E' : '#fff' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#C9A96E')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = pathname.startsWith('/blog') ? '#C9A96E' : '#fff')}
           >
             Blog
             {pathname.startsWith('/blog') && (
