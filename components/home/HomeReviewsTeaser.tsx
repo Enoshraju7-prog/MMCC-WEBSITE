@@ -4,9 +4,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { REVIEWS } from '@/lib/reviews'
 
-// Shuffle and pick 3 reviews with descriptive text — different order every page load
+// Pick 3 random reviews from ALL reviews — different every page load, full coverage over time
 function getShuffled() {
-  return [...REVIEWS].filter((r) => r.text.length > 40).sort(() => Math.random() - 0.5).slice(0, 3)
+  return [...REVIEWS].sort(() => Math.random() - 0.5).slice(0, 3)
 }
 
 function StarRating({ rating }: { rating: number }) {
