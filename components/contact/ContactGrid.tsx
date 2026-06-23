@@ -33,11 +33,13 @@ const inp: React.CSSProperties = {
 
 const placeholderStyle = `
   .contact-inp::placeholder { color: rgba(255,255,255,0.7); }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 `
 
 export default function ContactGrid() {
-  const [form, setForm] = useState({ name: '', phone: '', vehicle: '', message: '' })
+  const [form, setForm] = useState({ name: '', phone: '', language: 'en', vehicle: '', message: '' })
   const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLElement>(null)
 
@@ -434,7 +436,7 @@ export default function ContactGrid() {
               </div>
             </div>
 
-            {/* Callback form */}
+            {/* AI Callback form */}
             <div>
               <div
                 style={{
@@ -443,11 +445,14 @@ export default function ContactGrid() {
                   letterSpacing: '1.4px',
                   textTransform: 'uppercase',
                   color: '#fff',
-                  marginBottom: '20px',
+                  marginBottom: '4px',
                 }}
               >
                 Request a Callback
               </div>
+              <p style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '12px', color: 'rgba(255,255,255,0.4)', marginBottom: '20px', lineHeight: 1.5 }}>
+                Our AI agent calls you within seconds.
+              </p>
 
               {sent ? (
                 <div style={{ padding: '32px 0', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
@@ -459,28 +464,70 @@ export default function ContactGrid() {
                       lineHeight: 1,
                       textTransform: 'uppercase',
                       color: '#C9A96E',
-                      marginBottom: '12px',
+                      marginBottom: '16px',
                     }}
                   >
-                    Received.
+                    Calling You Now.
                   </div>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-dm-sans, sans-serif)',
-                      fontSize: '13px',
-                      lineHeight: 1.6,
-                      color: 'rgba(255,255,255,0.45)',
-                    }}
-                  >
-                    We'll call you back within working hours.
+                  <p style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '14px', lineHeight: 1.7, color: 'rgba(255,255,255,0.75)', marginBottom: '12px' }}>
+                    {form.language === 'te'
+                      ? 'కొన్ని సెకన్లలో మీకు call వస్తుంది.'
+                      : 'You will receive a call within seconds.'}
                   </p>
+                  <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    background: 'rgba(201,169,110,0.08)',
+                    border: '1px solid rgba(201,169,110,0.25)',
+                    borderRadius: '8px',
+                    padding: '12px 16px',
+                  }}>
+                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#C9A96E', flexShrink: 0, animation: 'pulse 1.5s infinite' }} />
+                    <p style={{ fontFamily: 'var(--font-space-mono, monospace)', fontSize: '11px', letterSpacing: '0.5px', color: '#C9A96E', margin: 0 }}>
+                      {form.language === 'te'
+                        ? '+1 (541) 981 6853 నుండి call వస్తుంది — దయచేసి తీసుకోండి, అది మేమే!'
+                        : 'Call coming from +1 (541) 981 6853 — please pick up, it\'s us!'}
+                    </p>
+                  </div>
                 </div>
               ) : (
                 <div>
+                  {/* Language toggle */}
+                  <div style={{ marginBottom: '8px' }}>
+                    <div style={{ fontFamily: 'var(--font-space-mono, monospace)', fontSize: '9px', letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: '8px' }}>
+                      Preferred Language
+                    </div>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+                      {[{ code: 'en', label: 'English' }, { code: 'te', label: 'తెలుగు' }].map((lang) => (
+                        <button
+                          key={lang.code}
+                          type="button"
+                          onClick={() => setForm((f) => ({ ...f, language: lang.code }))}
+                          style={{
+                            flex: 1,
+                            padding: '10px 0',
+                            background: form.language === lang.code ? '#C9A96E' : 'transparent',
+                            color: form.language === lang.code ? '#0a0a0a' : 'rgba(255,255,255,0.6)',
+                            border: `1px solid ${form.language === lang.code ? '#C9A96E' : 'rgba(255,255,255,0.15)'}`,
+                            borderRadius: '6px',
+                            fontFamily: 'var(--font-space-mono, monospace)',
+                            fontSize: '11px',
+                            letterSpacing: '0.8px',
+                            cursor: 'pointer',
+                            transition: 'all 200ms ease',
+                          }}
+                        >
+                          {lang.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
                   <input
                     className="contact-inp"
                     style={inp}
-                    placeholder="Your name"
+                    placeholder={form.language === 'te' ? 'మీ పేరు' : 'Your name'}
                     value={form.name}
                     onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                     onFocus={(e) => (e.target.style.borderColor = '#C9A96E')}
@@ -489,7 +536,7 @@ export default function ContactGrid() {
                   <input
                     className="contact-inp"
                     style={inp}
-                    placeholder="Phone number"
+                    placeholder={form.language === 'te' ? 'ఫోన్ నంబర్' : 'Phone number'}
                     value={form.phone}
                     onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
                     onFocus={(e) => (e.target.style.borderColor = '#C9A96E')}
@@ -498,7 +545,7 @@ export default function ContactGrid() {
                   <input
                     className="contact-inp"
                     style={inp}
-                    placeholder="Vehicle (optional)"
+                    placeholder={form.language === 'te' ? 'వాహనం (ఐచ్ఛికం)' : 'Vehicle (optional)'}
                     value={form.vehicle}
                     onChange={(e) => setForm((f) => ({ ...f, vehicle: e.target.value }))}
                     onFocus={(e) => (e.target.style.borderColor = '#C9A96E')}
@@ -507,26 +554,35 @@ export default function ContactGrid() {
                   <textarea
                     className="contact-inp"
                     style={{ ...inp, minHeight: '80px', resize: 'vertical', marginBottom: '16px' }}
-                    placeholder="Any specific request? (optional)"
+                    placeholder={form.language === 'te' ? 'సమస్య వివరించండి (ఐచ్ఛికం)' : 'Describe your issue (optional)'}
                     value={form.message}
                     onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                     onFocus={(e) => (e.target.style.borderColor = '#C9A96E')}
                     onBlur={(e) => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')}
                   />
                   <button
-                    onClick={() => {
-                      if (!form.name || !form.phone) return
-                      const msg = encodeURIComponent(
-                        `Hi MM Car Care! I'd like to request a callback.\nName: ${form.name}\nPhone: ${form.phone}${form.vehicle ? `\nVehicle: ${form.vehicle}` : ''}${form.message ? `\nNote: ${form.message}` : ''}`
-                      )
-                      window.open(`https://wa.me/919848377309?text=${msg}`, '_blank')
-                      setSent(true)
+                    disabled={loading || !form.name || !form.phone}
+                    onClick={async () => {
+                      if (!form.name || !form.phone || loading) return
+                      setLoading(true)
+                      try {
+                        await fetch('/api/callback', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify(form),
+                        })
+                      } catch {
+                        // fail silently — customer still sees success
+                      } finally {
+                        setLoading(false)
+                        setSent(true)
+                      }
                     }}
                     style={{
                       width: '100%',
-                      background: form.name && form.phone ? '#C9A96E' : 'transparent',
-                      color: form.name && form.phone ? '#0a0a0a' : '#fff',
-                      border: `1px solid ${form.name && form.phone ? '#C9A96E' : 'rgba(255,255,255,0.3)'}`,
+                      background: form.name && form.phone && !loading ? '#C9A96E' : 'transparent',
+                      color: form.name && form.phone && !loading ? '#0a0a0a' : 'rgba(255,255,255,0.3)',
+                      border: `1px solid ${form.name && form.phone && !loading ? '#C9A96E' : 'rgba(255,255,255,0.15)'}`,
                       borderRadius: '9999px',
                       padding: '14px 24px',
                       fontFamily: 'var(--font-space-mono, monospace)',
@@ -534,19 +590,24 @@ export default function ContactGrid() {
                       letterSpacing: '1.4px',
                       textTransform: 'uppercase',
                       transition: 'all 250ms ease',
+                      cursor: form.name && form.phone && !loading ? 'pointer' : 'default',
                     }}
                     onMouseEnter={(e) => {
-                      if (form.name && form.phone) {
+                      if (form.name && form.phone && !loading) {
                         e.currentTarget.style.background = 'transparent'
                         e.currentTarget.style.color = '#C9A96E'
                       }
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background = form.name && form.phone ? '#C9A96E' : 'transparent'
-                      e.currentTarget.style.color = form.name && form.phone ? '#0a0a0a' : '#fff'
+                      if (form.name && form.phone && !loading) {
+                        e.currentTarget.style.background = '#C9A96E'
+                        e.currentTarget.style.color = '#0a0a0a'
+                      }
                     }}
                   >
-                    Request Callback
+                    {loading
+                      ? (form.language === 'te' ? 'కాల్ చేస్తున్నాము...' : 'Calling...')
+                      : (form.language === 'te' ? 'కాల్ కోసం అభ్యర్థించండి' : 'Call Me Now')}
                   </button>
                 </div>
               )}
