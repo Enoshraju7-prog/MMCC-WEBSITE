@@ -1,6 +1,7 @@
 'use client'
 
 import { useLayoutEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { gsap } from 'gsap'
 
 const SERVICES = [
@@ -44,6 +45,7 @@ const inputStyle: React.CSSProperties = {
 }
 
 export default function BookingModal({ onClose }: { onClose: () => void }) {
+  const router = useRouter()
   const backdropRef = useRef<HTMLDivElement>(null)
   const modalRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
@@ -336,7 +338,7 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
                       `Hi MM Car Care! I want to book a service.\nName: ${form.name}\nPhone: ${form.phone}\nVehicle: ${form.vehicle}\nService: ${serviceName}\nTime: ${timeLabel}${form.message ? `\nNote: ${form.message}` : ''}`
                     )
                     window.open(`https://wa.me/919848377309?text=${msg}`, '_blank')
-                    goToStep(3)
+                    router.push('/booking-confirmed')
                   }}
                   style={{
                     background: '#C9A96E',
