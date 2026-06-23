@@ -6,6 +6,7 @@ import ServicesGrid from '@/components/services/ServicesGrid'
 import FounderSection from '@/components/about/FounderSection'
 import AboutStats from '@/components/about/AboutStats'
 import ValuesGrid from '@/components/about/ValuesGrid'
+import HomeReviewsTeaser from '@/components/home/HomeReviewsTeaser'
 import ContactGrid from '@/components/contact/ContactGrid'
 import { SITE_URL } from '@/lib/business'
 
@@ -70,6 +71,7 @@ export default function HomePage() {
         <FounderSection />
         <AboutStats />
         <ValuesGrid />
+        <HomeReviewsTeaser />
       </section>
 
       <section id="contact">
