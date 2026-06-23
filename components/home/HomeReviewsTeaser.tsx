@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { REVIEWS } from '@/lib/reviews'
+import { REVIEWS, LEAVE_REVIEW_URL } from '@/lib/reviews'
 
 // Pick 3 random reviews from ALL reviews — different every page load, full coverage over time
 function getShuffled() {
@@ -248,25 +248,55 @@ export default function HomeReviewsTeaser() {
             </span>
           </div>
 
-          <Link
-            href="/reviews"
-            style={{
-              fontFamily: 'var(--font-space-mono, monospace)',
-              fontSize: '10px',
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              color: '#C9A96E',
-              textDecoration: 'none',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-            }}
-          >
-            Read all customer reviews
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </Link>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
+            <a
+              href={LEAVE_REVIEW_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '7px',
+                background: '#C9A96E',
+                color: '#0a0a0a',
+                borderRadius: '9999px',
+                padding: '9px 18px',
+                fontFamily: 'var(--font-space-mono, monospace)',
+                fontSize: '10px',
+                letterSpacing: '1.2px',
+                textTransform: 'uppercase',
+                fontWeight: 700,
+                textDecoration: 'none',
+                transition: 'background 250ms ease, color 250ms ease',
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#C9A96E'; e.currentTarget.style.outline = '1px solid #C9A96E' }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = '#C9A96E'; e.currentTarget.style.color = '#0a0a0a'; e.currentTarget.style.outline = 'none' }}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+              Leave a Review
+            </a>
+            <Link
+              href="/reviews"
+              style={{
+                fontFamily: 'var(--font-space-mono, monospace)',
+                fontSize: '10px',
+                letterSpacing: '1px',
+                textTransform: 'uppercase',
+                color: '#C9A96E',
+                textDecoration: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+              }}
+            >
+              Read all customer reviews
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </Link>
+          </div>
         </div>
 
       </div>
