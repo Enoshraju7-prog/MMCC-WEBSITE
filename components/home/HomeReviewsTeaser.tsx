@@ -1,10 +1,13 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { REVIEWS } from '@/lib/reviews'
 
-// Pick 3 reviews with the most descriptive text for the homepage teaser
-const FEATURED = REVIEWS.filter((r) => r.text.length > 40).slice(0, 3)
+// Shuffle and pick 3 reviews with descriptive text — different order every page load
+function getShuffled() {
+  return [...REVIEWS].filter((r) => r.text.length > 40).sort(() => Math.random() - 0.5).slice(0, 3)
+}
 
 function StarRating({ rating }: { rating: number }) {
   return (
@@ -19,6 +22,7 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 export default function HomeReviewsTeaser() {
+  const [featured] = useState(getShuffled)
   return (
     <section
       style={{
@@ -114,7 +118,7 @@ export default function HomeReviewsTeaser() {
             marginBottom: '40px',
           }}
         >
-          {FEATURED.map((review) => (
+          {featured.map((review) => (
             <div
               key={review.id}
               style={{

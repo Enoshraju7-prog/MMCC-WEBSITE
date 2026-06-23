@@ -114,27 +114,34 @@ function ReviewCard({ review }: { review: Review }) {
 }
 
 export default function ReviewsPage() {
+  // Shuffle once on mount so order is different every page load
+  const [reviews] = useState(() => [...REVIEWS].sort(() => Math.random() - 0.5))
+
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
   const [cardsPerSlide, setCardsPerSlide] = useState(CARDS_PER_SLIDE)
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const advanceRef = useRef<() => void>(() => {})
 
-  const total = REVIEWS.length
+  const total = reviews.length
   const totalPages = Math.ceil(total / cardsPerSlide)
 
   const advance = useCallback(() => {
     setIndex((i) => {
-      const nextPage = (Math.floor(i / cardsPerSlide) + 1) % totalPages
+      const nextPage = (Math.floor(i / cardsPerSlide) + 1) % Math.ceil(total / cardsPerSlide)
       return nextPage * cardsPerSlide
     })
-  }, [totalPages, cardsPerSlide])
+  }, [cardsPerSlide, total])
 
   const back = useCallback(() => {
     setIndex((i) => {
-      const prevPage = (Math.floor(i / cardsPerSlide) - 1 + totalPages) % totalPages
+      const tp = Math.ceil(total / cardsPerSlide)
+      const prevPage = (Math.floor(i / cardsPerSlide) - 1 + tp) % tp
       return prevPage * cardsPerSlide
     })
-  }, [totalPages, cardsPerSlide])
+  }, [cardsPerSlide, total])
+
+  // Keep ref in sync with latest advance so interval always calls fresh version
+  useEffect(() => { advanceRef.current = advance }, [advance])
 
   // Responsive cards per slide
   useEffect(() => {
@@ -146,14 +153,14 @@ export default function ReviewsPage() {
     return () => window.removeEventListener('resize', update)
   }, [])
 
-  // Auto-advance
+  // Auto-advance — setInterval is more reliable than setTimeout + index dep
   useEffect(() => {
     if (paused) return
-    timerRef.current = setTimeout(advance, AUTO_ADVANCE_MS)
-    return () => { if (timerRef.current) clearTimeout(timerRef.current) }
-  }, [index, paused, advance])
+    const id = setInterval(() => advanceRef.current(), AUTO_ADVANCE_MS)
+    return () => clearInterval(id)
+  }, [paused])
 
-  const visibleReviews = REVIEWS.slice(index, index + cardsPerSlide)
+  const visibleReviews = reviews.slice(index, index + cardsPerSlide)
 
   return (
     <div style={{ background: '#0a0a0a', minHeight: '100vh' }}>
