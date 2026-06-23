@@ -66,6 +66,13 @@ const SERVICES = [
     duration: '3–6 hrs',
   },
   {
+    id: 'bumper',
+    title: 'Bumper Repair',
+    desc: 'Cracked, dented, or scraped bumpers repaired and refinished on-site. Plastic welding for cracks, filler for dents, and colour-matched spray paint — saves the cost of a full bumper replacement.',
+    detail: ['Crack assessment & plastic welding', 'Dent reshaping & filler work', 'Colour-matched spray paint', 'Polish & blend to original finish'],
+    duration: '1–3 hrs',
+  },
+  {
     id: 'dent',
     title: 'Dent & Scratch Work',
     desc: 'Panel beating, filler work, and colour-matched paint for dents, scrapes, and scratches. Assessed on-site — the repair disappears into the original finish.',
