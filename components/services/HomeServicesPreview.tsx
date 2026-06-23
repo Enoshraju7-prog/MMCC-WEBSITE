@@ -64,6 +64,18 @@ const FEATURED = [
     desc: 'Brake pad wear check, disc inspection, and brake fluid moisture test. Replaced if due — no guessing, no upselling.',
     duration: '1–2 hrs',
   },
+  {
+    id: 'bumper',
+    title: 'Bumper Repair',
+    desc: 'Cracked, dented, or scraped bumpers repaired and colour-matched on-site. Plastic welding for cracks, filler for dents — saves the cost of a full replacement.',
+    duration: '1–3 hrs',
+  },
+  {
+    id: 'ceramic',
+    title: 'Ceramic Coating',
+    desc: 'Professional 9H ceramic application with two-stage paint decontamination. Long-term hydrophobic protection — water beads off, dirt doesn\'t stick.',
+    duration: '2 days',
+  },
 ]
 
 export default function HomeServicesPreview() {

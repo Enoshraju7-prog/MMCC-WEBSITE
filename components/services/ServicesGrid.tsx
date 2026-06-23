@@ -427,6 +427,78 @@ export default function ServicesGrid() {
                 </div>
               </div>
             ))}
+
+            {/* Describe Your Issue card */}
+            <div
+              className="svc-card"
+              style={{
+                background: 'rgba(201,169,110,0.04)',
+                padding: 'clamp(28px, 3vw, 44px)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                gap: '24px',
+              }}
+            >
+              <div>
+                <div
+                  style={{
+                    fontFamily: 'var(--font-space-mono, monospace)',
+                    fontSize: '9px',
+                    letterSpacing: '1.4px',
+                    textTransform: 'uppercase',
+                    color: '#C9A96E',
+                    marginBottom: '14px',
+                  }}
+                >
+                  Not sure what you need?
+                </div>
+                <div
+                  style={{
+                    fontFamily: 'var(--font-big-shoulders, sans-serif)',
+                    fontSize: 'clamp(28px, 3vw, 36px)',
+                    fontWeight: 400,
+                    textTransform: 'uppercase',
+                    color: '#fff',
+                    lineHeight: 1.1,
+                    marginBottom: '14px',
+                  }}
+                >
+                  Describe Your Issue
+                </div>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-dm-sans, sans-serif)',
+                    fontSize: '13px',
+                    lineHeight: 1.65,
+                    color: 'rgba(255,255,255,0.45)',
+                  }}
+                >
+                  Tell us what your car is doing — strange noise, warning light, rough idle, anything. We'll diagnose it and tell you exactly what it needs.
+                </p>
+              </div>
+              <button
+                onClick={open}
+                style={{
+                  background: '#C9A96E',
+                  color: '#0a0a0a',
+                  border: '1px solid #C9A96E',
+                  borderRadius: '9999px',
+                  padding: '12px 24px',
+                  fontFamily: 'var(--font-space-mono, monospace)',
+                  fontSize: '10px',
+                  letterSpacing: '1.2px',
+                  textTransform: 'uppercase',
+                  fontWeight: 700,
+                  transition: 'background 250ms ease, color 250ms ease',
+                  alignSelf: 'flex-start',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#C9A96E' }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = '#C9A96E'; e.currentTarget.style.color = '#0a0a0a' }}
+              >
+                Tell Us What's Wrong →
+              </button>
+            </div>
           </div>
         </div>
       </section>
