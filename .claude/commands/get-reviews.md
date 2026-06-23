@@ -23,6 +23,7 @@ The API returns up to 5 reviews (Google's limit for Places API).
 ## Step 3 — Compare with existing reviews in lib/reviews.ts
 - Read the current REVIEWS array in lib/reviews.ts
 - Check each fetched review: if author_name + text combo does NOT exist in REVIEWS, it is new
+- SKIP any review with rating < 4 — only show 4 and 5 star reviews on the website
 - New reviews get added to the TOP of the REVIEWS array (most recent first)
 - Format each new review:
   - id: 'g' + timestamp (e.g. 'g1750000000')
