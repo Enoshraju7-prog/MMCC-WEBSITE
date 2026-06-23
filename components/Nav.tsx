@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { gsap } from 'gsap'
 import { useBooking } from '@/lib/booking-context'
+import { useCallback } from '@/lib/callback-context'
 
 const SECTIONS = ['home', 'services', 'about', 'contact']
 const MAPS_URL = 'https://maps.app.goo.gl/SRBWNggKuSY9ge8k7'
@@ -12,6 +13,7 @@ const MAPS_URL = 'https://maps.app.goo.gl/SRBWNggKuSY9ge8k7'
 export default function Nav() {
   const pathname = usePathname()
   const { open } = useBooking()
+  const { open: openCallback } = useCallback()
   const navRef = useRef<HTMLElement>(null)
   const [activeSection, setActiveSection] = useState('home')
   const [menuOpen, setMenuOpen] = useState(false)
@@ -97,6 +99,12 @@ export default function Nav() {
 
   return (
     <>
+      <style>{`
+        @keyframes nav-pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.3; transform: scale(1.6); }
+        }
+      `}</style>
       <nav
         ref={navRef}
         className="main-nav"
@@ -247,6 +255,54 @@ export default function Nav() {
                 zIndex: 300,
                 boxShadow: '0 8px 32px rgba(0,0,0,0.6)',
               }}>
+                {/* AI Callback option */}
+                <button
+                  onClick={() => { setCallOpen(false); openCallback() }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    width: '100%',
+                    padding: '10px 12px',
+                    borderRadius: '6px',
+                    background: 'rgba(201,169,110,0.07)',
+                    border: '1px solid rgba(201,169,110,0.2)',
+                    cursor: 'pointer',
+                    marginBottom: '6px',
+                    transition: 'background 150ms ease',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(201,169,110,0.14)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(201,169,110,0.07)')}
+                >
+                  <span style={{
+                    width: '6px',
+                    height: '6px',
+                    borderRadius: '50%',
+                    background: '#C9A96E',
+                    flexShrink: 0,
+                    animation: 'nav-pulse 1.8s ease-in-out infinite',
+                  }} />
+                  <div style={{ textAlign: 'left' }}>
+                    <div style={{
+                      fontFamily: 'var(--font-space-mono, monospace)',
+                      fontSize: '8px',
+                      letterSpacing: '1px',
+                      textTransform: 'uppercase',
+                      color: '#C9A96E',
+                      marginBottom: '1px',
+                    }}>
+                      AI Callback
+                    </div>
+                    <div style={{
+                      fontFamily: 'var(--font-dm-sans, sans-serif)',
+                      fontSize: '12px',
+                      color: 'rgba(255,255,255,0.8)',
+                    }}>
+                      We call you in seconds
+                    </div>
+                  </div>
+                </button>
+
                 <div style={{
                   fontFamily: 'var(--font-space-mono, monospace)',
                   fontSize: '8px',
@@ -255,7 +311,7 @@ export default function Nav() {
                   color: 'rgba(255,255,255,0.3)',
                   padding: '6px 10px 8px',
                 }}>
-                  Call Us
+                  Call Us Directly
                 </div>
                 {[
                   { label: 'Primary', number: '9848377309' },

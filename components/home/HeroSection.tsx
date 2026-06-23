@@ -5,6 +5,7 @@ import { gsap } from 'gsap'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useBooking } from '@/lib/booking-context'
+import { useCallback } from '@/lib/callback-context'
 
 const HEADLINES = [
   ['MM', 'Car', 'Care.'],
@@ -206,6 +207,7 @@ function HeroSlideshow() {
 
 export default function HeroSection() {
   const { open } = useBooking()
+  const { open: openCallback } = useCallback()
   const heroRef = useRef<HTMLElement>(null)
   const subRef = useRef<HTMLParagraphElement>(null)
   const btnsRef = useRef<HTMLDivElement>(null)
@@ -305,6 +307,41 @@ export default function HeroSection() {
             >
               Book a Service
             </button>
+
+            {/* AI Callback CTA */}
+            <button
+              onClick={openCallback}
+              style={{
+                background: 'transparent',
+                color: '#C9A96E',
+                border: '1px solid rgba(201,169,110,0.45)',
+                borderRadius: '9999px',
+                padding: '15px 32px',
+                fontFamily: 'var(--font-space-mono, monospace)',
+                fontSize: '12px',
+                letterSpacing: '1.4px',
+                textTransform: 'uppercase',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                transition: 'background 250ms ease, border-color 250ms ease',
+                cursor: 'pointer',
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(201,169,110,0.08)'; e.currentTarget.style.borderColor = '#C9A96E' }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(201,169,110,0.45)' }}
+            >
+              <span style={{
+                width: '7px',
+                height: '7px',
+                borderRadius: '50%',
+                background: '#C9A96E',
+                display: 'inline-block',
+                flexShrink: 0,
+                animation: 'hero-pulse 1.8s ease-in-out infinite',
+              }} />
+              Get a Call
+            </button>
+
             <Link
               href="/services"
               style={{
@@ -340,6 +377,10 @@ export default function HeroSection() {
 
       {/* Mobile: stack vertically */}
       <style>{`
+        @keyframes hero-pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.3; transform: scale(1.5); }
+        }
         @media (max-width: 768px) {
           .hero-content {
             grid-template-columns: 1fr !important;
