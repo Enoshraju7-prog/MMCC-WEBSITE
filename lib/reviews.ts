@@ -6,7 +6,7 @@ export type Review = {
   date: string
 }
 
-export const PLACE_ID = 'ChIJl7poLAApODoRUFbeiL04nKs'
+export const PLACE_ID = 'ChIJWwlCBNkpODoROIMxVQQbd2w'
 
 export const LEAVE_REVIEW_URL = `https://search.google.com/local/writereview?placeid=${PLACE_ID}`
 
