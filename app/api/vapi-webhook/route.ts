@@ -36,9 +36,26 @@ export async function POST(req: NextRequest) {
   ].join('\n')
 
   const notify = ['+919848377309', '+916304104489']
-  await Promise.all(notify.map((to) => sendSMS(to, sms)))
+  await Promise.all([
+    ...notify.map((to) => sendSMS(to, sms)),
+    logToSheet({ name: customerName, phone: phoneDisplay, language: report.call?.assistant?.firstMessage?.includes('నమస్కారం') ? 'Telugu' : 'English', summary: callSummary }),
+  ])
 
   return NextResponse.json({ ok: true })
+}
+
+async function logToSheet(data: { name: string; phone: string; language: string; summary: string }) {
+  const url = process.env.GOOGLE_SHEET_URL
+  if (!url) return
+  try {
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+  } catch (err) {
+    console.error('[vapi-webhook] Sheet log error:', err)
+  }
 }
 
 async function sendSMS(to: string, body: string) {
