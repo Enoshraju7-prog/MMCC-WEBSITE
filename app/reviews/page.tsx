@@ -184,7 +184,7 @@ export default function ReviewsPage() {
                 margin: 0,
               }}
             >
-              64 Verified<br />
+              20 Verified<br />
               <span style={{ color: '#C9A96E' }}>Google Reviews.</span>
             </h1>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px' }}>
