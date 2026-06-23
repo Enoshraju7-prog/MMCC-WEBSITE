@@ -66,6 +66,13 @@ const SERVICES = [
     duration: '3–6 hrs',
   },
   {
+    id: 'dent',
+    title: 'Dent & Scratch Work',
+    desc: 'Panel beating, filler work, and colour-matched paint for dents, scrapes, and scratches. Assessed on-site — the repair disappears into the original finish.',
+    detail: ['Panel beating & shaping', 'Filler & surface prep', 'Colour-matched spray paint', 'Polish & blend finish'],
+    duration: 'Assessed on-site',
+  },
+  {
     id: 'headlight',
     title: 'Headlight Restoration',
     desc: 'Oxidised, yellowed headlights sanded back and polished clear. Restores light output and gives the front of your car a clean, sharp look.',

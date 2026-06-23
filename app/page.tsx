@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import HeroSection from '@/components/home/HeroSection'
 import StatsBar from '@/components/home/StatsBar'
 import MarqueeStrip from '@/components/MarqueeStrip'
-import ServicesGrid from '@/components/services/ServicesGrid'
+import HomeServicesPreview from '@/components/services/HomeServicesPreview'
 import FounderSection from '@/components/about/FounderSection'
 import AboutStats from '@/components/about/AboutStats'
 import ValuesGrid from '@/components/about/ValuesGrid'
@@ -33,7 +33,7 @@ export default function HomePage() {
       </section>
 
       <section id="services">
-        <ServicesGrid />
+        <HomeServicesPreview />
       </section>
 
       <section id="about">
