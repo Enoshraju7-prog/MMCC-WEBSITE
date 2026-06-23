@@ -31,6 +31,10 @@ const inp: React.CSSProperties = {
   marginBottom: '8px',
 }
 
+const placeholderStyle = `
+  .contact-inp::placeholder { color: rgba(255,255,255,0.7); }
+`
+
 export default function ContactGrid() {
   const [form, setForm] = useState({ name: '', phone: '', vehicle: '', message: '' })
   const [sent, setSent] = useState(false)
@@ -103,6 +107,7 @@ export default function ContactGrid() {
 
   return (
     <>
+      <style>{placeholderStyle}</style>
       {/* Header */}
       <section
         ref={headerRef}
@@ -168,7 +173,7 @@ export default function ContactGrid() {
                   fontSize: '10px',
                   letterSpacing: '1.4px',
                   textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,0.35)',
+                  color: '#fff',
                   marginBottom: '28px',
                 }}
               >
@@ -249,7 +254,7 @@ export default function ContactGrid() {
                   fontSize: '10px',
                   letterSpacing: '1.4px',
                   textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,0.35)',
+                  color: '#fff',
                   marginBottom: '20px',
                 }}
               >
@@ -322,7 +327,7 @@ export default function ContactGrid() {
                   fontSize: '10px',
                   letterSpacing: '1.4px',
                   textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,0.35)',
+                  color: '#fff',
                   marginBottom: '16px',
                 }}
               >
@@ -400,7 +405,7 @@ export default function ContactGrid() {
                     fontSize: '9px',
                     letterSpacing: '1px',
                     textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,0.35)',
+                    color: '#fff',
                   }}
                 >
                   Kakinada · Andhra Pradesh
@@ -417,12 +422,12 @@ export default function ContactGrid() {
                     fontSize: '9px',
                     letterSpacing: '1px',
                     textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,0.35)',
+                    color: '#fff',
                     textDecoration: 'none',
                     transition: 'color 200ms ease',
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = '#C9A96E')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.35)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = '#fff')}
                 >
                   Open Maps →
                 </a>
@@ -437,7 +442,7 @@ export default function ContactGrid() {
                   fontSize: '10px',
                   letterSpacing: '1.4px',
                   textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,0.35)',
+                  color: '#fff',
                   marginBottom: '20px',
                 }}
               >
@@ -473,6 +478,7 @@ export default function ContactGrid() {
               ) : (
                 <div>
                   <input
+                    className="contact-inp"
                     style={inp}
                     placeholder="Your name"
                     value={form.name}
@@ -481,6 +487,7 @@ export default function ContactGrid() {
                     onBlur={(e) => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')}
                   />
                   <input
+                    className="contact-inp"
                     style={inp}
                     placeholder="Phone number"
                     value={form.phone}
@@ -489,6 +496,7 @@ export default function ContactGrid() {
                     onBlur={(e) => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')}
                   />
                   <input
+                    className="contact-inp"
                     style={inp}
                     placeholder="Vehicle (optional)"
                     value={form.vehicle}
@@ -497,6 +505,7 @@ export default function ContactGrid() {
                     onBlur={(e) => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')}
                   />
                   <textarea
+                    className="contact-inp"
                     style={{ ...inp, minHeight: '80px', resize: 'vertical', marginBottom: '16px' }}
                     placeholder="Any specific request? (optional)"
                     value={form.message}
