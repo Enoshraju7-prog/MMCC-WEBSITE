@@ -17,13 +17,22 @@ export async function POST(req: NextRequest) {
 
   console.log('[vapi-webhook] Call ended for:', customerName, customerPhone)
 
-  // Build SMS notification
+  const phoneDisplay = customerPhone.replace('+91', '')
+  const callSummary = summary || transcript.split('\n').slice(0, 6).join('\n')
+
+  // Bilingual SMS — English + Telugu
   const sms = [
-    `MM Car Care - New Lead`,
+    `MM Car Care — New Lead`,
     `Customer: ${customerName}`,
-    `Phone: ${customerPhone.replace('+91', '')}`,
+    `Phone: ${phoneDisplay}`,
     ``,
-    summary || transcript.split('\n').slice(0, 5).join('\n'),
+    callSummary,
+    ``,
+    `---`,
+    `MM Car Care — కొత్త కస్టమర్`,
+    `పేరు: ${customerName}`,
+    `ఫోన్: ${phoneDisplay}`,
+    `వెంటనే సంప్రదించండి`,
   ].join('\n')
 
   const notify = ['+919848377309', '+916304104489']

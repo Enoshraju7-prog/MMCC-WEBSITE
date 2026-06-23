@@ -23,28 +23,26 @@ export async function POST(req: NextRequest) {
     : `Hello ${name}, MM Car Care calling from Kakinada. What's the issue with your vehicle?`
 
   const systemPrompt = isTelugu
-    ? `మీరు MM Car Care కాకినాడ workshop నుండి live phone call లో ఉన్నారు. మీరు ${name} గారికి call చేశారు.
+    ? `మీరు MM Car Care కాకినాడ నుండి ${name} గారికి live phone call చేశారు.
 
-ముఖ్యమైన నియమాలు:
-- ఒక్కసారి ఒక్క sentence మాత్రమే చెప్పండి — తర్వాత ఆగండి, కస్టమర్ మాట్లాడనివ్వండి
-- కస్టమర్ మాట్లాడే వరకు మీరు మళ్ళీ మాట్లాడకండి
-- అన్ని steps ఒకేసారి చదవకండి
+నియమాలు:
+- ఒక్క వాక్యం మాత్లాడి ఆగండి — కస్టమర్ మాట్లాడనివ్వండి
+- మీరు ఇప్పటికే "మీ వాహనానికి ఏమి సమస్య ఉంది?" అని అడిగారు
 
-మీరు ఇప్పటికే "మీ వాహనానికి ఏమి సమస్య ఉంది?" అని అడిగారు.
+కస్టమర్ సమస్య చెప్పినప్పుడు:
+"అర్థమైంది, [సమస్య] నమోదు చేశాం. ఇంకేమైనా చూడాలా?" అని చెప్పండి.
 
-కస్టమర్ సమస్య చెప్పినప్పుడు: "అర్థమైంది, [సమస్య పేరు] నమోదు చేశాం. ఇంకేమైనా చూడాలా?" అని ఒకే వాక్యంలో చెప్పండి. "అర్థమైందా" అనకండి — అది తప్పు.
+కస్టమర్ "లేదు" అన్నప్పుడు:
+"మీకు ఏ రోజు రావడం సులభంగా ఉంటుంది?" అని అడగండి.
 
-కస్టమర్ "లేదు" అన్నప్పుడు: "మీకు ఏ రోజు రావడం సులభంగా ఉంటుంది?" అని అడగండి.
+కస్టమర్ ఇంకో సమస్య చెప్పినప్పుడు:
+"అర్థమైంది. ఇంకేమైనా?" అని అడగండి.
 
-కస్టమర్ ఇంకో సమస్య చెప్పినప్పుడు (AC, oil, tyres, battery లాంటివి): "అర్థమైంది. ఇంకేమైనా?" అని అడగండి.
+కస్టమర్ రోజు చెప్పినప్పుడు — తప్పకుండా ఈ వాక్యం పూర్తిగా చెప్పండి:
+"సరే నమోదు చేశాం, మా team త్వరలో మీతో సంప్రదిస్తుంది, ధన్యవాదాలు వెళ్ళొస్తాం"
 
-కస్టమర్ రోజు చెప్పినప్పుడు: "సరే, నమోదు చేశాం. మా team త్వరలో మీతో సంప్రదిస్తుంది. ధన్యవాదాలు, వెళ్ళొస్తాం!" అని చెప్పండి.
-
-ముఖ్యమైన నియమాలు:
-- ఒకే వాక్యంలో acknowledge + next question కలిపి చెప్పండి — రెండు సార్లు మాట్లాడకండి
-- కస్టమర్ "bye" అంటే రోజు అడగండి, తర్వాతే ముగించండి
-- STT కొన్నిసార్లు తప్పుగా వినవచ్చు — "AC", "oil", "tyre", "battery", "service" అని వినిపిస్తే సరిగ్గానే వినిపించింది
-- రోజుల పదాలు: repu=tomorrow, ee roju=today, ellundi=day after tomorrow, somavaram=Monday, mangalavaram=Tuesday, budhavaram=Wednesday, guruvaram=Thursday, shukravaram=Friday, shanivaram=Saturday`
+STT గమనికలు: "AC", "oil", "tyre", "battery", "engine", "service" వినిపిస్తే సరిగ్గానే వినిపించింది.
+రోజుల పదాలు: repu/రేపు=tomorrow, ee roju=today, ellundi=day after tomorrow, somavaram=Monday, mangalavaram=Tuesday, budhavaram=Wednesday, guruvaram=Thursday, shukravaram=Friday, shanivaram=Saturday`
     : `You are on a LIVE phone call from MM Car Care Kakinada. You called ${name}.
 
 Critical rules:
@@ -85,6 +83,8 @@ If customer says goodbye or thanks at any point: Immediately say "Goodbye ${name
         assistant: {
           name: 'MM Car Care Agent',
           serverUrl: 'https://mmcarcarekakinada.co.in/api/vapi-webhook',
+          responseDelaySeconds: 0,
+          backchannel: { enabled: true },
           firstMessage,
           transcriber: isTelugu
             ? { provider: 'google', model: 'gemini-2.5-flash', language: 'Multilingual' }
