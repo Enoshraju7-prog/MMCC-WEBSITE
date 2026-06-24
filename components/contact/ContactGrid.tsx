@@ -530,9 +530,9 @@ export default function ContactGrid() {
                     }}
                     style={{
                       width: '100%',
-                      background: form.name && form.phone && !loading ? '#C9A96E' : 'transparent',
-                      color: form.name && form.phone && !loading ? '#0a0a0a' : 'rgba(255,255,255,0.3)',
-                      border: `1px solid ${form.name && form.phone && !loading ? '#C9A96E' : 'rgba(255,255,255,0.15)'}`,
+                      background: '#C9A96E',
+                      color: '#0a0a0a',
+                      border: '1px solid #C9A96E',
                       borderRadius: '9999px',
                       padding: '14px 24px',
                       fontFamily: 'var(--font-space-mono, monospace)',
@@ -541,6 +541,7 @@ export default function ContactGrid() {
                       textTransform: 'uppercase',
                       transition: 'all 250ms ease',
                       cursor: form.name && form.phone && !loading ? 'pointer' : 'default',
+                      opacity: form.name && form.phone && !loading ? 1 : 0.45,
                     }}
                     onMouseEnter={(e) => {
                       if (form.name && form.phone && !loading) {

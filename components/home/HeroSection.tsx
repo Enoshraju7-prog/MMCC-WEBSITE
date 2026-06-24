@@ -338,7 +338,7 @@ export default function HeroSection() {
                 flexShrink: 0,
                 animation: 'hero-pulse 1.8s ease-in-out infinite',
               }} />
-              Get AI Callback
+              AI Schedule
             </button>
 
             <a

@@ -82,7 +82,7 @@ export default function Nav() {
     ...navLinks,
     { label: 'Reviews', href: '/reviews', section: 'reviews' },
     { label: 'Blog', href: '/blog', section: 'blog' },
-    { label: 'AI Callback', href: '/ai-call', section: 'ai-call' },
+    { label: 'AI Schedule', href: '/ai-call', section: 'ai-call' },
   ]
 
   const desktopLinkStyle = {
@@ -259,7 +259,7 @@ export default function Nav() {
                 zIndex: 300,
                 boxShadow: '0 8px 32px rgba(0,0,0,0.6)',
               }}>
-                {/* AI Callback option */}
+                {/* AI Schedule option */}
                 <button
                   onClick={() => { setCallOpen(false); openCallback() }}
                   style={{
@@ -295,7 +295,7 @@ export default function Nav() {
                       color: '#C9A96E',
                       marginBottom: '1px',
                     }}>
-                      AI Callback
+                      AI Schedule
                     </div>
                     <div style={{
                       fontFamily: 'var(--font-dm-sans, sans-serif)',
@@ -394,7 +394,7 @@ export default function Nav() {
             </svg>
           </button>
 
-          {/* AI Callback — desktop only */}
+          {/* AI Schedule — desktop only */}
           <Link
             href="/ai-call"
             className="nav-ai-btn"
@@ -423,7 +423,7 @@ export default function Nav() {
               background: '#C9A96E', display: 'inline-block', flexShrink: 0,
               animation: 'nav-pulse 1.8s ease-in-out infinite',
             }} />
-            AI Callback
+            AI Schedule
           </Link>
 
           <button
@@ -562,7 +562,7 @@ export default function Nav() {
                 background: '#C9A96E', display: 'inline-block',
                 animation: 'nav-pulse 1.8s ease-in-out infinite',
               }} />
-              AI Callback
+              AI Schedule
             </Link>
             <button
               onClick={() => { open(); setMenuOpen(false) }}

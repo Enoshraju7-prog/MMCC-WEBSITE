@@ -138,7 +138,7 @@ export default function AiCallPage() {
                   fontFamily: 'var(--font-space-mono, monospace)',
                   fontSize: '9px', letterSpacing: '1.4px', textTransform: 'uppercase', color: '#C9A96E',
                 }}>
-                  AI Callback — Free
+                  AI Schedule — Free
                 </span>
               </div>
               <h1 style={{
@@ -147,15 +147,15 @@ export default function AiCallPage() {
                 textTransform: 'uppercase', color: '#fff',
                 lineHeight: 1.05, margin: '0 0 12px',
               }}>
-                {isTe ? <>మీకు Call<br /><span style={{ color: '#C9A96E' }}>చేస్తాం.</span></> : <>We&apos;ll Call<br /><span style={{ color: '#C9A96E' }}>You Now.</span></>}
+                {isTe ? <>మీ Slot<br /><span style={{ color: '#C9A96E' }}>Book చేయండి.</span></> : <>Book Your<br /><span style={{ color: '#C9A96E' }}>Slot With AI.</span></>}
               </h1>
               <p style={{
                 fontFamily: 'var(--font-dm-sans, sans-serif)',
                 fontSize: '14px', color: 'rgba(255,255,255,0.45)', lineHeight: 1.6, margin: 0,
               }}>
                 {isTe
-                  ? 'మీ పేరు మరియు number ఇవ్వండి — seconds లో మీకు call వస్తుంది.'
-                  : 'Enter your name and number — our AI agent calls you within seconds.'
+                  ? 'AI మీ vehicle service schedule చేస్తుంది. Details ఇవ్వండి — మేము call చేస్తాం.'
+                  : 'AI will schedule your vehicle service. Enter your details and we\'ll call you to book your slot.'
                 }
               </p>
             </div>
@@ -262,8 +262,8 @@ export default function AiCallPage() {
                 }}
               >
                 {loading
-                  ? (isTe ? 'Call చేస్తున్నాం...' : 'Calling...')
-                  : (isTe ? 'Call Request పంపండి' : 'Request AI Call')
+                  ? (isTe ? 'Calling...' : 'Calling...')
+                  : (isTe ? 'Slot Book చేయండి' : 'Book My Slot')
                 }
               </button>
             </form>
