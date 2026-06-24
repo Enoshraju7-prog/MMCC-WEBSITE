@@ -351,11 +351,13 @@ export default function ContactGrid() {
                   cursor: 'pointer',
                 }}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/api/map-image"
-                  alt="MM Car Care location map — Opp APSP Petrol Bunk, Kakinada"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                <iframe
+                  src="https://maps.google.com/maps?q=MM+Car+Care+Opp+APSP+Petrol+Bunk+Kakinada+Andhra+Pradesh+533001&output=embed&z=17"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, display: 'block', pointerEvents: 'none' }}
+                  loading="lazy"
+                  title="MM Car Care location"
                 />
                 <div style={{
                   position: 'absolute',

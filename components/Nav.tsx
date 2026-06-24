@@ -82,6 +82,7 @@ export default function Nav() {
     ...navLinks,
     { label: 'Reviews', href: '/reviews', section: 'reviews' },
     { label: 'Blog', href: '/blog', section: 'blog' },
+    { label: 'AI Callback', href: '/ai-call', section: 'ai-call' },
   ]
 
   const desktopLinkStyle = {
@@ -103,6 +104,9 @@ export default function Nav() {
         @keyframes nav-pulse {
           0%, 100% { opacity: 1; transform: scale(1); }
           50% { opacity: 0.3; transform: scale(1.6); }
+        }
+        @media (max-width: 768px) {
+          .nav-ai-btn { display: none !important; }
         }
       `}</style>
       <nav
@@ -390,6 +394,38 @@ export default function Nav() {
             </svg>
           </button>
 
+          {/* AI Callback — desktop only */}
+          <Link
+            href="/ai-call"
+            className="nav-ai-btn"
+            style={{
+              fontFamily: 'var(--font-space-mono, monospace)',
+              fontSize: '11px',
+              letterSpacing: '1.4px',
+              textTransform: 'uppercase',
+              color: '#C9A96E',
+              background: 'transparent',
+              border: '1px solid rgba(201,169,110,0.45)',
+              borderRadius: '9999px',
+              padding: '8px 18px',
+              whiteSpace: 'nowrap',
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '7px',
+              transition: 'background 250ms ease, border-color 250ms ease',
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(201,169,110,0.1)'; e.currentTarget.style.borderColor = '#C9A96E' }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(201,169,110,0.45)' }}
+          >
+            <span style={{
+              width: '6px', height: '6px', borderRadius: '50%',
+              background: '#C9A96E', display: 'inline-block', flexShrink: 0,
+              animation: 'nav-pulse 1.8s ease-in-out infinite',
+            }} />
+            AI Callback
+          </Link>
+
           <button
             onClick={open}
             style={{
@@ -477,7 +513,7 @@ export default function Nav() {
             <Link
               key={section}
               href={href}
-              onClick={section !== 'blog' && section !== 'reviews'
+              onClick={section !== 'blog' && section !== 'reviews' && section !== 'ai-call'
                 ? (e) => handleNavClick(e as React.MouseEvent, section)
                 : () => setMenuOpen(false)
               }
@@ -488,7 +524,7 @@ export default function Nav() {
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
                 lineHeight: 1,
-                color: section === 'blog'
+                color: section === 'blog' || section === 'ai-call'
                   ? '#C9A96E'
                   : (isActive(section) ? '#C9A96E' : '#fff'),
                 textDecoration: 'none',
@@ -502,22 +538,32 @@ export default function Nav() {
           ))}
 
           <div style={{ marginTop: 'auto', paddingTop: '40px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-            <button
-              onClick={() => { window.open(MAPS_URL, '_blank'); setMenuOpen(false) }}
+            <Link
+              href="/ai-call"
+              onClick={() => setMenuOpen(false)}
               style={{
                 fontFamily: 'var(--font-space-mono, monospace)',
                 fontSize: '10px',
                 letterSpacing: '1.2px',
                 textTransform: 'uppercase',
-                color: '#fff',
+                color: '#C9A96E',
                 background: 'none',
-                border: '1px solid rgba(255,255,255,0.2)',
+                border: '1px solid rgba(201,169,110,0.4)',
                 borderRadius: '9999px',
-                padding: '10px 24px',
+                padding: '10px 20px',
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
               }}
             >
-              Find Us
-            </button>
+              <span style={{
+                width: '5px', height: '5px', borderRadius: '50%',
+                background: '#C9A96E', display: 'inline-block',
+                animation: 'nav-pulse 1.8s ease-in-out infinite',
+              }} />
+              AI Callback
+            </Link>
             <button
               onClick={() => { open(); setMenuOpen(false) }}
               style={{
