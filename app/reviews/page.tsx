@@ -19,12 +19,14 @@ function StarRating({ rating }: { rating: number }) {
   )
 }
 
-function ReviewCard({ review }: { review: Review }) {
+const LATEST = REVIEWS.slice(0, 3)
+
+function ReviewCard({ review, isNew }: { review: Review; isNew?: boolean }) {
   return (
     <div
       style={{
-        background: '#111',
-        border: '1px solid rgba(255,255,255,0.08)',
+        background: isNew ? 'rgba(201,169,110,0.04)' : '#111',
+        border: isNew ? '1px solid rgba(201,169,110,0.22)' : '1px solid rgba(255,255,255,0.08)',
         borderRadius: '8px',
         padding: '28px',
         display: 'flex',
@@ -33,8 +35,8 @@ function ReviewCard({ review }: { review: Review }) {
         height: '100%',
         transition: 'border-color 300ms ease',
       }}
-      onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'rgba(201,169,110,0.3)')}
-      onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}
+      onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'rgba(201,169,110,0.4)')}
+      onMouseLeave={(e) => (e.currentTarget.style.borderColor = isNew ? 'rgba(201,169,110,0.22)' : 'rgba(255,255,255,0.08)')}
     >
       {/* Google G icon */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -114,8 +116,8 @@ function ReviewCard({ review }: { review: Review }) {
 }
 
 export default function ReviewsPage() {
-  // Shuffle once on mount so order is different every page load
-  const [reviews] = useState(() => [...REVIEWS].sort(() => Math.random() - 0.5))
+  // Shuffle all except latest 3 (those are pinned above)
+  const [reviews] = useState(() => [...REVIEWS.slice(3)].sort(() => Math.random() - 0.5))
 
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
@@ -214,6 +216,38 @@ export default function ReviewsPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Latest Reviews — pinned, newest 3 */}
+      <section style={{ padding: 'clamp(40px, 5vw, 72px) clamp(24px, 5vw, 80px) 0', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px' }}>
+            <span style={{
+              width: '6px', height: '6px', borderRadius: '50%',
+              background: '#C9A96E', display: 'inline-block',
+              animation: 'latest-pulse 2s ease-in-out infinite',
+            }} />
+            <span style={{
+              fontFamily: 'var(--font-space-mono, monospace)',
+              fontSize: '9px', letterSpacing: '1.4px',
+              textTransform: 'uppercase', color: '#C9A96E',
+            }}>Latest Reviews</span>
+          </div>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '20px',
+            paddingBottom: 'clamp(40px, 5vw, 72px)',
+          }}>
+            {LATEST.map((r) => <ReviewCard key={r.id} review={r} isNew />)}
+          </div>
+        </div>
+        <style>{`
+          @keyframes latest-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.5); }
+          }
+        `}</style>
       </section>
 
       {/* Carousel */}
