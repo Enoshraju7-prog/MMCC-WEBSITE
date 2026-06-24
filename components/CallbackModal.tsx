@@ -210,7 +210,7 @@ export default function CallbackModal({ onClose }: Props) {
             </div>
 
             <style>{`
-            .cb-input::placeholder { color: rgba(255,255,255,0.45); -webkit-text-fill-color: rgba(255,255,255,0.45); }
+            .cb-input::placeholder { color: rgba(255,255,255,0.85); -webkit-text-fill-color: rgba(255,255,255,0.85); }
             .cb-input { -webkit-text-fill-color: #fff; }
           `}</style>
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
