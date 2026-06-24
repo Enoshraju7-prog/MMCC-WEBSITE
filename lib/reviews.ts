@@ -20,6 +20,27 @@ export const REVIEWS: Review[] = [
     date: '2026-06-24',
   },
   {
+    id: 'g1782259201',
+    author: 'Subrahmanyam K',
+    rating: 5,
+    text: 'Excellent service, profetional team, fair pricing and the work was done on time. My car feels brand new, highly recommend.',
+    date: '2026-06-23',
+  },
+  {
+    id: 'g1782259202',
+    author: 'G Satyanarayana',
+    rating: 5,
+    text: 'Good',
+    date: '2026-06-23',
+  },
+  {
+    id: 'g1782259203',
+    author: 'Dorababu madi Reddy',
+    rating: 5,
+    text: 'Good',
+    date: '2026-06-23',
+  },
+  {
     id: 'g1782172801',
     author: 'BOLLOJU RAJA',
     rating: 5,
