@@ -3,7 +3,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useBooking } from '@/lib/booking-context'
 import { useCallback } from '@/lib/callback-context'
 
@@ -342,27 +341,34 @@ export default function HeroSection() {
               Get AI Callback
             </button>
 
-            <Link
-              href="/services"
+            <a
+              href="https://maps.app.goo.gl/SRBWNggKuSY9ge8k7"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 background: 'transparent',
                 color: 'rgba(255,255,255,0.6)',
                 border: '1px solid rgba(255,255,255,0.2)',
                 borderRadius: '9999px',
-                padding: '15px 36px',
+                padding: '15px 28px',
                 fontFamily: 'var(--font-space-mono, monospace)',
                 fontSize: '12px',
                 letterSpacing: '1.4px',
                 textTransform: 'uppercase',
                 textDecoration: 'none',
-                display: 'inline-block',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
                 transition: 'border-color 200ms ease, color 200ms ease',
               }}
               onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.6)'; e.currentTarget.style.color = '#fff' }}
               onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)'; e.currentTarget.style.color = 'rgba(255,255,255,0.6)' }}
             >
-              All Services
-            </Link>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              Find Us
+            </a>
           </div>
         </div>
 
