@@ -21,6 +21,13 @@ export default function BookingConfirmedPage() {
         textAlign: 'center',
       }}
     >
+      <style>{`
+        @keyframes pulse-ring {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.3; transform: scale(1.5); }
+        }
+      `}</style>
+
       {/* WhatsApp icon */}
       <div style={{ marginBottom: '28px' }}>
         <svg viewBox="0 0 32 32" width="64" height="64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -52,38 +59,60 @@ export default function BookingConfirmedPage() {
           lineHeight: 1.7,
           color: 'rgba(255,255,255,0.5)',
           maxWidth: '400px',
-          marginBottom: '40px',
+          marginBottom: '36px',
         }}
       >
-        Your WhatsApp message is on its way to MM Car Care. We&apos;ll call you back during working hours.
+        Your WhatsApp message is on its way to MM Car Care.
       </p>
 
-      {/* Fill booking form */}
-      <a
-        href="https://forms.gle/YYXPoCavW6TMMpReA"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          display: 'block',
-          width: '100%',
-          maxWidth: '400px',
+      {/* AI Call notification */}
+      <div style={{
+        background: 'rgba(201,169,110,0.06)',
+        border: '1px solid rgba(201,169,110,0.2)',
+        borderRadius: '12px',
+        padding: '20px 28px',
+        maxWidth: '400px',
+        width: '100%',
+        marginBottom: '32px',
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: '14px',
+        textAlign: 'left',
+      }}>
+        <span style={{
+          width: '9px',
+          height: '9px',
+          borderRadius: '50%',
           background: '#C9A96E',
-          color: '#0a0a0a',
-          border: '1px solid #C9A96E',
-          borderRadius: '9999px',
-          padding: '16px 24px',
-          fontFamily: 'var(--font-space-mono, monospace)',
-          fontSize: '12px',
-          letterSpacing: '1.4px',
-          textTransform: 'uppercase',
-          fontWeight: 700,
-          textDecoration: 'none',
-          marginBottom: '12px',
-          transition: 'background 250ms ease',
-        }}
-      >
-        Fill Booking Form →
-      </a>
+          flexShrink: 0,
+          marginTop: '5px',
+          animation: 'pulse-ring 1.6s ease-in-out infinite',
+          display: 'inline-block',
+        }} />
+        <div>
+          <div style={{
+            fontFamily: 'var(--font-space-mono, monospace)',
+            fontSize: '9px',
+            letterSpacing: '1.2px',
+            textTransform: 'uppercase',
+            color: '#C9A96E',
+            marginBottom: '6px',
+          }}>
+            AI Agent Calling You Now
+          </div>
+          <p style={{
+            fontFamily: 'var(--font-dm-sans, sans-serif)',
+            fontSize: '14px',
+            lineHeight: 1.6,
+            color: 'rgba(255,255,255,0.65)',
+            margin: 0,
+          }}>
+            You&apos;ll receive a call from{' '}
+            <strong style={{ color: '#fff' }}>+1 (541) 981-6853</strong>.
+            Please pick up — it&apos;s MM Car Care&apos;s AI assistant confirming your booking details.
+          </p>
+        </div>
+      </div>
 
       {/* Back to site */}
       <Link
