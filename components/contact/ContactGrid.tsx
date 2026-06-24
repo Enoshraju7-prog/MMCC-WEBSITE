@@ -352,7 +352,7 @@ export default function ContactGrid() {
                 }}
               >
                 <iframe
-                  src="https://maps.google.com/maps?q=MM+Car+Care+Opp+APSP+Petrol+Bunk+Kakinada+Andhra+Pradesh+533001&output=embed&z=17"
+                  src="https://maps.google.com/maps?q=17.011141,82.248170&output=embed&z=18"
                   width="100%"
                   height="100%"
                   style={{ border: 0, display: 'block', pointerEvents: 'none' }}
