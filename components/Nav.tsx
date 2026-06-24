@@ -72,7 +72,7 @@ export default function Nav() {
   }
 
   const navLinks = [
-    { label: 'Home', href: '/#home', section: 'home' },
+    { label: 'Home', href: '/', section: 'home' },
     { label: 'Services', href: '/#services', section: 'services' },
     { label: 'About', href: '/#about', section: 'about' },
     { label: 'Contact', href: '/#contact', section: 'contact' },
@@ -125,7 +125,7 @@ export default function Nav() {
       >
         {/* Logo */}
         <Link
-          href="/#home"
+          href="/"
           onClick={(e) => handleNavClick(e, 'home')}
           style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}
         >
