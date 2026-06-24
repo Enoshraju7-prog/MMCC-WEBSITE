@@ -101,10 +101,12 @@ export default function Footer() {
                 'AC Service',
                 'Wheel Alignment',
                 'Audio & Infotainment',
-                '& Others',
               ].map((s) => (
                 <div key={s} style={linkStyle}>{s}</div>
               ))}
+              <Link href="/services" style={{ ...linkStyle, color: '#C9A96E', textDecoration: 'none' }}>
+                &amp; Others →
+              </Link>
             </div>
 
             {/* Hours */}
