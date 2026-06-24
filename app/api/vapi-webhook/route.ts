@@ -19,25 +19,11 @@ export async function POST(req: NextRequest) {
 
   const phoneDisplay = customerPhone.replace('+91', '')
   const callSummary = summary || transcript.split('\n').slice(0, 6).join('\n')
-
-  // Bilingual SMS — English + Telugu
-  const sms = [
-    `MM Car Care — New Lead`,
-    `Customer: ${customerName}`,
-    `Phone: ${phoneDisplay}`,
-    ``,
-    callSummary,
-    ``,
-    `---`,
-    `MM Car Care — కొత్త కస్టమర్`,
-    `పేరు: ${customerName}`,
-    `ఫోన్: ${phoneDisplay}`,
-    `వెంటనే సంప్రదించండి`,
-  ].join('\n')
+  const language = report.call?.assistant?.firstMessage?.includes('నమస్కారం') ? 'Telugu' : 'English'
 
   await Promise.all([
-    sendSMS('+916304104489', sms),
-    logToSheet({ name: customerName, phone: phoneDisplay, language: report.call?.assistant?.firstMessage?.includes('నమస్కారం') ? 'Telugu' : 'English', summary: callSummary }),
+    sendLeadEmail({ name: customerName, phone: phoneDisplay, summary: callSummary, language }),
+    logToSheet({ name: customerName, phone: phoneDisplay, language, summary: callSummary }),
   ])
 
   return NextResponse.json({ ok: true })
@@ -57,30 +43,57 @@ async function logToSheet(data: { name: string; phone: string; language: string;
   }
 }
 
-async function sendSMS(to: string, body: string) {
-  const accountSid = process.env.TWILIO_ACCOUNT_SID
-  const authToken = process.env.TWILIO_AUTH_TOKEN
-  const from = process.env.TWILIO_FROM_NUMBER
+async function sendLeadEmail(lead: { name: string; phone: string; summary: string; language: string }) {
+  const apiKey = process.env.RESEND_API_KEY
+  const to = process.env.LEAD_NOTIFY_EMAILS
+  const from = process.env.RESEND_FROM_EMAIL || 'MM Car Care <onboarding@resend.dev>'
 
-  if (!accountSid || !authToken || !from) {
-    console.warn('[vapi-webhook] Twilio SMS not configured')
+  if (!apiKey || !to) {
+    console.warn('[vapi-webhook] Resend email not configured')
     return
   }
 
-  const credentials = Buffer.from(`${accountSid}:${authToken}`).toString('base64')
+  const recipients = to.split(',').map((e) => e.trim()).filter(Boolean)
 
-  const res = await fetch(
-    `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Basic ${credentials}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams({ From: from, To: to, Body: body }).toString(),
-    }
-  )
+  const subject = `New Lead — ${lead.name} (${lead.phone})`
+
+  const html = `
+    <div style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 560px; margin: 0 auto; padding: 24px; background: #fff; color: #111;">
+      <div style="border-left: 4px solid #C9A96E; padding: 8px 0 8px 16px; margin-bottom: 24px;">
+        <div style="font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; color: #C9A96E; font-weight: 700;">MM Car Care</div>
+        <h1 style="margin: 4px 0 0; font-size: 22px; font-weight: 700;">New Lead from AI Call</h1>
+      </div>
+      <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+        <tr><td style="padding: 8px 0; color: #666; font-size: 13px; width: 100px;">Name</td><td style="padding: 8px 0; font-weight: 600;">${lead.name}</td></tr>
+        <tr><td style="padding: 8px 0; color: #666; font-size: 13px;">Phone</td><td style="padding: 8px 0; font-weight: 600;"><a href="tel:+91${lead.phone}" style="color: #C9A96E; text-decoration: none;">+91 ${lead.phone}</a></td></tr>
+        <tr><td style="padding: 8px 0; color: #666; font-size: 13px;">Language</td><td style="padding: 8px 0;">${lead.language}</td></tr>
+      </table>
+      <div style="background: #f7f7f7; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 8px;">Call Summary</div>
+        <div style="font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${escapeHtml(lead.summary)}</div>
+      </div>
+      <a href="tel:+91${lead.phone}" style="display: inline-block; background: #C9A96E; color: #0a0a0a; text-decoration: none; padding: 12px 24px; border-radius: 9999px; font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;">Call ${lead.name} Now</a>
+    </div>
+  `
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ from, to: recipients, subject, html }),
+  })
 
   const data = await res.json()
-  console.log('[vapi-webhook] SMS to', to, '→', res.status, data?.sid)
+  console.log('[vapi-webhook] Email →', res.status, data?.id || data?.message)
+}
+
+function escapeHtml(str: string) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
 }
