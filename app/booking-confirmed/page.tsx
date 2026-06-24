@@ -114,6 +114,32 @@ export default function BookingConfirmedPage() {
         </div>
       </div>
 
+      {/* Fill booking form */}
+      <a
+        href="https://forms.gle/YYXPoCavW6TMMpReA"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: 'block',
+          width: '100%',
+          maxWidth: '400px',
+          background: '#C9A96E',
+          color: '#0a0a0a',
+          border: '1px solid #C9A96E',
+          borderRadius: '9999px',
+          padding: '16px 24px',
+          fontFamily: 'var(--font-space-mono, monospace)',
+          fontSize: '12px',
+          letterSpacing: '1.4px',
+          textTransform: 'uppercase',
+          fontWeight: 700,
+          textDecoration: 'none',
+          marginBottom: '12px',
+        }}
+      >
+        Fill Booking Form →
+      </a>
+
       {/* Back to site */}
       <Link
         href="/"
