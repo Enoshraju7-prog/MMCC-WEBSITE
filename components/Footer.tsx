@@ -1,12 +1,7 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useBooking } from '@/lib/booking-context'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const colHead: React.CSSProperties = {
   fontFamily: 'var(--font-big-shoulders, sans-serif)',
@@ -30,33 +25,9 @@ const linkStyle: React.CSSProperties = {
 
 export default function Footer() {
   const { open } = useBooking()
-  const footerRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const footer = footerRef.current
-    if (!footer) return
-    const ctx = gsap.context(() => {
-      gsap.from('.footer-brand', {
-        y: 30, opacity: 0, duration: 0.8, ease: 'power3.out',
-        scrollTrigger: { trigger: footer, start: 'top 90%', once: true },
-      })
-      gsap.from('.footer-col', {
-        y: 30, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out',
-        scrollTrigger: { trigger: footer, start: 'top 90%', once: true },
-        delay: 0.15,
-      })
-      gsap.from('.footer-bottom', {
-        y: 20, opacity: 0, duration: 0.6, ease: 'power3.out',
-        scrollTrigger: { trigger: footer, start: 'top 85%', once: true },
-        delay: 0.3,
-      })
-    }, footer)
-    return () => ctx.revert()
-  }, [])
 
   return (
     <footer
-      ref={footerRef}
       style={{
         background: '#0a0a0a',
         borderTop: '1px solid rgba(201,169,110,0.2)',

@@ -56,6 +56,7 @@ export default function CallbackModal({ onClose }: Props) {
     fontFamily: 'var(--font-dm-sans, sans-serif)',
     fontSize: '15px',
     color: '#fff',
+    WebkitTextFillColor: '#fff',
     outline: 'none',
     boxSizing: 'border-box',
     transition: 'border-color 200ms ease',
@@ -66,7 +67,7 @@ export default function CallbackModal({ onClose }: Props) {
     fontSize: '9px',
     letterSpacing: '1.2px',
     textTransform: 'uppercase',
-    color: 'rgba(255,255,255,0.4)',
+    color: 'rgba(255,255,255,0.75)',
     display: 'block',
     marginBottom: '8px',
   }
@@ -208,7 +209,11 @@ export default function CallbackModal({ onClose }: Props) {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <style>{`
+            .cb-input::placeholder { color: rgba(255,255,255,0.45); -webkit-text-fill-color: rgba(255,255,255,0.45); }
+            .cb-input { -webkit-text-fill-color: #fff; }
+          `}</style>
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               {/* Language toggle */}
               <div>
                 <span style={labelStyle}>Language</span>
@@ -243,6 +248,7 @@ export default function CallbackModal({ onClose }: Props) {
                 <label style={labelStyle}>Your Name</label>
                 <input
                   type="text"
+                  className="cb-input"
                   value={name}
                   onChange={e => setName(e.target.value)}
                   placeholder={language === 'te' ? 'మీ పేరు' : 'Your name'}
@@ -257,6 +263,7 @@ export default function CallbackModal({ onClose }: Props) {
                 <label style={labelStyle}>Phone Number</label>
                 <input
                   type="tel"
+                  className="cb-input"
                   value={phone}
                   onChange={e => setPhone(e.target.value)}
                   placeholder={language === 'te' ? 'మీ ఫోన్ నంబర్' : '10-digit mobile number'}

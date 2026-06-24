@@ -477,7 +477,7 @@ export default function Nav() {
             <Link
               key={section}
               href={href}
-              onClick={section !== 'blog'
+              onClick={section !== 'blog' && section !== 'reviews'
                 ? (e) => handleNavClick(e as React.MouseEvent, section)
                 : () => setMenuOpen(false)
               }
