@@ -75,14 +75,7 @@ export const REVIEWS: Review[] = [
     text: 'Best work. Highly recommended.',
     date: '2026-06-22',
   },
-  {
-    id: 'g1782106944',
-    author: 'Srinvasa Raju',
-    rating: 5,
-    text: 'Good work',
-    date: '2026-06-22',
-  },
-  {
+{
     id: 'g1782172806',
     author: 'Prasad vjd',
     rating: 5,
@@ -166,14 +159,7 @@ export const REVIEWS: Review[] = [
     text: 'Excellent service. Highly recommend MM Car Care.',
     date: '2026-06-16',
   },
-  {
-    id: 'g1781365653',
-    author: 'Satyanarayana Pasagadugula',
-    rating: 5,
-    text: 'Excellent service',
-    date: '2026-06-13',
-  },
-  {
+{
     id: 'g1781049601',
     author: 'Gows Sk',
     rating: 5,
