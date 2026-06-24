@@ -184,7 +184,7 @@ export default function ContactGrid() {
               {[
                 { label: 'Phone', value: '+91 98483 77309 / +91 63041 04489' },
                 { label: 'WhatsApp', value: '+91 98483 77309 / +91 63041 04489' },
-                { label: 'Location', value: 'Kakinada, Andhra Pradesh – 533 001' },
+                { label: 'Location', value: 'Opp APSP Petrol Bunk, Kakinada – 533 001' },
                 { label: 'Mobile Svc', value: 'Available across Kakinada district' },
               ].map((item, i) => (
                 <div
@@ -335,9 +335,12 @@ export default function ContactGrid() {
               >
                 Location – Kakinada, AP
               </div>
-              <div
-                onClick={() => window.open('https://maps.app.goo.gl/SRBWNggKuSY9ge8k7', '_blank')}
+              <a
+                href="https://maps.app.goo.gl/SRBWNggKuSY9ge8k7"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
+                  display: 'block',
                   width: '100%',
                   height: '240px',
                   border: '1px solid rgba(255,255,255,0.08)',
@@ -348,92 +351,37 @@ export default function ContactGrid() {
                   cursor: 'pointer',
                 }}
               >
-                <div
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    backgroundImage:
-                      'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
-                    backgroundSize: '36px 36px',
-                  }}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/api/map-image"
+                  alt="MM Car Care location map — Opp APSP Petrol Bunk, Kakinada"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
-                <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: '1px', background: 'rgba(255,255,255,0.06)' }} />
-                <div style={{ position: 'absolute', left: '38%', top: 0, bottom: 0, width: '1px', background: 'rgba(255,255,255,0.06)' }} />
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '38%',
-                    transform: 'translate(-50%, -100%)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
-                  <div
-                    style={{
-                      width: '8px',
-                      height: '8px',
-                      borderRadius: '50%',
-                      background: '#C9A96E',
-                      boxShadow: '0 0 12px rgba(201,169,110,0.5)',
-                    }}
-                  />
-                  <div style={{ width: '1px', height: '14px', background: 'rgba(201,169,110,0.5)' }} />
-                </div>
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '38%',
-                    transform: 'translate(8px, -80%)',
-                    background: '#C9A96E',
-                    color: '#0a0a0a',
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0, left: 0, right: 0,
+                  background: 'linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 100%)',
+                  padding: '14px 16px 12px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'flex-end',
+                }}>
+                  <span style={{
                     fontFamily: 'var(--font-space-mono, monospace)',
-                    fontSize: '8px',
-                    letterSpacing: '0.5px',
-                    padding: '4px 8px',
-                    borderRadius: '3px',
-                  }}
-                >
-                  MM Car Care
-                </div>
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: '12px',
-                    left: '16px',
+                    fontSize: '9px', letterSpacing: '1px',
+                    textTransform: 'uppercase', color: '#fff',
+                  }}>
+                    Kakinada · Andhra Pradesh
+                  </span>
+                  <span style={{
                     fontFamily: 'var(--font-space-mono, monospace)',
-                    fontSize: '9px',
-                    letterSpacing: '1px',
-                    textTransform: 'uppercase',
-                    color: '#fff',
-                  }}
-                >
-                  Kakinada · Andhra Pradesh
+                    fontSize: '9px', letterSpacing: '1px',
+                    textTransform: 'uppercase', color: '#C9A96E',
+                  }}>
+                    Open Maps →
+                  </span>
                 </div>
-                <a
-                  href="https://maps.app.goo.gl/SRBWNggKuSY9ge8k7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    position: 'absolute',
-                    bottom: '12px',
-                    right: '14px',
-                    fontFamily: 'var(--font-space-mono, monospace)',
-                    fontSize: '9px',
-                    letterSpacing: '1px',
-                    textTransform: 'uppercase',
-                    color: '#fff',
-                    textDecoration: 'none',
-                    transition: 'color 200ms ease',
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = '#C9A96E')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = '#fff')}
-                >
-                  Open Maps →
-                </a>
-              </div>
+              </a>
             </div>
 
             {/* AI Callback form */}
