@@ -35,9 +35,8 @@ export async function POST(req: NextRequest) {
     `వెంటనే సంప్రదించండి`,
   ].join('\n')
 
-  const notify = ['+919848377309', '+916304104489']
   await Promise.all([
-    ...notify.map((to) => sendSMS(to, sms)),
+    sendSMS('+916304104489', sms),
     logToSheet({ name: customerName, phone: phoneDisplay, language: report.call?.assistant?.firstMessage?.includes('నమస్కారం') ? 'Telugu' : 'English', summary: callSummary }),
   ])
 
