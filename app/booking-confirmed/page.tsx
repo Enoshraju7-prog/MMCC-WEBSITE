@@ -108,7 +108,7 @@ export default function BookingConfirmedPage() {
             margin: 0,
           }}>
             You&apos;ll receive a call from{' '}
-            <strong style={{ color: '#fff' }}>+91 80715 79188</strong>.
+            <strong style={{ color: '#fff' }}>+1 (541) 981-6853</strong>.
             Please pick up — it&apos;s MM Car Care&apos;s AI assistant confirming your booking details.
           </p>
         </div>

@@ -109,8 +109,8 @@ export default function AiCallPage() {
               fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, margin: '0 0 28px',
             }}>
               {isTe
-                ? <>మీకు <strong style={{ color: '#C9A96E' }}>+91 80715 79188</strong> నుండి call వస్తుంది.<br />దయచేసి pick చేయండి — ఇది MM Car Care AI నుండి.</>
-                : <>You&apos;ll receive a call from <strong style={{ color: '#C9A96E' }}>+91 80715 79188</strong>.<br />Please pick up — it&apos;s MM Car Care.</>
+                ? <>మీకు <strong style={{ color: '#C9A96E' }}>+1 (541) 981-6853</strong> నుండి call వస్తుంది.<br />దయచేసి pick చేయండి — ఇది MM Car Care AI నుండి.</>
+                : <>You&apos;ll receive a call from <strong style={{ color: '#C9A96E' }}>+1 (541) 981-6853</strong>.<br />Please pick up — it&apos;s MM Car Care.</>
               }
             </p>
             <Link href="/" style={{
@@ -274,7 +274,7 @@ export default function AiCallPage() {
               fontSize: '12px', color: 'rgba(255,255,255,0.25)',
               textAlign: 'center', marginTop: '20px', marginBottom: 0, lineHeight: 1.6,
             }}>
-              Call from +91 80715 79188 · MM Car Care Kakinada
+              Call from +1 (541) 981-6853 · MM Car Care Kakinada
             </p>
           </>
         )}
