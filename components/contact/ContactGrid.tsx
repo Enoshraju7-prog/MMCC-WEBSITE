@@ -359,28 +359,44 @@ export default function ContactGrid() {
                   loading="lazy"
                   title="MM Car Care location"
                 />
+                {/* Open Maps button — top right, prominent */}
+                <div style={{
+                  position: 'absolute',
+                  top: '12px', right: '12px',
+                  background: '#000',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  borderRadius: '6px',
+                  padding: '10px 16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  zIndex: 10,
+                }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A96E">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                  </svg>
+                  <span style={{
+                    fontFamily: 'var(--font-space-mono, monospace)',
+                    fontSize: '11px', letterSpacing: '1.2px',
+                    textTransform: 'uppercase', color: '#fff',
+                    fontWeight: 700,
+                  }}>
+                    Open Maps →
+                  </span>
+                </div>
+                {/* Bottom label */}
                 <div style={{
                   position: 'absolute',
                   bottom: 0, left: 0, right: 0,
-                  background: 'linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 100%)',
+                  background: 'linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 100%)',
                   padding: '14px 16px 12px',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'flex-end',
                 }}>
                   <span style={{
                     fontFamily: 'var(--font-space-mono, monospace)',
                     fontSize: '9px', letterSpacing: '1px',
-                    textTransform: 'uppercase', color: '#fff',
+                    textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)',
                   }}>
                     Kakinada · Andhra Pradesh
-                  </span>
-                  <span style={{
-                    fontFamily: 'var(--font-space-mono, monospace)',
-                    fontSize: '9px', letterSpacing: '1px',
-                    textTransform: 'uppercase', color: '#C9A96E',
-                  }}>
-                    Open Maps →
                   </span>
                 </div>
               </a>
