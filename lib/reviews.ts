@@ -13,6 +13,27 @@ export const LEAVE_REVIEW_URL = `https://search.google.com/local/writereview?pla
 // Only 4-5 star reviews shown. Nightly sync adds new ones automatically.
 export const REVIEWS: Review[] = [
   {
+    id: 'g1782518401',
+    author: 'Pradeep Kumar',
+    rating: 5,
+    text: 'Excellent service and one of the best in kakinada.',
+    date: '2026-06-28',
+  },
+  {
+    id: 'g1782432001',
+    author: 'vishnu ankam',
+    rating: 5,
+    text: 'Good and neat service recommended',
+    date: '2026-06-27',
+  },
+  {
+    id: 'g1782345603',
+    author: 'ramamohanarao bokka',
+    rating: 5,
+    text: 'Good',
+    date: '2026-06-26',
+  },
+  {
     id: 'g1782345602',
     author: 'Uppulurimahesh Lavanya',
     rating: 5,

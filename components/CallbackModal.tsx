@@ -162,7 +162,7 @@ export default function CallbackModal({ onClose }: Props) {
               lineHeight: 1.6,
               margin: 0,
             }}>
-              You&apos;ll receive a call from <strong style={{ color: '#C9A96E' }}>+1 (541) 981-6853</strong>.<br />
+              You&apos;ll receive a call from <strong style={{ color: '#C9A96E' }}>+91 80715 79188</strong>.<br />
               Please pick up — it&apos;s MM Car Care.
             </p>
             <style>{`
