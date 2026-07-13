@@ -13,6 +13,13 @@ export const LEAVE_REVIEW_URL = `https://search.google.com/local/writereview?pla
 // Only 4-5 star reviews shown. Nightly sync adds new ones automatically.
 export const REVIEWS: Review[] = [
   {
+    id: 'g1783945976',
+    author: 'Ravi Kumar',
+    rating: 5,
+    text: 'Good',
+    date: '2026-07-13',
+  },
+  {
     id: 'g1782518401',
     author: 'Pradeep Kumar',
     rating: 5,
