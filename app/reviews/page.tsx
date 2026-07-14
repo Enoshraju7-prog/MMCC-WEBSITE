@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { REVIEWS, LEAVE_REVIEW_URL, type Review } from '@/lib/reviews'
 
 const CARDS_PER_SLIDE = 3
-const AUTO_ADVANCE_MS = 5000
+const AUTO_ADVANCE_MS = 3500
 
 function StarRating({ rating }: { rating: number }) {
   return (
