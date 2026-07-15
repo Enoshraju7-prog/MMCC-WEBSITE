@@ -282,7 +282,7 @@ export default function HeroSection() {
               maxWidth: '440px',
             }}
           >
-            The right way. Trusted by 1,500+ loyal customers across Kakinada. Professional-grade products and trained hands — every single time.
+            Car wash, full service, AC, tyres, dent repair — everything under one roof. Trusted by 1,500+ customers in Kakinada.
           </p>
 
           <div ref={btnsRef} style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
