@@ -282,7 +282,7 @@ export default function HeroSection() {
               maxWidth: '440px',
             }}
           >
-            Car wash, full service, AC, tyres, dent repair — everything under one roof. Trusted by 1,500+ customers in Kakinada.
+            Book online — we pick up your car, service it, and drop it back home. Or walk into our garage anytime. Trusted by 1,500+ customers in Kakinada.
           </p>
 
           <div ref={btnsRef} style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
