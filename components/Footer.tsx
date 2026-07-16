@@ -78,6 +78,7 @@ export default function Footer() {
                 { label: 'Blog', href: '/blog' },
                 { label: 'Reviews', href: '/reviews' },
                 { label: 'Contact', href: '/#contact' },
+                { label: 'Bill Generator', href: '/bill' },
               ].map(({ label, href }) => (
                 <Link
                   key={href}
