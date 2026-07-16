@@ -162,10 +162,14 @@ export default function BillCreatePage() {
       <style>{`
         /* ── print: show only the white invoice ─────────────────────── */
         @media print {
-          body > * { display: none !important; }
-          #bill-root { display: block !important; }
-          #bill-root > * { display: none !important; }
-          .invoice-print { display: block !important; position: static !important; }
+          body * { visibility: hidden !important; }
+          .invoice-print, .invoice-print * { visibility: visible !important; }
+          .invoice-print {
+            position: fixed !important;
+            top: 0 !important; left: 0 !important;
+            width: 100% !important;
+            box-shadow: none !important;
+          }
           @page { margin: 12mm 14mm; size: A4; }
         }
 
