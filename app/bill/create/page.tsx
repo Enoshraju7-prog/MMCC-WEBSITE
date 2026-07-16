@@ -29,6 +29,12 @@ function fmtDate(v: string) {
   if (!v) return ''
   return new Date(v + 'T00:00:00').toLocaleDateString('en-IN', { day:'numeric', month:'long', year:'numeric' })
 }
+function addMonths(dateStr: string, months: number): string {
+  if (!dateStr) return ''
+  const d = new Date(dateStr + 'T00:00:00')
+  d.setMonth(d.getMonth() + months)
+  return d.toLocaleDateString('en-IN', { month:'long', year:'numeric' })
+}
 function inr(n: number) { return '₹' + Math.round(n).toLocaleString('en-IN') }
 function newRow(): ServiceRow { return { id: Date.now().toString(), description:'', qty:'1', rate:'' } }
 function newPart(): PartRow   { return { id: Date.now().toString(), name:'', qty:'1', rate:'' } }
@@ -64,9 +70,9 @@ export default function BillCreatePage() {
   const [gst,       setGst]       = useState(false)
   const [payment,   setPayment]   = useState('Cash')
   // ── staff / reminder ─────────────────────────────────────────────────────
-  const [techName,  setTechName]  = useState('')
-  const [nextSvc,   setNextSvc]   = useState('')
-  const [notes,     setNotes]     = useState('')
+  const [techName,     setTechName]     = useState('')
+  const [nextSvcMonths, setNextSvcMonths] = useState('1')
+  const [notes,        setNotes]        = useState('')
   const [pdfLoading, setPdfLoading] = useState(false)
 
   // ── row helpers ──────────────────────────────────────────────────────────
@@ -88,7 +94,7 @@ export default function BillCreatePage() {
     setCustName(''); setCustPhone(''); setVehicle(''); setRegNo(''); setKm('')
     setServices([newRow()]); setParts([newPart()]); setMisc([newMisc()])
     setDiscount(''); setGst(false); setPayment('Cash')
-    setTechName(''); setNextSvc(''); setNotes('')
+    setTechName(''); setNextSvcMonths('1'); setNotes('')
   }
 
   // ── totals ───────────────────────────────────────────────────────────────
@@ -106,6 +112,7 @@ export default function BillCreatePage() {
   const filledMisc = misc.filter(r => r.description || r.amount)
 
   const isPaid = !payment.startsWith('Pending')
+  const nextSvcDisplay = addMonths(date, parseInt(nextSvcMonths))
 
   // ── PDF generation (jsPDF + html2canvas) ─────────────────────────────────
   async function generatePDF() {
@@ -125,29 +132,16 @@ export default function BillCreatePage() {
         logging: false,
       })
 
-      const pdf = new jsPDF('p', 'mm', 'a4')
-      const pw  = pdf.internal.pageSize.getWidth()
-      const ph  = pdf.internal.pageSize.getHeight()
-      const imgH = (canvas.height * pw) / canvas.width
-
-      // multi-page support if invoice is tall
-      if (imgH <= ph) {
-        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pw, imgH)
-      } else {
-        let y = 0
-        while (y < imgH) {
-          const sliceH = Math.min(ph, imgH - y)
-          const sliceCanvas = document.createElement('canvas')
-          const ratio = canvas.width / pw
-          sliceCanvas.width  = canvas.width
-          sliceCanvas.height = sliceH * ratio
-          const ctx = sliceCanvas.getContext('2d')!
-          ctx.drawImage(canvas, 0, y * ratio, canvas.width, sliceH * ratio, 0, 0, canvas.width, sliceH * ratio)
-          if (y > 0) pdf.addPage()
-          pdf.addImage(sliceCanvas.toDataURL('image/png'), 'PNG', 0, 0, pw, sliceH)
-          y += sliceH
-        }
-      }
+      // Single-page PDF — height adjusts to content, no page breaks ever
+      const A4_W = 210
+      const imgH = (canvas.height * A4_W) / canvas.width
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: [A4_W, Math.max(imgH, 50)],
+      })
+      const pw = pdf.internal.pageSize.getWidth()
+      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pw, imgH)
 
       const fileName = `MM-CarCare-${billNo}.pdf`
 
@@ -189,7 +183,7 @@ export default function BillCreatePage() {
       `*Total: ${inr(total)}*`,
       `Payment: ${payment}`,
       techName  ? `Technician: ${techName}` : '',
-      nextSvc   ? `Next Service Due: ${nextSvc}` : '',
+      nextSvcDisplay ? `Next Service Due: ${nextSvcDisplay}` : '',
       notes     ? `\nNote: ${notes}` : '',
       '',
       'Thank you for choosing MM Car Care.',
@@ -439,7 +433,15 @@ export default function BillCreatePage() {
               <div style={secHdr}>Staff & Reminder</div>
               <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'9px' }}>
                 <div><label style={lbl}>Technician Name</label><input style={inp} placeholder="e.g. Santosh" value={techName} onChange={e=>setTechName(e.target.value)} /></div>
-                <div><label style={lbl}>Next Service Due</label><input style={inp} placeholder="e.g. August 2026" value={nextSvc} onChange={e=>setNextSvc(e.target.value)} /></div>
+                <div>
+                  <label style={lbl}>Next Service Due</label>
+                  <select style={{...inp,cursor:'pointer'}} value={nextSvcMonths} onChange={e=>setNextSvcMonths(e.target.value)}>
+                    <option value="1">1 Month — {addMonths(date,1)}</option>
+                    <option value="2">2 Months — {addMonths(date,2)}</option>
+                    <option value="3">3 Months — {addMonths(date,3)}</option>
+                    <option value="6">6 Months — {addMonths(date,6)}</option>
+                  </select>
+                </div>
               </div>
             </div>
 
@@ -468,20 +470,30 @@ export default function BillCreatePage() {
               boxShadow:'0 8px 48px rgba(0,0,0,0.5)',
             }}>
 
-              {/* Header */}
-              <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', paddingBottom:'22px', marginBottom:'22px', borderBottom:'3px solid #C9A96E' }}>
+              {/* Header — black/gold band */}
+              <div style={{
+                display:'flex', justifyContent:'space-between', alignItems:'center',
+                background:'#0a0a0a',
+                margin:'-36px -40px 0',
+                padding:'28px 40px 26px',
+                borderBottom:'3px solid #C9A96E',
+                marginBottom:'22px',
+              }}>
                 <div>
-                  <div style={{ fontSize:'26px', fontWeight:900, color:'#111', letterSpacing:'0.5px', lineHeight:1 }}>MM CAR CARE</div>
-                  <div style={{ fontSize:'11px', color:'#888', marginTop:'4px' }}>M.M. Car Care Service Garage</div>
-                  <div style={{ fontSize:'11px', color:'#555', marginTop:'9px', lineHeight:1.75 }}>
+                  <div style={{ fontSize:'28px', fontWeight:900, color:'#C9A96E', letterSpacing:'1px', lineHeight:1, fontFamily:'"Helvetica Neue",Arial,sans-serif' }}>
+                    MM CAR CARE
+                  </div>
+                  <div style={{ fontSize:'11px', color:'rgba(201,169,110,0.55)', marginTop:'5px', letterSpacing:'0.5px' }}>
+                    M.M. Car Care Service Garage
+                  </div>
+                  <div style={{ fontSize:'11px', color:'rgba(255,255,255,0.45)', marginTop:'10px', lineHeight:1.8 }}>
                     Opp. APSP Petrol Bunk, Kakinada – 533 001<br/>Phone: 9848377309
                   </div>
                 </div>
                 <div style={{ textAlign:'right' }}>
-                  <div style={{ fontSize:'22px', fontWeight:800, color:'#C9A96E', letterSpacing:'1px' }}>INVOICE</div>
-                  <div style={{ fontSize:'11px', color:'#777', marginTop:'9px', lineHeight:1.9 }}>
-                    <span style={{ color:'#bbb' }}>No: </span>{billNo}<br/>
-                    <span style={{ color:'#bbb' }}>Date: </span>{fmtDate(date)||'—'}
+                  <div style={{ fontSize:'24px', fontWeight:800, color:'#C9A96E', letterSpacing:'2px' }}>INVOICE</div>
+                  <div style={{ fontSize:'12px', color:'rgba(255,255,255,0.6)', marginTop:'10px' }}>
+                    {fmtDate(date)||'—'}
                   </div>
                 </div>
               </div>
@@ -618,7 +630,7 @@ export default function BillCreatePage() {
               </div>
 
               {/* Technician + Next Service */}
-              {(techName || nextSvc) && (
+              {(techName || nextSvcDisplay) && (
                 <div style={{ background:'#f9f9f9', border:'1px solid #eee', borderRadius:'3px', padding:'12px 14px', marginBottom:'16px', display:'grid', gridTemplateColumns:'1fr 1fr', gap:'10px' }}>
                   {techName && (
                     <div>
@@ -626,10 +638,10 @@ export default function BillCreatePage() {
                       <div style={{ fontSize:'12px', color:'#333', fontWeight:600 }}>{techName}</div>
                     </div>
                   )}
-                  {nextSvc && (
+                  {nextSvcDisplay && (
                     <div>
                       <div style={{ fontSize:'8px', letterSpacing:'2px', textTransform:'uppercase', color:'#C9A96E', fontWeight:700, marginBottom:'4px' }}>Next Service Due</div>
-                      <div style={{ fontSize:'12px', color:'#333', fontWeight:600 }}>{nextSvc}</div>
+                      <div style={{ fontSize:'12px', color:'#333', fontWeight:600 }}>{nextSvcDisplay}</div>
                     </div>
                   )}
                 </div>
