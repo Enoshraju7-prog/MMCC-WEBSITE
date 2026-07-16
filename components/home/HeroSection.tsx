@@ -217,15 +217,17 @@ export default function HeroSection() {
   const btnsRef = useRef<HTMLDivElement>(null)
   const [subIdx, setSubIdx] = useState(0)
   const [subVisible, setSubVisible] = useState(true)
+  const isPausedRef = useRef(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
+      if (isPausedRef.current) return
       setSubVisible(false)
       setTimeout(() => {
         setSubIdx(i => (i + 1) % SUBTITLES.length)
         setSubVisible(true)
       }, 400)
-    }, 5000)
+    }, 6000)
     return () => clearInterval(interval)
   }, [])
 
@@ -292,6 +294,8 @@ export default function HeroSection() {
 
           <p
             ref={subRef}
+            onMouseEnter={() => { isPausedRef.current = true }}
+            onMouseLeave={() => { isPausedRef.current = false }}
             style={{
               fontFamily: 'var(--font-dm-sans, sans-serif)',
               fontSize: 'clamp(15px, 1.5vw, 18px)',
@@ -302,6 +306,7 @@ export default function HeroSection() {
               opacity: subVisible ? 1 : 0,
               transition: 'opacity 400ms ease',
               minHeight: '4em',
+              cursor: 'default',
             }}
           >
             {SUBTITLES[subIdx]}
