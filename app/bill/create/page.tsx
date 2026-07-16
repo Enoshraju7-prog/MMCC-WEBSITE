@@ -631,7 +631,7 @@ export default function BillCreatePage() {
                   </div>
                 </div>
                 <div style={{ textAlign:'right' }}>
-                  <div style={{ fontSize:'24px', fontWeight:800, color:'#C9A96E', letterSpacing:'2px' }}>BILL</div>
+                  <div style={{ fontSize:'24px', fontWeight:800, color:'#C9A96E', letterSpacing:'2px' }}>CUSTOMER BILL</div>
                   <div style={{ fontSize:'12px', color:'rgba(255,255,255,0.6)', marginTop:'10px' }}>
                     {fmtDate(date)||'—'}
                   </div>
