@@ -3,7 +3,10 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
-const STORAGE_KEY = 'mm_bill_auth'
+const STORAGE_KEY      = 'mm_bill_auth'
+const PARTS_MEM_KEY    = 'mm_bill_parts_mem'
+const MISC_MEM_KEY     = 'mm_bill_misc_mem'
+const MAX_MEM          = 40
 
 type ServiceRow = { id: string; description: string; qty: string; rate: string }
 type PartRow    = { id: string; name: string; qty: string; rate: string }
@@ -73,7 +76,49 @@ export default function BillCreatePage() {
   const [techName,     setTechName]     = useState('')
   const [nextSvcMonths, setNextSvcMonths] = useState('1')
   const [notes,        setNotes]        = useState('')
-  const [pdfLoading, setPdfLoading] = useState(false)
+  const [pdfLoading,  setPdfLoading]  = useState(false)
+  // ── learned suggestions ───────────────────────────────────────────────────
+  const [partsMem, setPartsMem] = useState<string[]>([])
+  const [miscMem,  setMiscMem]  = useState<string[]>([])
+
+  useEffect(() => {
+    try {
+      const p = localStorage.getItem(PARTS_MEM_KEY)
+      if (p) setPartsMem(JSON.parse(p))
+      const m = localStorage.getItem(MISC_MEM_KEY)
+      if (m) setMiscMem(JSON.parse(m))
+    } catch {}
+  }, [])
+
+  function rememberPart(name: string) {
+    const val = name.trim()
+    if (!val) return
+    setPartsMem(prev => {
+      const next = [val, ...prev.filter(x => x.toLowerCase() !== val.toLowerCase())].slice(0, MAX_MEM)
+      localStorage.setItem(PARTS_MEM_KEY, JSON.stringify(next))
+      return next
+    })
+  }
+
+  function rememberMisc(desc: string) {
+    const val = desc.trim()
+    if (!val) return
+    setMiscMem(prev => {
+      const next = [val, ...prev.filter(x => x.toLowerCase() !== val.toLowerCase())].slice(0, MAX_MEM)
+      localStorage.setItem(MISC_MEM_KEY, JSON.stringify(next))
+      return next
+    })
+  }
+
+  function clearPartsMem() {
+    setPartsMem([])
+    localStorage.removeItem(PARTS_MEM_KEY)
+  }
+
+  function clearMiscMem() {
+    setMiscMem([])
+    localStorage.removeItem(MISC_MEM_KEY)
+  }
 
   // ── row helpers ──────────────────────────────────────────────────────────
   const updSvc = (id:string, f:keyof ServiceRow, v:string) =>
@@ -87,6 +132,18 @@ export default function BillCreatePage() {
     const empty = services.find(r => !r.description)
     if (empty) updSvc(empty.id,'description',name)
     else setServices(p => [...p, { ...newRow(), description:name }])
+  }
+
+  function quickAddPart(name: string) {
+    const empty = parts.find(r => !r.name)
+    if (empty) updPart(empty.id,'name',name)
+    else setParts(p => [...p, { ...newPart(), name }])
+  }
+
+  function quickAddMisc(desc: string) {
+    const empty = misc.find(r => !r.description)
+    if (empty) updMisc(empty.id,'description',desc)
+    else setMisc(p => [...p, { ...newMisc(), description:desc }])
   }
 
   function reset() {
@@ -187,7 +244,7 @@ export default function BillCreatePage() {
       // Short delay so download starts, then open WhatsApp
       await new Promise(r => setTimeout(r, 800))
       const lines = [
-        `*MM Car Care — Invoice*`,
+        `*MM Car Care — Bill*`,
         `Date: ${fmtDate(date)}`,
         custName  ? `Customer: *${custName}*` : '',
         custPhone ? `Phone: ${custPhone}` : '',
@@ -320,22 +377,21 @@ export default function BillCreatePage() {
         </div>
 
         {/* ── Columns ──────────────────────────────────────────────────────── */}
-        <div className="bill-cols" style={{ display:'flex', flex:1, minHeight:0 }}>
+        <div className="bill-cols" style={{ display:'flex', alignItems:'flex-start' }}>
 
           {/* ════════════════ LEFT FORM ════════════════ */}
           <div className="bill-form" style={{
             width:'40%', flexShrink:0,
             borderRight:'1px solid rgba(201,169,110,0.1)',
-            padding:'20px 18px', overflowY:'auto', maxHeight:'calc(100vh - 52px)',
+            padding:'20px 18px',
+            position:'sticky', top:'52px',   /* stays on screen while right scrolls */
+            maxHeight:'calc(100vh - 52px)', overflowY:'auto',
           }}>
 
             {/* Bill Details */}
             <div style={secWrap}>
               <div style={secHdr}>Bill Details</div>
-              <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'10px' }}>
-                <div><label style={lbl}>Bill No.</label><input style={inp} value={billNo} onChange={e=>setBillNo(e.target.value)} /></div>
-                <div><label style={lbl}>Date</label><input type="date" style={{...inp,colorScheme:'dark'}} value={date} onChange={e=>setDate(e.target.value)} /></div>
-              </div>
+              <div><label style={lbl}>Date</label><input type="date" style={{...inp,colorScheme:'dark'}} value={date} onChange={e=>setDate(e.target.value)} /></div>
             </div>
 
             {/* Customer */}
@@ -394,6 +450,31 @@ export default function BillCreatePage() {
             {/* ── SECTION 2: PARTS ── */}
             <div style={secWrap}>
               <div style={secHdr}>2 — Parts Used</div>
+
+              {/* Saved parts memory chips */}
+              {partsMem.length > 0 && (
+                <div style={{ marginBottom:'10px' }}>
+                  <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'6px' }}>
+                    <span style={{ fontFamily:'var(--font-space-mono,monospace)', fontSize:'8px', letterSpacing:'1px', textTransform:'uppercase', color:'rgba(255,255,255,0.2)' }}>
+                      Previously used
+                    </span>
+                    <button onClick={clearPartsMem} style={{ background:'none', border:'none', fontFamily:'var(--font-space-mono,monospace)', fontSize:'8px', color:'rgba(255,255,255,0.15)', cursor:'pointer', letterSpacing:'1px', textTransform:'uppercase', padding:0 }}>
+                      Clear
+                    </button>
+                  </div>
+                  <div style={{ display:'flex', flexWrap:'wrap', gap:'5px' }}>
+                    {partsMem.map(name => (
+                      <button key={name} onClick={()=>quickAddPart(name)} style={{
+                        background:'rgba(201,169,110,0.07)', border:'1px solid rgba(201,169,110,0.18)',
+                        borderRadius:'2px', padding:'3px 9px',
+                        fontFamily:'var(--font-dm-sans,sans-serif)', fontSize:'11px',
+                        color:'rgba(201,169,110,0.7)', cursor:'pointer',
+                      }}>{name}</button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div style={{ display:'grid', gridTemplateColumns:'1fr 44px 66px 18px', gap:'5px', marginBottom:'4px' }}>
                 <span style={{...lbl,margin:0}}>Part Name</span>
                 <span style={{...lbl,margin:0,textAlign:'center'}}>Qty</span>
@@ -403,7 +484,13 @@ export default function BillCreatePage() {
               <div style={{ display:'flex', flexDirection:'column', gap:'4px' }}>
                 {parts.map(r => (
                   <div key={r.id} style={{ display:'grid', gridTemplateColumns:'1fr 44px 66px 18px', gap:'5px', alignItems:'center' }}>
-                    <input style={inp} placeholder="e.g. Oil Filter, Brake Pad" value={r.name} onChange={e=>updPart(r.id,'name',e.target.value)} />
+                    <input
+                      style={inp}
+                      placeholder="e.g. Oil Filter, Brake Pad"
+                      value={r.name}
+                      onChange={e=>updPart(r.id,'name',e.target.value)}
+                      onBlur={e=>rememberPart(e.target.value)}
+                    />
                     <input style={{...inp,textAlign:'center',padding:'9px 2px'}} value={r.qty} onChange={e=>updPart(r.id,'qty',e.target.value)} />
                     <input style={{...inp,padding:'9px 6px'}} placeholder="0" value={r.rate} onChange={e=>updPart(r.id,'rate',e.target.value)} />
                     <button onClick={()=>setParts(p=>p.length>1?p.filter(x=>x.id!==r.id):p)} style={{ background:'none',border:'none',color:'rgba(255,255,255,0.15)',cursor:'pointer',fontSize:'17px',padding:0,lineHeight:1 }}>×</button>
@@ -419,6 +506,31 @@ export default function BillCreatePage() {
               <div style={{ fontFamily:'var(--font-dm-sans,sans-serif)', fontSize:'11px', color:'rgba(255,255,255,0.3)', marginBottom:'10px' }}>
                 Labour charges, external vendor fees, towing, other costs
               </div>
+
+              {/* Saved misc memory chips */}
+              {miscMem.length > 0 && (
+                <div style={{ marginBottom:'10px' }}>
+                  <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'6px' }}>
+                    <span style={{ fontFamily:'var(--font-space-mono,monospace)', fontSize:'8px', letterSpacing:'1px', textTransform:'uppercase', color:'rgba(255,255,255,0.2)' }}>
+                      Previously used
+                    </span>
+                    <button onClick={clearMiscMem} style={{ background:'none', border:'none', fontFamily:'var(--font-space-mono,monospace)', fontSize:'8px', color:'rgba(255,255,255,0.15)', cursor:'pointer', letterSpacing:'1px', textTransform:'uppercase', padding:0 }}>
+                      Clear
+                    </button>
+                  </div>
+                  <div style={{ display:'flex', flexWrap:'wrap', gap:'5px' }}>
+                    {miscMem.map(desc => (
+                      <button key={desc} onClick={()=>quickAddMisc(desc)} style={{
+                        background:'rgba(201,169,110,0.07)', border:'1px solid rgba(201,169,110,0.18)',
+                        borderRadius:'2px', padding:'3px 9px',
+                        fontFamily:'var(--font-dm-sans,sans-serif)', fontSize:'11px',
+                        color:'rgba(201,169,110,0.7)', cursor:'pointer',
+                      }}>{desc}</button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div style={{ display:'grid', gridTemplateColumns:'1fr 80px 18px', gap:'5px', marginBottom:'4px' }}>
                 <span style={{...lbl,margin:0}}>Description</span>
                 <span style={{...lbl,margin:0,textAlign:'right'}}>Amount ₹</span>
@@ -427,7 +539,13 @@ export default function BillCreatePage() {
               <div style={{ display:'flex', flexDirection:'column', gap:'4px' }}>
                 {misc.map(r => (
                   <div key={r.id} style={{ display:'grid', gridTemplateColumns:'1fr 80px 18px', gap:'5px', alignItems:'center' }}>
-                    <input style={inp} placeholder="e.g. AC Labour, Towing" value={r.description} onChange={e=>updMisc(r.id,'description',e.target.value)} />
+                    <input
+                      style={inp}
+                      placeholder="e.g. AC Labour, Towing"
+                      value={r.description}
+                      onChange={e=>updMisc(r.id,'description',e.target.value)}
+                      onBlur={e=>rememberMisc(e.target.value)}
+                    />
                     <input style={{...inp,padding:'9px 6px'}} placeholder="0" value={r.amount} onChange={e=>updMisc(r.id,'amount',e.target.value)} />
                     <button onClick={()=>setMisc(p=>p.length>1?p.filter(x=>x.id!==r.id):p)} style={{ background:'none',border:'none',color:'rgba(255,255,255,0.15)',cursor:'pointer',fontSize:'17px',padding:0,lineHeight:1 }}>×</button>
                   </div>
@@ -481,7 +599,6 @@ export default function BillCreatePage() {
           {/* ════════════════ RIGHT PREVIEW ════════════════ */}
           <div className="bill-prev" style={{
             flex:1, padding:'20px 20px',
-            overflowY:'auto', maxHeight:'calc(100vh - 52px)',
             display:'flex', flexDirection:'column', alignItems:'center',
           }}>
             <div style={{ fontFamily:'var(--font-space-mono,monospace)', fontSize:'8px', letterSpacing:'2.5px', textTransform:'uppercase', color:'rgba(255,255,255,0.15)', marginBottom:'12px', alignSelf:'flex-start' }}>
@@ -514,7 +631,7 @@ export default function BillCreatePage() {
                   </div>
                 </div>
                 <div style={{ textAlign:'right' }}>
-                  <div style={{ fontSize:'24px', fontWeight:800, color:'#C9A96E', letterSpacing:'2px' }}>INVOICE</div>
+                  <div style={{ fontSize:'24px', fontWeight:800, color:'#C9A96E', letterSpacing:'2px' }}>BILL</div>
                   <div style={{ fontSize:'12px', color:'rgba(255,255,255,0.6)', marginTop:'10px' }}>
                     {fmtDate(date)||'—'}
                   </div>
@@ -631,7 +748,22 @@ export default function BillCreatePage() {
               {/* ── GRAND TOTAL ── */}
               <div style={{ display:'flex', justifyContent:'flex-end', margin:'20px 0 18px' }}>
                 <div style={{ width:'220px' }}>
-                  <div style={{ display:'flex', justifyContent:'space-between', padding:'4px 0', fontSize:'11px', color:'#888' }}>
+                  {svcTotal > 0 && (
+                    <div style={{ display:'flex', justifyContent:'space-between', padding:'3px 0', fontSize:'11px', color:'#aaa' }}>
+                      <span>Services</span><span>{inr(svcTotal)}</span>
+                    </div>
+                  )}
+                  {partTotal > 0 && (
+                    <div style={{ display:'flex', justifyContent:'space-between', padding:'3px 0', fontSize:'11px', color:'#aaa' }}>
+                      <span>Parts</span><span>{inr(partTotal)}</span>
+                    </div>
+                  )}
+                  {miscTotal > 0 && (
+                    <div style={{ display:'flex', justifyContent:'space-between', padding:'3px 0', fontSize:'11px', color:'#aaa' }}>
+                      <span>Miscellaneous</span><span>{inr(miscTotal)}</span>
+                    </div>
+                  )}
+                  <div style={{ display:'flex', justifyContent:'space-between', padding:'4px 0 4px', fontSize:'11px', color:'#888', borderTop:'1px solid #eee', marginTop:'3px' }}>
                     <span>Subtotal</span><span>{inr(subtotal)}</span>
                   </div>
                   {discAmt > 0 && (
