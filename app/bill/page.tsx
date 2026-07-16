@@ -1,12 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 const STORAGE_KEY = 'mm_bill_auth'
 const EXPIRY_DAYS = 90
 
 export default function BillPage() {
-  const [authed, setAuthed] = useState(false)
+  const router = useRouter()
   const [checking, setChecking] = useState(true)
   const [password, setPassword] = useState('')
   const [error, setError] = useState(false)
@@ -18,14 +19,14 @@ export default function BillPage() {
       if (raw) {
         const { expiry } = JSON.parse(raw)
         if (Date.now() < expiry) {
-          setAuthed(true)
-        } else {
-          localStorage.removeItem(STORAGE_KEY)
+          router.replace('/bill/create')
+          return
         }
+        localStorage.removeItem(STORAGE_KEY)
       }
     } catch {}
     setChecking(false)
-  }, [])
+  }, [router])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -42,7 +43,7 @@ export default function BillPage() {
       if (res.ok) {
         const expiry = Date.now() + EXPIRY_DAYS * 24 * 60 * 60 * 1000
         localStorage.setItem(STORAGE_KEY, JSON.stringify({ expiry }))
-        setAuthed(true)
+        router.replace('/bill/create')
       } else {
         setError(true)
       }
@@ -55,16 +56,6 @@ export default function BillPage() {
 
   if (checking) return null
 
-  if (authed) {
-    return (
-      <iframe
-        src="https://mmcarcare-kakinada.netlify.app/"
-        style={{ width: '100%', height: '100vh', border: 'none', display: 'block' }}
-        title="MM Car Care Bill Generator"
-      />
-    )
-  }
-
   return (
     <div style={{
       background: '#0a0a0a',
@@ -75,7 +66,6 @@ export default function BillPage() {
       padding: '24px',
     }}>
       <div style={{ width: '100%', maxWidth: '380px' }}>
-        {/* Logo / title */}
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
           <div style={{
             fontFamily: 'var(--font-space-mono, monospace)',
@@ -108,7 +98,6 @@ export default function BillPage() {
           </p>
         </div>
 
-        {/* Form */}
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: '16px' }}>
             <input
@@ -128,7 +117,6 @@ export default function BillPage() {
                 color: '#fff',
                 outline: 'none',
                 boxSizing: 'border-box',
-                transition: 'border-color 200ms',
               }}
               onFocus={e => { e.currentTarget.style.borderColor = 'rgba(201,169,110,0.55)' }}
               onBlur={e => { e.currentTarget.style.borderColor = error ? 'rgba(220,80,80,0.6)' : 'rgba(201,169,110,0.2)' }}
@@ -161,7 +149,6 @@ export default function BillPage() {
               textTransform: 'uppercase',
               color: '#0a0a0a',
               cursor: loading || !password ? 'not-allowed' : 'pointer',
-              transition: 'background 200ms',
             }}
           >
             {loading ? 'Checking...' : 'Enter'}
