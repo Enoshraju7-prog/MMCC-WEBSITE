@@ -127,7 +127,7 @@ export default function BillCreatePage() {
       scale: 3,
       useCORS: true,
       allowTaint: true,
-      backgroundColor: null, // let element background show
+      backgroundColor: '#ffffff',
       logging: false,
       width: el.scrollWidth,
       height: el.scrollHeight,
@@ -493,7 +493,6 @@ export default function BillCreatePage() {
               background:'#fff', width:'100%', maxWidth:'600px',
               color:'#1a1a1a', overflow:'hidden',
               fontFamily:'"Helvetica Neue", Arial, sans-serif',
-              boxShadow:'0 8px 48px rgba(0,0,0,0.5)',
             }}>
 
               {/* Header — black/gold band, full-bleed (no negative margins needed) */}
