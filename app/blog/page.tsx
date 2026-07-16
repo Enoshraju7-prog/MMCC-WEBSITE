@@ -152,6 +152,13 @@ function BlogCard({ post }: { post: BlogPost }) {
 }
 
 export default function BlogPage() {
+  const [posts, setPosts] = useState<BlogPost[]>([])
+
+  useEffect(() => {
+    const shuffled = [...BLOG_POSTS].sort(() => Math.random() - 0.5)
+    setPosts(shuffled)
+  }, [])
+
   return (
     <div style={{ background: '#0a0a0a', minHeight: '100vh', paddingBottom: '120px' }}>
       {/* Header */}
@@ -208,7 +215,7 @@ export default function BlogPage() {
           gap: '2px',
         }}
       >
-        {BLOG_POSTS.map((post) => (
+        {posts.map((post) => (
           <BlogCard key={post.slug} post={post} />
         ))}
       </div>
