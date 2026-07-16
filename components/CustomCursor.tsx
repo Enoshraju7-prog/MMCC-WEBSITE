@@ -8,12 +8,15 @@ export default function CustomCursor() {
   const ringRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Skip on touch devices
-    if (window.matchMedia('(pointer: coarse)').matches) return
-
     const dot = dotRef.current
     const ring = ringRef.current
     if (!dot || !ring) return
+
+    // Skip on touch devices — keep hidden
+    if (window.matchMedia('(pointer: coarse)').matches) return
+
+    dot.style.display = 'block'
+    ring.style.display = 'block'
 
     // Position offscreen initially
     gsap.set([dot, ring], { xPercent: -50, yPercent: -50, x: -200, y: -200 })
@@ -73,6 +76,7 @@ export default function CustomCursor() {
       <div
         ref={dotRef}
         style={{
+          display: 'none',
           position: 'fixed',
           top: 0,
           left: 0,
@@ -89,6 +93,7 @@ export default function CustomCursor() {
       <div
         ref={ringRef}
         style={{
+          display: 'none',
           position: 'fixed',
           top: 0,
           left: 0,
