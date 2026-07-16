@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 const STORAGE_KEY      = 'mm_bill_auth'
+const SERVICES_MEM_KEY = 'mm_bill_services_mem'
 const PARTS_MEM_KEY    = 'mm_bill_parts_mem'
 const MISC_MEM_KEY     = 'mm_bill_misc_mem'
 const MAX_MEM          = 40
@@ -77,48 +78,83 @@ export default function BillCreatePage() {
   const [nextSvcMonths, setNextSvcMonths] = useState('1')
   const [notes,        setNotes]        = useState('')
   const [pdfLoading,  setPdfLoading]  = useState(false)
-  // ── learned suggestions ───────────────────────────────────────────────────
-  const [partsMem, setPartsMem] = useState<string[]>([])
-  const [miscMem,  setMiscMem]  = useState<string[]>([])
+  // ── learned suggestions (shared across users via /api/bill-mem) ──────────
+  const [servicesMem, setServicesMem] = useState<string[]>([])
+  const [partsMem,    setPartsMem]    = useState<string[]>([])
+  const [miscMem,     setMiscMem]     = useState<string[]>([])
 
   useEffect(() => {
+    // Instant paint from localStorage cache
     try {
-      const p = localStorage.getItem(PARTS_MEM_KEY)
-      if (p) setPartsMem(JSON.parse(p))
-      const m = localStorage.getItem(MISC_MEM_KEY)
-      if (m) setMiscMem(JSON.parse(m))
+      const s = localStorage.getItem(SERVICES_MEM_KEY); if (s) setServicesMem(JSON.parse(s))
+      const p = localStorage.getItem(PARTS_MEM_KEY);    if (p) setPartsMem(JSON.parse(p))
+      const m = localStorage.getItem(MISC_MEM_KEY);     if (m) setMiscMem(JSON.parse(m))
     } catch {}
+
+    // Fetch authoritative shared memory from server
+    fetch('/api/bill-mem').then(r => r.json()).then(data => {
+      if (Array.isArray(data.services)) {
+        setServicesMem(data.services)
+        localStorage.setItem(SERVICES_MEM_KEY, JSON.stringify(data.services))
+      }
+      if (Array.isArray(data.parts)) {
+        setPartsMem(data.parts)
+        localStorage.setItem(PARTS_MEM_KEY, JSON.stringify(data.parts))
+      }
+      if (Array.isArray(data.misc)) {
+        setMiscMem(data.misc)
+        localStorage.setItem(MISC_MEM_KEY, JSON.stringify(data.misc))
+      }
+    }).catch(() => {})
   }, [])
+
+  async function syncMem(kind: 'services'|'parts'|'misc', action: 'add'|'remove'|'clear', value?: string) {
+    try {
+      const res = await fetch('/api/bill-mem', {
+        method: 'POST',
+        headers: { 'Content-Type':'application/json' },
+        body: JSON.stringify({ action, kind, value }),
+      })
+      const data = await res.json()
+      if (Array.isArray(data.list)) {
+        const cacheKey = kind === 'services' ? SERVICES_MEM_KEY : kind === 'parts' ? PARTS_MEM_KEY : MISC_MEM_KEY
+        localStorage.setItem(cacheKey, JSON.stringify(data.list))
+        if (kind === 'services') setServicesMem(data.list)
+        if (kind === 'parts')    setPartsMem(data.list)
+        if (kind === 'misc')     setMiscMem(data.list)
+      }
+    } catch {}
+  }
+
+  function rememberService(name: string) {
+    const val = name.trim()
+    if (!val) return
+    if (QUICK_SERVICES.some(x => x.toLowerCase() === val.toLowerCase())) return
+    if (servicesMem.some(x => x.toLowerCase() === val.toLowerCase())) return
+    syncMem('services', 'add', val)
+  }
 
   function rememberPart(name: string) {
     const val = name.trim()
     if (!val) return
-    setPartsMem(prev => {
-      const next = [val, ...prev.filter(x => x.toLowerCase() !== val.toLowerCase())].slice(0, MAX_MEM)
-      localStorage.setItem(PARTS_MEM_KEY, JSON.stringify(next))
-      return next
-    })
+    if (partsMem.some(x => x.toLowerCase() === val.toLowerCase())) return
+    syncMem('parts', 'add', val)
   }
 
   function rememberMisc(desc: string) {
     const val = desc.trim()
     if (!val) return
-    setMiscMem(prev => {
-      const next = [val, ...prev.filter(x => x.toLowerCase() !== val.toLowerCase())].slice(0, MAX_MEM)
-      localStorage.setItem(MISC_MEM_KEY, JSON.stringify(next))
-      return next
-    })
+    if (miscMem.some(x => x.toLowerCase() === val.toLowerCase())) return
+    syncMem('misc', 'add', val)
   }
 
-  function clearPartsMem() {
-    setPartsMem([])
-    localStorage.removeItem(PARTS_MEM_KEY)
-  }
+  function removeServiceMem(name: string) { syncMem('services', 'remove', name) }
+  function removePartMem(name: string)    { syncMem('parts',    'remove', name) }
+  function removeMiscMem(name: string)    { syncMem('misc',     'remove', name) }
 
-  function clearMiscMem() {
-    setMiscMem([])
-    localStorage.removeItem(MISC_MEM_KEY)
-  }
+  function clearServicesMem() { syncMem('services', 'clear') }
+  function clearPartsMem()    { syncMem('parts',    'clear') }
+  function clearMiscMem()     { syncMem('misc',     'clear') }
 
   // ── row helpers ──────────────────────────────────────────────────────────
   const updSvc = (id:string, f:keyof ServiceRow, v:string) =>
@@ -316,6 +352,30 @@ export default function BillCreatePage() {
     )
   }
 
+  // ── memory chip with individual remove button ─────────────────────────────
+  function MemChip({ label, onAdd, onRemove }: { label: string; onAdd: () => void; onRemove: () => void }) {
+    return (
+      <span style={{
+        display:'inline-flex', alignItems:'stretch',
+        background:'rgba(201,169,110,0.07)',
+        border:'1px solid rgba(201,169,110,0.18)',
+        borderRadius:'2px', overflow:'hidden',
+      }}>
+        <button onClick={onAdd} style={{
+          background:'none', border:'none',
+          padding:'3px 4px 3px 9px',
+          fontFamily:'var(--font-dm-sans,sans-serif)', fontSize:'11px',
+          color:'rgba(201,169,110,0.7)', cursor:'pointer',
+        }}>{label}</button>
+        <button onClick={onRemove} title="Remove from memory" style={{
+          background:'none', border:'none', borderLeft:'1px solid rgba(201,169,110,0.13)',
+          padding:'0 7px', fontSize:'13px', lineHeight:1,
+          color:'rgba(255,255,255,0.22)', cursor:'pointer',
+        }}>×</button>
+      </span>
+    )
+  }
+
   return (
     <>
       <style>{`
@@ -330,31 +390,40 @@ export default function BillCreatePage() {
         select option { background:#1a1a1a; color:#fff; }
         @media (max-width:860px) {
           .bill-cols { flex-direction:column !important; }
-          .bill-form  { width:100% !important; border-right:none !important; border-bottom:1px solid rgba(201,169,110,0.1) !important; max-height:none !important; }
+          .bill-form  { width:100% !important; border-right:none !important; border-bottom:1px solid rgba(201,169,110,0.1) !important; max-height:none !important; position:static !important; overflow:visible !important; }
           .bill-prev  { width:100% !important; max-height:none !important; padding:16px !important; }
+        }
+        @media (max-width:560px) {
+          .top-bar { padding:9px 12px !important; gap:8px !important; }
+          .top-bar-brand { gap:8px !important; }
+          .top-bar-brand .brand-name { font-size:14px !important; }
+          .top-bar-brand .brand-sub { font-size:7px !important; padding-left:8px !important; }
+          .top-bar-btns { width:100%; display:flex; gap:6px !important; }
+          .top-bar-btns button { flex:1 1 auto !important; min-width:0 !important; padding:9px 6px !important; font-size:10px !important; letter-spacing:0.8px !important; }
+          .top-bar-btns .btn-new-bill { flex:0 0 auto !important; padding:9px 10px !important; }
         }
       `}</style>
 
       <div style={{ background:'#0a0a0a', minHeight:'100vh', display:'flex', flexDirection:'column' }}>
 
         {/* ── Top bar ──────────────────────────────────────────────────────── */}
-        <div style={{
+        <div className="top-bar" style={{
           borderBottom:'1px solid rgba(201,169,110,0.12)',
           padding:'11px 16px',
           display:'flex', alignItems:'center', justifyContent:'space-between',
           background:'#0a0a0a', position:'sticky', top:0, zIndex:200,
           gap:'8px', flexWrap:'wrap',
         }}>
-          <div style={{ display:'flex', alignItems:'center', gap:'12px' }}>
-            <span style={{ fontFamily:'var(--font-big-shoulders,sans-serif)', fontSize:'16px', fontWeight:700, color:'#C9A96E', textTransform:'uppercase', letterSpacing:'1px' }}>
+          <div className="top-bar-brand" style={{ display:'flex', alignItems:'center', gap:'12px' }}>
+            <span className="brand-name" style={{ fontFamily:'var(--font-big-shoulders,sans-serif)', fontSize:'16px', fontWeight:700, color:'#C9A96E', textTransform:'uppercase', letterSpacing:'1px' }}>
               MM Car Care
             </span>
-            <span style={{ fontFamily:'var(--font-space-mono,monospace)', fontSize:'8px', letterSpacing:'2px', textTransform:'uppercase', color:'rgba(255,255,255,0.18)', paddingLeft:'12px', borderLeft:'1px solid rgba(255,255,255,0.07)' }}>
+            <span className="brand-sub" style={{ fontFamily:'var(--font-space-mono,monospace)', fontSize:'8px', letterSpacing:'2px', textTransform:'uppercase', color:'rgba(255,255,255,0.18)', paddingLeft:'12px', borderLeft:'1px solid rgba(255,255,255,0.07)' }}>
               Bill Generator
             </span>
           </div>
-          <div style={{ display:'flex', gap:'7px', flexWrap:'wrap' }}>
-            <button onClick={reset} style={{
+          <div className="top-bar-btns" style={{ display:'flex', gap:'7px', flexWrap:'wrap' }}>
+            <button className="btn-new-bill" onClick={reset} style={{
               background:'transparent', border:'1px solid rgba(201,169,110,0.18)', borderRadius:'2px',
               padding:'7px 13px', fontFamily:'var(--font-space-mono,monospace)', fontSize:'8px',
               letterSpacing:'1.5px', textTransform:'uppercase', color:'rgba(255,255,255,0.35)', cursor:'pointer',
@@ -428,6 +497,26 @@ export default function BillCreatePage() {
                   }}>{s}</button>
                 ))}
               </div>
+
+              {/* Saved services memory chips */}
+              {servicesMem.length > 0 && (
+                <div style={{ marginBottom:'10px' }}>
+                  <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'6px' }}>
+                    <span style={{ fontFamily:'var(--font-space-mono,monospace)', fontSize:'8px', letterSpacing:'1px', textTransform:'uppercase', color:'rgba(255,255,255,0.2)' }}>
+                      Previously used
+                    </span>
+                    <button onClick={clearServicesMem} style={{ background:'none', border:'none', fontFamily:'var(--font-space-mono,monospace)', fontSize:'8px', color:'rgba(255,255,255,0.15)', cursor:'pointer', letterSpacing:'1px', textTransform:'uppercase', padding:0 }}>
+                      Clear All
+                    </button>
+                  </div>
+                  <div style={{ display:'flex', flexWrap:'wrap', gap:'5px' }}>
+                    {servicesMem.map(name => (
+                      <MemChip key={name} label={name} onAdd={()=>quickAdd(name)} onRemove={()=>removeServiceMem(name)} />
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div style={{ display:'grid', gridTemplateColumns:'1fr 44px 66px 18px', gap:'5px', marginBottom:'4px' }}>
                 <span style={{...lbl,margin:0}}>Service</span>
                 <span style={{...lbl,margin:0,textAlign:'center'}}>Qty</span>
@@ -437,7 +526,13 @@ export default function BillCreatePage() {
               <div style={{ display:'flex', flexDirection:'column', gap:'4px' }}>
                 {services.map(r => (
                   <div key={r.id} style={{ display:'grid', gridTemplateColumns:'1fr 44px 66px 18px', gap:'5px', alignItems:'center' }}>
-                    <input style={inp} placeholder="Service description" value={r.description} onChange={e=>updSvc(r.id,'description',e.target.value)} />
+                    <input
+                      style={inp}
+                      placeholder="Service description"
+                      value={r.description}
+                      onChange={e=>updSvc(r.id,'description',e.target.value)}
+                      onBlur={e=>rememberService(e.target.value)}
+                    />
                     <input style={{...inp,textAlign:'center',padding:'9px 2px'}} value={r.qty} onChange={e=>updSvc(r.id,'qty',e.target.value)} />
                     <input style={{...inp,padding:'9px 6px'}} placeholder="0" value={r.rate} onChange={e=>updSvc(r.id,'rate',e.target.value)} />
                     <button onClick={()=>setServices(p=>p.length>1?p.filter(x=>x.id!==r.id):p)} style={{ background:'none',border:'none',color:'rgba(255,255,255,0.15)',cursor:'pointer',fontSize:'17px',padding:0,lineHeight:1 }}>×</button>
@@ -459,17 +554,12 @@ export default function BillCreatePage() {
                       Previously used
                     </span>
                     <button onClick={clearPartsMem} style={{ background:'none', border:'none', fontFamily:'var(--font-space-mono,monospace)', fontSize:'8px', color:'rgba(255,255,255,0.15)', cursor:'pointer', letterSpacing:'1px', textTransform:'uppercase', padding:0 }}>
-                      Clear
+                      Clear All
                     </button>
                   </div>
                   <div style={{ display:'flex', flexWrap:'wrap', gap:'5px' }}>
                     {partsMem.map(name => (
-                      <button key={name} onClick={()=>quickAddPart(name)} style={{
-                        background:'rgba(201,169,110,0.07)', border:'1px solid rgba(201,169,110,0.18)',
-                        borderRadius:'2px', padding:'3px 9px',
-                        fontFamily:'var(--font-dm-sans,sans-serif)', fontSize:'11px',
-                        color:'rgba(201,169,110,0.7)', cursor:'pointer',
-                      }}>{name}</button>
+                      <MemChip key={name} label={name} onAdd={()=>quickAddPart(name)} onRemove={()=>removePartMem(name)} />
                     ))}
                   </div>
                 </div>
@@ -515,17 +605,12 @@ export default function BillCreatePage() {
                       Previously used
                     </span>
                     <button onClick={clearMiscMem} style={{ background:'none', border:'none', fontFamily:'var(--font-space-mono,monospace)', fontSize:'8px', color:'rgba(255,255,255,0.15)', cursor:'pointer', letterSpacing:'1px', textTransform:'uppercase', padding:0 }}>
-                      Clear
+                      Clear All
                     </button>
                   </div>
                   <div style={{ display:'flex', flexWrap:'wrap', gap:'5px' }}>
                     {miscMem.map(desc => (
-                      <button key={desc} onClick={()=>quickAddMisc(desc)} style={{
-                        background:'rgba(201,169,110,0.07)', border:'1px solid rgba(201,169,110,0.18)',
-                        borderRadius:'2px', padding:'3px 9px',
-                        fontFamily:'var(--font-dm-sans,sans-serif)', fontSize:'11px',
-                        color:'rgba(201,169,110,0.7)', cursor:'pointer',
-                      }}>{desc}</button>
+                      <MemChip key={desc} label={desc} onAdd={()=>quickAddMisc(desc)} onRemove={()=>removeMiscMem(desc)} />
                     ))}
                   </div>
                 </div>
