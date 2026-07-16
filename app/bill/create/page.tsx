@@ -114,87 +114,113 @@ export default function BillCreatePage() {
   const isPaid = !payment.startsWith('Pending')
   const nextSvcDisplay = addMonths(date, parseInt(nextSvcMonths))
 
-  // ── PDF generation (jsPDF + html2canvas) ─────────────────────────────────
+  // ── Shared: capture invoice as PDF blob ──────────────────────────────────
+  async function capturePDF() {
+    const [{ default: jsPDF }, { default: html2canvas }] = await Promise.all([
+      import('jspdf'),
+      import('html2canvas'),
+    ])
+    const el = document.getElementById('invoice-print-target')
+    if (!el) throw new Error('Invoice element not found')
+
+    const canvas = await html2canvas(el, {
+      scale: 3,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: null, // let element background show
+      logging: false,
+      width: el.scrollWidth,
+      height: el.scrollHeight,
+    })
+
+    const A4_W = 210
+    const imgH = (canvas.height * A4_W) / canvas.width
+    const pdf = new jsPDF({ orientation:'portrait', unit:'mm', format:[A4_W, Math.max(imgH, 50)] })
+    pdf.addImage(canvas.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, A4_W, imgH)
+    return { pdf, fileName: `MM-CarCare-${billNo}.pdf` }
+  }
+
+  // ── Download PDF ──────────────────────────────────────────────────────────
   async function generatePDF() {
     setPdfLoading(true)
     try {
-      const [{ default: jsPDF }, { default: html2canvas }] = await Promise.all([
-        import('jspdf'),
-        import('html2canvas'),
-      ])
-      const el = document.getElementById('invoice-print-target')
-      if (!el) return
-
-      const canvas = await html2canvas(el, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: '#ffffff',
-        logging: false,
-      })
-
-      // Single-page PDF — height adjusts to content, no page breaks ever
-      const A4_W = 210
-      const imgH = (canvas.height * A4_W) / canvas.width
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: [A4_W, Math.max(imgH, 50)],
-      })
-      const pw = pdf.internal.pageSize.getWidth()
-      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pw, imgH)
-
-      const fileName = `MM-CarCare-${billNo}.pdf`
-
-      // On mobile: use Web Share API to share the actual PDF file
-      if (typeof navigator !== 'undefined' && navigator.share) {
-        const blob = pdf.output('blob')
-        const file = new File([blob], fileName, { type: 'application/pdf' })
-        try {
-          await navigator.share({ files: [file], title: `Bill ${billNo} — MM Car Care` })
-          return
-        } catch (e) {
-          // user cancelled or share failed — fall through to download
-        }
-      }
-
-      pdf.save(fileName)
+      const { pdf, fileName } = await capturePDF()
+      // Use blob + anchor for reliable download across all browsers
+      const blob = pdf.output('blob')
+      const url  = URL.createObjectURL(blob)
+      const a    = document.createElement('a')
+      a.href     = url
+      a.download = fileName
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(url)
+    } catch (e) {
+      alert('Could not generate PDF. Please try again.')
     } finally {
       setPdfLoading(false)
     }
   }
 
-  // ── WhatsApp text share ───────────────────────────────────────────────────
-  function handleWhatsApp() {
-    const lines = [
-      `*MM Car Care — Bill ${billNo}*`,
-      `Date: ${fmtDate(date)}`,
-      '',
-      custName  ? `Customer: ${custName}` : '',
-      custPhone ? `Phone: ${custPhone}` : '',
-      vehicle   ? `Vehicle: ${vehicle}` : '',
-      regNo     ? `Reg No: ${regNo}` : '',
-      '',
-      filledSvc.length ? `*Services:*\n${filledSvc.map(r=>`• ${r.description} — ${inr((parseFloat(r.qty)||1)*(parseFloat(r.rate)||0))}`).join('\n')}` : '',
-      filledPart.length ? `*Parts:*\n${filledPart.map(r=>`• ${r.name} ×${r.qty} — ${inr((parseFloat(r.qty)||1)*(parseFloat(r.rate)||0))}`).join('\n')}` : '',
-      filledMisc.length ? `*Other:*\n${filledMisc.map(r=>`• ${r.description} — ${inr(parseFloat(r.amount)||0)}`).join('\n')}` : '',
-      '',
-      discAmt > 0 ? `Discount: −${inr(discAmt)}` : '',
-      gst ? `GST (18%): ${inr(gstAmt)}` : '',
-      `*Total: ${inr(total)}*`,
-      `Payment: ${payment}`,
-      techName  ? `Technician: ${techName}` : '',
-      nextSvcDisplay ? `Next Service Due: ${nextSvcDisplay}` : '',
-      notes     ? `\nNote: ${notes}` : '',
-      '',
-      'Thank you for choosing MM Car Care.',
-      'Opp. APSP Petrol Bunk, Kakinada | 9848377309',
-    ].filter(Boolean)
+  // ── WhatsApp: share PDF file (mobile) or download + text (desktop) ────────
+  async function handleWhatsApp() {
+    setPdfLoading(true)
+    try {
+      const { pdf, fileName } = await capturePDF()
+      const blob = pdf.output('blob')
+      const file = new File([blob], fileName, { type:'application/pdf' })
 
-    const phone = custPhone.replace(/\D/g,'')
-    const url = phone
-      ? `https://wa.me/91${phone}?text=${encodeURIComponent(lines.join('\n'))}`
-      : `https://wa.me/?text=${encodeURIComponent(lines.join('\n'))}`
-    window.open(url,'_blank')
+      // Mobile / macOS Safari: native share sheet → pick WhatsApp → sends PDF file
+      if (navigator.canShare?.({ files:[file] })) {
+        await navigator.share({ files:[file], title:`MM Car Care — Bill ${billNo}` })
+        return
+      }
+
+      // Desktop fallback: download PDF then open WhatsApp with text summary
+      const blobUrl = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = blobUrl; a.download = fileName
+      document.body.appendChild(a); a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(blobUrl)
+
+      // Short delay so download starts, then open WhatsApp
+      await new Promise(r => setTimeout(r, 800))
+      const lines = [
+        `*MM Car Care — Invoice*`,
+        `Date: ${fmtDate(date)}`,
+        custName  ? `Customer: *${custName}*` : '',
+        custPhone ? `Phone: ${custPhone}` : '',
+        vehicle   ? `Vehicle: ${vehicle}` : '',
+        regNo     ? `Reg No: ${regNo}` : '',
+        '',
+        filledSvc.length  ? `*Services:*\n${filledSvc.map(r=>`• ${r.description} — ${inr((parseFloat(r.qty)||1)*(parseFloat(r.rate)||0))}`).join('\n')}` : '',
+        filledPart.length ? `*Parts:*\n${filledPart.map(r=>`• ${r.name} ×${r.qty} — ${inr((parseFloat(r.qty)||1)*(parseFloat(r.rate)||0))}`).join('\n')}` : '',
+        filledMisc.length ? `*Other charges:*\n${filledMisc.map(r=>`• ${r.description} — ${inr(parseFloat(r.amount)||0)}`).join('\n')}` : '',
+        '',
+        discAmt > 0 ? `Discount: −${inr(discAmt)}` : '',
+        gst ? `GST (18%): ${inr(gstAmt)}` : '',
+        `*Total: ${inr(total)}*`,
+        `Payment: ${payment}`,
+        techName       ? `Technician: ${techName}` : '',
+        nextSvcDisplay ? `Next Service Due: ${nextSvcDisplay}` : '',
+        notes          ? `\nNote: ${notes}` : '',
+        '',
+        '_PDF has been saved to your device. Please attach it to this chat._',
+        '',
+        'Thank you for choosing MM Car Care — Kakinada | 9848377309',
+      ].filter(Boolean)
+
+      const phone = custPhone.replace(/\D/g,'')
+      const waUrl = phone
+        ? `https://wa.me/91${phone}?text=${encodeURIComponent(lines.join('\n'))}`
+        : `https://wa.me/?text=${encodeURIComponent(lines.join('\n'))}`
+      window.open(waUrl,'_blank')
+    } catch (e) {
+      // user cancelled share — no action needed
+    } finally {
+      setPdfLoading(false)
+    }
   }
 
   // ── shared styles ─────────────────────────────────────────────────────────
@@ -465,22 +491,20 @@ export default function BillCreatePage() {
             {/* ──────── WHITE INVOICE (captured by html2canvas) ──────── */}
             <div id="invoice-print-target" style={{
               background:'#fff', width:'100%', maxWidth:'600px',
-              padding:'36px 40px', color:'#1a1a1a',
+              color:'#1a1a1a', overflow:'hidden',
               fontFamily:'"Helvetica Neue", Arial, sans-serif',
               boxShadow:'0 8px 48px rgba(0,0,0,0.5)',
             }}>
 
-              {/* Header — black/gold band */}
+              {/* Header — black/gold band, full-bleed (no negative margins needed) */}
               <div style={{
                 display:'flex', justifyContent:'space-between', alignItems:'center',
                 background:'#0a0a0a',
-                margin:'-36px -40px 0',
                 padding:'28px 40px 26px',
                 borderBottom:'3px solid #C9A96E',
-                marginBottom:'22px',
               }}>
                 <div>
-                  <div style={{ fontSize:'28px', fontWeight:900, color:'#C9A96E', letterSpacing:'1px', lineHeight:1, fontFamily:'"Helvetica Neue",Arial,sans-serif' }}>
+                  <div style={{ fontSize:'28px', fontWeight:900, color:'#C9A96E', letterSpacing:'1px', lineHeight:1 }}>
                     MM CAR CARE
                   </div>
                   <div style={{ fontSize:'11px', color:'rgba(201,169,110,0.55)', marginTop:'5px', letterSpacing:'0.5px' }}>
@@ -497,6 +521,9 @@ export default function BillCreatePage() {
                   </div>
                 </div>
               </div>
+
+              {/* Body content with padding */}
+              <div style={{ padding:'22px 40px 36px' }}>
 
               {/* Customer + Vehicle */}
               <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'18px', marginBottom:'4px' }}>
@@ -667,6 +694,7 @@ export default function BillCreatePage() {
                 </div>
               </div>
 
+              </div>{/* end body padding div */}
             </div>{/* end invoice-print-target */}
           </div>
         </div>
