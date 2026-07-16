@@ -159,7 +159,7 @@ export default function BillCreatePage() {
   const partTotal = parts.reduce((s,r) => s + (parseFloat(r.qty)||0)*(parseFloat(r.rate)||0), 0)
   const miscTotal = misc.reduce((s,r) => s + (parseFloat(r.amount)||0), 0)
   const subtotal  = svcTotal + partTotal + miscTotal
-  const discAmt   = subtotal * (parseFloat(discount)||0) / 100
+  const discAmt   = parseFloat(discount)||0
   const afterDisc = subtotal - discAmt
   const gstAmt    = gst ? Math.round(afterDisc * 0.18) : 0
   const total     = afterDisc + gstAmt
@@ -558,7 +558,7 @@ export default function BillCreatePage() {
             <div style={secWrap}>
               <div style={secHdr}>Charges & Payment</div>
               <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'9px', marginBottom:'10px' }}>
-                <div><label style={lbl}>Discount %</label><input style={inp} placeholder="0" value={discount} onChange={e=>setDiscount(e.target.value)} /></div>
+                <div><label style={lbl}>Discount ₹</label><input style={inp} placeholder="Amount" value={discount} onChange={e=>setDiscount(e.target.value)} /></div>
                 <div>
                   <label style={lbl}>Payment Status</label>
                   <select style={{...inp,cursor:'pointer'}} value={payment} onChange={e=>setPayment(e.target.value)}>
@@ -768,7 +768,8 @@ export default function BillCreatePage() {
                   </div>
                   {discAmt > 0 && (
                     <div style={{ display:'flex', justifyContent:'space-between', padding:'4px 0', fontSize:'11px', color:'#888' }}>
-                      <span>Discount ({discount}%)</span><span style={{ color:'#c0392b' }}>−{inr(discAmt)}</span>
+                      <span>Discount{subtotal > 0 ? ` (${((discAmt/subtotal)*100).toFixed(1)}%)` : ''}</span>
+                      <span style={{ color:'#c0392b' }}>−{inr(discAmt)}</span>
                     </div>
                   )}
                   {gst && (
