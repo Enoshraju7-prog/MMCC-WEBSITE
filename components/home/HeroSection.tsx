@@ -204,12 +204,31 @@ function HeroSlideshow() {
   )
 }
 
+const SUBTITLES = [
+  'Car wash, full service, AC, tyres, dent repair — everything under one roof. Trusted by 1,500+ customers in Kakinada.',
+  'Book online — we pick up your car, service it, and drop it back home. Or walk into our garage anytime. Trusted by 1,500+ customers in Kakinada.',
+]
+
 export default function HeroSection() {
   const { open } = useBooking()
   const { open: openCallback } = useCallback()
   const heroRef = useRef<HTMLElement>(null)
   const subRef = useRef<HTMLParagraphElement>(null)
   const btnsRef = useRef<HTMLDivElement>(null)
+  const [subIdx, setSubIdx] = useState(0)
+  const [subVisible, setSubVisible] = useState(true)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSubVisible(false)
+      setTimeout(() => {
+        setSubIdx(i => (i + 1) % SUBTITLES.length)
+        setSubVisible(true)
+      }, 400)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
+
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.15 })
@@ -280,9 +299,12 @@ export default function HeroSection() {
               color: 'rgba(255,255,255,0.72)',
               marginBottom: '40px',
               maxWidth: '440px',
+              opacity: subVisible ? 1 : 0,
+              transition: 'opacity 400ms ease',
+              minHeight: '4em',
             }}
           >
-            Book online — we pick up your car, service it, and drop it back home. Or walk into our garage anytime. Trusted by 1,500+ customers in Kakinada.
+            {SUBTITLES[subIdx]}
           </p>
 
           <div ref={btnsRef} style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
