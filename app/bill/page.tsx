@@ -19,7 +19,7 @@ export default function BillPage() {
       if (raw) {
         const { expiry } = JSON.parse(raw)
         if (Date.now() < expiry) {
-          router.replace('/bill/create')
+          router.replace('/bill/home')
           return
         }
         localStorage.removeItem(STORAGE_KEY)
@@ -43,7 +43,7 @@ export default function BillPage() {
       if (res.ok) {
         const expiry = Date.now() + EXPIRY_DAYS * 24 * 60 * 60 * 1000
         localStorage.setItem(STORAGE_KEY, JSON.stringify({ expiry }))
-        router.replace('/bill/create')
+        router.replace('/bill/home')
       } else {
         setError(true)
       }
