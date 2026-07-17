@@ -401,6 +401,12 @@ export default function BillCreatePage() {
           .top-bar-btns { width:100%; display:flex; gap:6px !important; }
           .top-bar-btns button { flex:1 1 auto !important; min-width:0 !important; padding:9px 6px !important; font-size:10px !important; letter-spacing:0.8px !important; }
           .top-bar-btns .btn-new-bill { flex:0 0 auto !important; padding:9px 10px !important; }
+          .inv-header { padding:14px 16px 12px !important; }
+          .inv-brand { font-size:16px !important; letter-spacing:0.5px !important; }
+          .inv-brand-sub { font-size:8px !important; margin-top:3px !important; }
+          .inv-brand-addr { font-size:8px !important; margin-top:6px !important; line-height:1.6 !important; }
+          .inv-bill-label { font-size:13px !important; letter-spacing:1px !important; }
+          .inv-bill-date { font-size:10px !important; margin-top:6px !important; }
         }
       `}</style>
 
@@ -698,26 +704,26 @@ export default function BillCreatePage() {
             }}>
 
               {/* Header — black/gold band, full-bleed (no negative margins needed) */}
-              <div style={{
+              <div className="inv-header" style={{
                 display:'flex', justifyContent:'space-between', alignItems:'center',
                 background:'#0a0a0a',
                 padding:'28px 40px 26px',
                 borderBottom:'3px solid #C9A96E',
               }}>
                 <div>
-                  <div style={{ fontSize:'28px', fontWeight:900, color:'#C9A96E', letterSpacing:'1px', lineHeight:1 }}>
+                  <div className="inv-brand" style={{ fontSize:'28px', fontWeight:900, color:'#C9A96E', letterSpacing:'1px', lineHeight:1 }}>
                     MM CAR CARE
                   </div>
-                  <div style={{ fontSize:'11px', color:'rgba(201,169,110,0.55)', marginTop:'5px', letterSpacing:'0.5px' }}>
+                  <div className="inv-brand-sub" style={{ fontSize:'11px', color:'rgba(201,169,110,0.55)', marginTop:'5px', letterSpacing:'0.5px' }}>
                     M.M. Car Care Service Garage
                   </div>
-                  <div style={{ fontSize:'11px', color:'rgba(255,255,255,0.45)', marginTop:'10px', lineHeight:1.8 }}>
+                  <div className="inv-brand-addr" style={{ fontSize:'11px', color:'rgba(255,255,255,0.45)', marginTop:'10px', lineHeight:1.8 }}>
                     Opp. APSP Petrol Bunk, Kakinada – 533 001<br/>Phone: 9848377309
                   </div>
                 </div>
                 <div style={{ textAlign:'right' }}>
-                  <div style={{ fontSize:'24px', fontWeight:800, color:'#C9A96E', letterSpacing:'2px' }}>CUSTOMER BILL</div>
-                  <div style={{ fontSize:'12px', color:'rgba(255,255,255,0.6)', marginTop:'10px' }}>
+                  <div className="inv-bill-label" style={{ fontSize:'24px', fontWeight:800, color:'#C9A96E', letterSpacing:'2px' }}>CUSTOMER BILL</div>
+                  <div className="inv-bill-date" style={{ fontSize:'12px', color:'rgba(255,255,255,0.6)', marginTop:'10px' }}>
                     {fmtDate(date)||'—'}
                   </div>
                 </div>
