@@ -647,6 +647,122 @@ export default function Nav() {
                     </div>
                   </div>
                 </Link>
+
+                {/* Leave a Review */}
+                <a
+                  href="https://search.google.com/local/writereview?placeid=ChIJWwlCBNkpODoROIMxVQQbd2w"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setUtilOpen(false)}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '12px',
+                    padding: '10px 12px', borderRadius: '7px',
+                    textDecoration: 'none',
+                    transition: 'background 150ms ease',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(201,169,110,0.07)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+                >
+                  <div style={{
+                    width: '30px', height: '30px', borderRadius: '6px',
+                    background: 'rgba(255,255,255,0.04)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                  }}>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 20h9"/>
+                      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-space-mono, monospace)', fontSize: '9px', letterSpacing: '1.2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '2px' }}>
+                      Google Maps
+                    </div>
+                    <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', fontWeight: 600, color: 'rgba(255,255,255,0.85)' }}>
+                      Leave a Review
+                    </div>
+                  </div>
+                </a>
+
+                <div style={{ height: '1px', background: 'rgba(255,255,255,0.05)', margin: '4px 0' }} />
+
+                {/* Call Us section label */}
+                <div style={{
+                  fontFamily: 'var(--font-space-mono, monospace)',
+                  fontSize: '8px',
+                  letterSpacing: '1.4px',
+                  textTransform: 'uppercase',
+                  color: 'rgba(255,255,255,0.25)',
+                  padding: '6px 12px 4px',
+                }}>
+                  Call Us
+                </div>
+
+                {/* Primary number */}
+                <a
+                  href="tel:+919848377309"
+                  onClick={() => setUtilOpen(false)}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '12px',
+                    padding: '9px 12px', borderRadius: '7px',
+                    textDecoration: 'none',
+                    transition: 'background 150ms ease',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(201,169,110,0.07)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+                >
+                  <div style={{
+                    width: '30px', height: '30px', borderRadius: '6px',
+                    background: 'rgba(201,169,110,0.08)',
+                    border: '1px solid rgba(201,169,110,0.15)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                  }}>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="#C9A96E">
+                      <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-space-mono, monospace)', fontSize: '9px', letterSpacing: '1.2px', textTransform: 'uppercase', color: '#C9A96E', marginBottom: '2px' }}>
+                      Primary
+                    </div>
+                    <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', fontWeight: 600, color: '#fff', letterSpacing: '0.3px' }}>
+                      98483 77309
+                    </div>
+                  </div>
+                </a>
+
+                {/* Secondary number */}
+                <a
+                  href="tel:+916304104489"
+                  onClick={() => setUtilOpen(false)}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '12px',
+                    padding: '9px 12px', borderRadius: '7px',
+                    textDecoration: 'none',
+                    transition: 'background 150ms ease',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(201,169,110,0.07)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+                >
+                  <div style={{
+                    width: '30px', height: '30px', borderRadius: '6px',
+                    background: 'rgba(255,255,255,0.04)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                  }}>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)">
+                      <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-space-mono, monospace)', fontSize: '9px', letterSpacing: '1.2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '2px' }}>
+                      Secondary
+                    </div>
+                    <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', fontWeight: 600, color: 'rgba(255,255,255,0.7)', letterSpacing: '0.3px' }}>
+                      63041 04489
+                    </div>
+                  </div>
+                </a>
               </div>
             )}
           </div>

@@ -97,7 +97,7 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
 
   const handleConfirm = () => {
     const serviceName = SERVICES.find((s) => s.id === selected)?.label ?? selected ?? ''
-    const timeLabel = timeSlot === 'morning' ? 'Morning (9am–12pm)' : timeSlot === 'afternoon' ? 'Afternoon (2pm–5pm)' : timeSlot === 'evening' ? 'Evening (5pm–8pm)' : 'Not specified'
+    const timeLabel = timeSlot === 'morning' ? 'Morning (9am–12pm)' : timeSlot === 'afternoon' ? 'Afternoon (12pm–5pm)' : timeSlot === 'evening' ? 'Evening (5pm–8pm)' : 'Not specified'
     const msg = encodeURIComponent(
       `Hi MM Car Care! I want to book a service.\nName: ${form.name}\nPhone: ${form.phone}\nVehicle: ${form.vehicle}\nService: ${serviceName}\nTime: ${timeLabel}${form.message ? `\nNote: ${form.message}` : ''}`
     )
@@ -309,7 +309,7 @@ export default function BookingModal({ onClose }: { onClose: () => void }) {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '6px', marginBottom: '10px' }}>
                 {[
                   { id: 'morning',   label: 'Morning',   sub: '9am – 12pm' },
-                  { id: 'afternoon', label: 'Afternoon', sub: '2pm – 5pm' },
+                  { id: 'afternoon', label: 'Afternoon', sub: '12pm – 5pm' },
                   { id: 'evening',   label: 'Evening',   sub: '5pm – 8pm' },
                 ].map((t) => (
                   <button
