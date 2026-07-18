@@ -417,7 +417,7 @@ export default function BillCreatePage() {
           borderBottom:'1px solid rgba(201,169,110,0.12)',
           padding:'11px 16px',
           display:'flex', alignItems:'center', justifyContent:'space-between',
-          background:'#0a0a0a', position:'sticky', top:0, zIndex:200,
+          background:'#0a0a0a', position:'sticky', top:0, zIndex:50,
           gap:'8px', flexWrap:'wrap',
         }}>
           <div className="top-bar-brand" style={{ display:'flex', alignItems:'center', gap:'12px' }}>
