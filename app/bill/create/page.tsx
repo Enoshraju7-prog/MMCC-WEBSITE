@@ -715,7 +715,7 @@ export default function BillCreatePage() {
                     MM CAR CARE
                   </div>
                   <div className="inv-brand-sub" style={{ fontSize:'11px', color:'rgba(201,169,110,0.55)', marginTop:'5px', letterSpacing:'0.5px' }}>
-                    M.M. Car Care Service Garage
+                    MM Car Care Garage
                   </div>
                   <div className="inv-brand-addr" style={{ fontSize:'11px', color:'rgba(255,255,255,0.45)', marginTop:'10px', lineHeight:1.8 }}>
                     Opp. APSP Petrol Bunk, Kakinada – 533 001<br/>Phone: 9848377309
@@ -756,7 +756,7 @@ export default function BillCreatePage() {
                   <thead>
                     <tr style={{ borderBottom:'1.5px solid #e8e8e8' }}>
                       {['Service','Qty','Rate','Amount'].map((h,i)=>(
-                        <th key={h} style={{ fontSize:'8px', letterSpacing:'2px', textTransform:'uppercase', color:'#aaa', fontWeight:700, textAlign:i===0?'left':i===1?'center':'right', padding:'0 0 8px', width:i===0?'54%':i===1?'10%':'18%' }}>{h}</th>
+                        <th key={h} style={{ fontSize:'8px', letterSpacing:'2px', textTransform:'uppercase', color:'#444', fontWeight:700, textAlign:i===0?'left':i===1?'center':'right', padding:'0 0 8px', width:i===0?'54%':i===1?'10%':'18%' }}>{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -773,7 +773,7 @@ export default function BillCreatePage() {
                       )
                     })}
                     <tr>
-                      <td colSpan={3} style={{ fontSize:'10px', color:'#bbb', textAlign:'right', padding:'6px 0 0', letterSpacing:'1px', textTransform:'uppercase' }}>Services Subtotal</td>
+                      <td colSpan={3} style={{ fontSize:'10px', color:'#555', textAlign:'right', padding:'6px 0 0', letterSpacing:'1px', textTransform:'uppercase' }}>Services Subtotal</td>
                       <td style={{ fontSize:'12px', fontWeight:700, color:'#333', textAlign:'right', padding:'6px 0 0' }}>{inr(svcTotal)}</td>
                     </tr>
                   </tbody>
@@ -787,7 +787,7 @@ export default function BillCreatePage() {
                   <thead>
                     <tr style={{ borderBottom:'1.5px solid #e8e8e8' }}>
                       {['Part Name','Qty','Unit Price','Amount'].map((h,i)=>(
-                        <th key={h} style={{ fontSize:'8px', letterSpacing:'2px', textTransform:'uppercase', color:'#aaa', fontWeight:700, textAlign:i===0?'left':i===1?'center':'right', padding:'0 0 8px', width:i===0?'48%':i===1?'10%':'21%' }}>{h}</th>
+                        <th key={h} style={{ fontSize:'8px', letterSpacing:'2px', textTransform:'uppercase', color:'#444', fontWeight:700, textAlign:i===0?'left':i===1?'center':'right', padding:'0 0 8px', width:i===0?'48%':i===1?'10%':'21%' }}>{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -804,7 +804,7 @@ export default function BillCreatePage() {
                       )
                     })}
                     <tr>
-                      <td colSpan={3} style={{ fontSize:'10px', color:'#bbb', textAlign:'right', padding:'6px 0 0', letterSpacing:'1px', textTransform:'uppercase' }}>Parts Subtotal</td>
+                      <td colSpan={3} style={{ fontSize:'10px', color:'#555', textAlign:'right', padding:'6px 0 0', letterSpacing:'1px', textTransform:'uppercase' }}>Parts Subtotal</td>
                       <td style={{ fontSize:'12px', fontWeight:700, color:'#333', textAlign:'right', padding:'6px 0 0' }}>{inr(partTotal)}</td>
                     </tr>
                   </tbody>
@@ -817,8 +817,8 @@ export default function BillCreatePage() {
                 <table style={{ width:'100%', borderCollapse:'collapse' }}>
                   <thead>
                     <tr style={{ borderBottom:'1.5px solid #e8e8e8' }}>
-                      <th style={{ fontSize:'8px', letterSpacing:'2px', textTransform:'uppercase', color:'#aaa', fontWeight:700, textAlign:'left', padding:'0 0 8px' }}>Description</th>
-                      <th style={{ fontSize:'8px', letterSpacing:'2px', textTransform:'uppercase', color:'#aaa', fontWeight:700, textAlign:'right', padding:'0 0 8px', width:'25%' }}>Amount</th>
+                      <th style={{ fontSize:'8px', letterSpacing:'2px', textTransform:'uppercase', color:'#444', fontWeight:700, textAlign:'left', padding:'0 0 8px' }}>Description</th>
+                      <th style={{ fontSize:'8px', letterSpacing:'2px', textTransform:'uppercase', color:'#444', fontWeight:700, textAlign:'right', padding:'0 0 8px', width:'25%' }}>Amount</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -829,7 +829,7 @@ export default function BillCreatePage() {
                       </tr>
                     ))}
                     <tr>
-                      <td style={{ fontSize:'10px', color:'#bbb', textAlign:'right', padding:'6px 0 0', letterSpacing:'1px', textTransform:'uppercase' }}>Misc Subtotal</td>
+                      <td style={{ fontSize:'10px', color:'#555', textAlign:'right', padding:'6px 0 0', letterSpacing:'1px', textTransform:'uppercase' }}>Misc Subtotal</td>
                       <td style={{ fontSize:'12px', fontWeight:700, color:'#333', textAlign:'right', padding:'6px 0 0' }}>{inr(miscTotal)}</td>
                     </tr>
                   </tbody>
@@ -840,31 +840,31 @@ export default function BillCreatePage() {
               <div style={{ display:'flex', justifyContent:'flex-end', margin:'20px 0 18px' }}>
                 <div style={{ width:'220px' }}>
                   {svcTotal > 0 && (
-                    <div style={{ display:'flex', justifyContent:'space-between', padding:'3px 0', fontSize:'11px', color:'#aaa' }}>
+                    <div style={{ display:'flex', justifyContent:'space-between', padding:'3px 0', fontSize:'11px', color:'#444' }}>
                       <span>Services</span><span>{inr(svcTotal)}</span>
                     </div>
                   )}
                   {partTotal > 0 && (
-                    <div style={{ display:'flex', justifyContent:'space-between', padding:'3px 0', fontSize:'11px', color:'#aaa' }}>
+                    <div style={{ display:'flex', justifyContent:'space-between', padding:'3px 0', fontSize:'11px', color:'#444' }}>
                       <span>Parts</span><span>{inr(partTotal)}</span>
                     </div>
                   )}
                   {miscTotal > 0 && (
-                    <div style={{ display:'flex', justifyContent:'space-between', padding:'3px 0', fontSize:'11px', color:'#aaa' }}>
+                    <div style={{ display:'flex', justifyContent:'space-between', padding:'3px 0', fontSize:'11px', color:'#444' }}>
                       <span>Miscellaneous</span><span>{inr(miscTotal)}</span>
                     </div>
                   )}
-                  <div style={{ display:'flex', justifyContent:'space-between', padding:'4px 0 4px', fontSize:'11px', color:'#888', borderTop:'1px solid #eee', marginTop:'3px' }}>
+                  <div style={{ display:'flex', justifyContent:'space-between', padding:'4px 0 4px', fontSize:'11px', color:'#444', borderTop:'1px solid #eee', marginTop:'3px' }}>
                     <span>Subtotal</span><span>{inr(subtotal)}</span>
                   </div>
                   {discAmt > 0 && (
-                    <div style={{ display:'flex', justifyContent:'space-between', padding:'4px 0', fontSize:'11px', color:'#888' }}>
+                    <div style={{ display:'flex', justifyContent:'space-between', padding:'4px 0', fontSize:'11px', color:'#444' }}>
                       <span>Discount{subtotal > 0 ? ` (${((discAmt/subtotal)*100).toFixed(1)}%)` : ''}</span>
                       <span style={{ color:'#c0392b' }}>−{inr(discAmt)}</span>
                     </div>
                   )}
                   {gst && (
-                    <div style={{ display:'flex', justifyContent:'space-between', padding:'4px 0', fontSize:'11px', color:'#888' }}>
+                    <div style={{ display:'flex', justifyContent:'space-between', padding:'4px 0', fontSize:'11px', color:'#444' }}>
                       <span>GST (18%)</span><span>{inr(gstAmt)}</span>
                     </div>
                   )}
@@ -873,7 +873,7 @@ export default function BillCreatePage() {
                     <span style={{ fontSize:'15px', fontWeight:800, color:'#111' }}>{inr(total)}</span>
                   </div>
                   <div style={{ display:'flex', justifyContent:'space-between', padding:'4px 0' }}>
-                    <span style={{ fontSize:'10px', color:'#bbb' }}>Payment</span>
+                    <span style={{ fontSize:'10px', color:'#555' }}>Payment</span>
                     <span style={{ fontSize:'11px', fontWeight:700, color: isPaid ? '#27ae60' : '#e67e22' }}>{payment}{isPaid ? ' ✓' : ' ⚠'}</span>
                   </div>
                 </div>
@@ -909,11 +909,11 @@ export default function BillCreatePage() {
               <div style={{ borderTop:'1px solid #eee', paddingTop:'16px', display:'flex', justifyContent:'space-between', alignItems:'flex-end' }}>
                 <div>
                   <div style={{ fontSize:'12px', fontWeight:700, color:'#111', marginBottom:'2px' }}>Thank you for trusting MM Car Care.</div>
-                  <div style={{ fontSize:'10px', color:'#aaa' }}>Drive safe — see you at your next service.</div>
+                  <div style={{ fontSize:'10px', color:'#444' }}>Drive safe — see you at your next service.</div>
                 </div>
                 <div style={{ textAlign:'right' }}>
                   <div style={{ fontSize:'9px', letterSpacing:'1.5px', color:'#C9A96E', fontWeight:700 }}>MM CAR CARE</div>
-                  <div style={{ fontSize:'9px', color:'#ccc', marginTop:'2px' }}>Kakinada — 9848377309</div>
+                  <div style={{ fontSize:'9px', color:'#666', marginTop:'2px' }}>Kakinada — 9848377309</div>
                 </div>
               </div>
 
