@@ -504,48 +504,6 @@ export default function Nav() {
                 zIndex: 300,
                 boxShadow: '0 12px 40px rgba(0,0,0,0.7)',
               }}>
-                {/* Bill Generator */}
-                <Link
-                  href="/bill"
-                  onClick={() => setUtilOpen(false)}
-                  style={{
-                    display: 'flex', alignItems: 'center', gap: '12px',
-                    padding: '11px 12px', borderRadius: '7px',
-                    textDecoration: 'none',
-                    background: 'rgba(201,169,110,0.06)',
-                    border: '1px solid rgba(201,169,110,0.14)',
-                    marginBottom: '4px',
-                    transition: 'background 150ms ease',
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(201,169,110,0.13)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(201,169,110,0.06)')}
-                >
-                  <div style={{
-                    width: '30px', height: '30px', borderRadius: '6px',
-                    background: 'rgba(201,169,110,0.12)',
-                    border: '1px solid rgba(201,169,110,0.2)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                  }}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                      <polyline points="14 2 14 8 20 8"/>
-                      <line x1="16" y1="13" x2="8" y2="13"/>
-                      <line x1="16" y1="17" x2="8" y2="17"/>
-                      <polyline points="10 9 9 9 8 9"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <div style={{ fontFamily: 'var(--font-space-mono, monospace)', fontSize: '9px', letterSpacing: '1.2px', textTransform: 'uppercase', color: '#C9A96E', marginBottom: '2px' }}>
-                      Staff Only
-                    </div>
-                    <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', fontWeight: 600, color: '#fff' }}>
-                      Bill Generator
-                    </div>
-                  </div>
-                </Link>
-
-                <div style={{ height: '1px', background: 'rgba(255,255,255,0.05)', margin: '2px 0 4px' }} />
-
                 {/* Location */}
                 <a
                   href={MAPS_URL}
