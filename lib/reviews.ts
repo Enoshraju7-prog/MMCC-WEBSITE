@@ -13,6 +13,20 @@ export const LEAVE_REVIEW_URL = `https://search.google.com/local/writereview?pla
 // Only 4-5 star reviews shown. Nightly sync adds new ones automatically.
 export const REVIEWS: Review[] = [
   {
+    id: 'g1753747200',
+    author: 'VENU GOPALA KRISHNA NEHRU PANTHAM',
+    rating: 5,
+    text: 'Very professional work. Very affordable. Reliable and much recommended.',
+    date: '2026-07-29',
+  },
+  {
+    id: 'g1753747199',
+    author: 'Chandu Pantham',
+    rating: 5,
+    text: 'Very professional work. Well known car experts. Much recommended.',
+    date: '2026-07-29',
+  },
+  {
     id: 'g1783945976',
     author: 'Ravi Kumar',
     rating: 5,
