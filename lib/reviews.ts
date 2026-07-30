@@ -13,6 +13,13 @@ export const LEAVE_REVIEW_URL = `https://search.google.com/local/writereview?pla
 // Only 4-5 star reviews shown. Nightly sync adds new ones automatically.
 export const REVIEWS: Review[] = [
   {
+    id: 'g1785369780',
+    author: 'devisetty enoshraj',
+    rating: 5,
+    text: 'Amazing services in Kakinada! Santosh Garu is super helpful and responds really well. I totally recommend them to everyone.',
+    date: '2026-07-30',
+  },
+  {
     id: 'g1753747200',
     author: 'VENU GOPALA KRISHNA NEHRU PANTHAM',
     rating: 5,
