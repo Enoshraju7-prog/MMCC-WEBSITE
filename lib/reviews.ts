@@ -13,6 +13,48 @@ export const LEAVE_REVIEW_URL = `https://search.google.com/local/writereview?pla
 // Only 4-5 star reviews shown. Nightly sync adds new ones automatically.
 export const REVIEWS: Review[] = [
   {
+    id: 'g20260929-swaroop-teja',
+    author: 'Swaroop Teja',
+    rating: 5,
+    text: 'One of the best service centers! They inspect each and every issue, no matter how small, and make sure everything is done with perfection. I went there for a front carrier issue, and they fixed it perfectly with utmost care and in minimal time and reasonable price. They also identified and repaired several other issues with my car. P.S. The staff were very welcoming, and I especially appreciated the owner’s way of communicating with customers and explaining the vehicle issues clearly. His approach and explanation were truly one of the best parts of my experience.',
+    date: '2026-09-29',
+  },
+  {
+    id: 'g20260929-krishna-reddy-kakinada',
+    author: 'krishna Reddy Kakinada',
+    rating: 5,
+    text: 'Good job & carefull work',
+    date: '2026-09-29',
+  },
+  {
+    id: 'g20260929-girraj-sharma',
+    author: 'Girraj Sharma',
+    rating: 5,
+    text: 'The best service center for cars. I am from Madya Pradesh and was traveling from vijayawada to vizag and my car got handbrake issue nearing kakinada, and in kakinada I was lucky enough to find this garage. They inspected and fixed my car in 2 hrs and additionally fixed minor issues, scratches etc and filled all the oils. The best service.',
+    date: '2026-09-29',
+  },
+  {
+    id: 'g20260926-saisrikanth-p',
+    author: 'Saisrikanth P',
+    rating: 5,
+    text: 'Customer receiving is good, works super fast, Can trust the services offered',
+    date: '2026-09-26',
+  },
+  {
+    id: 'g20260923-penkey-thrimurtulu',
+    author: 'Penkey Thrimurtulu',
+    rating: 5,
+    text: 'గూడ్ work',
+    date: '2026-09-23',
+  },
+  {
+    id: 'g20260916-ravi-kumar-pilli-advocate',
+    author: 'RAVI KUMAR PILLI ADVOCATE',
+    rating: 5,
+    text: 'Good from MD sir and Staff',
+    date: '2026-09-16',
+  },
+  {
     id: 'g1785369780',
     author: 'devisetty enoshraj',
     rating: 5,
