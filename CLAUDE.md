@@ -11,7 +11,7 @@ Each feature does one thing, the code is easy to follow, and the app is easy to 
 # Page Generation Rule (applies to ALL pages, blog posts, and service pages)
 
 Before generating any page, blog post, or service page, read:
-- `references/on-page-seo.md` — the full on-page SEO checklist (mandatory for every page)
+- `docs/references/on-page-seo.md` — the full on-page SEO checklist (mandatory for every page)
 
 Every generated page must satisfy every item on that checklist automatically.
 
@@ -23,24 +23,24 @@ Every generated page must satisfy every item on that checklist automatically.
 
 When triggered, run ALL steps below without stopping to ask for confirmation. Do not ask "shall I proceed?" — just do it.
 
-## Step 1 — Read keywords.csv
-- Open `keywords.csv`
+## Step 1 — Read docs/keywords.csv
+- Open `docs/keywords.csv`
 - Find the **first row** where `status = pending` (lowest priority number with pending status)
 - That is the keyword to write about
 - Note: keyword, volume, kd, cluster, intent
 
 ## Step 2 — Read all reference files (every single time, no shortcuts)
 Read ALL of these before writing a single word:
-1. `references/on-page-seo.md` — 80-item SEO checklist, every item must be satisfied
-2. `references/blog-process.md` — 8-step research process, run every step
-3. `references/humour.md` — dad joke mandatory in first 50 words
-4. `references/voice.md` — sentence style and what words to avoid
-5. `references/stats.md` — real numbers only, never invent statistics
-6. `references/stories.md` — real workshop anecdotes for grounding
-7. `references/opinions.md` — strong positions stated as facts, not suggestions
+1. `docs/references/on-page-seo.md` — 80-item SEO checklist, every item must be satisfied
+2. `docs/references/blog-process.md` — 8-step research process, run every step
+3. `docs/references/humour.md` — dad joke mandatory in first 50 words
+4. `docs/references/voice.md` — sentence style and what words to avoid
+5. `docs/references/stats.md` — real numbers only, never invent statistics
+6. `docs/references/stories.md` — real workshop anecdotes for grounding
+7. `docs/references/opinions.md` — strong positions stated as facts, not suggestions
 
 ## Step 3 — Run blog-process.md research (all 8 steps)
-- WebSearch the primary keyword from keywords.csv
+- WebSearch the primary keyword from docs/keywords.csv
 - WebFetch top 3 results — read the full content
 - Match their format (listicle / guide / comparison) and length (within 20%)
 - Note every H2/H3 topic across the 3 pages — cover all of them
@@ -48,7 +48,7 @@ Read ALL of these before writing a single word:
 - Add 1–2 Kakinada-specific angles the top 3 missed
 
 ## Step 4 — Generate the BlogPost entry
-Add a new entry to `BLOG_POSTS` in `lib/blog.ts`. Use this exact structure:
+Add a new entry to `BLOG_POSTS` in `frontend/data/blog.ts`. Use this exact structure:
 
 ```typescript
 {
@@ -82,13 +82,13 @@ Add a new entry to `BLOG_POSTS` in `lib/blog.ts`. Use this exact structure:
 - Real numbers from stats.md — never invent a statistic
 - End every post with the CTA: phone 9848377309, Opp. APSP Petrol Bunk
 
-## Step 5 — Update keywords.csv
+## Step 5 — Update docs/keywords.csv
 Change the row's `status` from `pending` to `published`.
 Add today's date to `date_published` and the slug to `slug`.
 
 ## Step 6 — Commit and deploy
 ```bash
-git add lib/blog.ts keywords.csv
+git add frontend/data/blog.ts docs/keywords.csv
 git commit -m "Add blog post: [Post Title]"
 git push origin main
 ```
@@ -102,14 +102,14 @@ Vercel auto-deploys on push. Post is live within 2 minutes.
 When writing any blog post for MM Car Care manually:
 
 **Step 1 — Read these reference files first:**
-- `references/on-page-seo.md` — full on-page SEO checklist (mandatory — read this first)
-- `references/blog-process.md` — the 8-step research process to run before writing (mandatory)
-- `references/humour.md` — dad jokes are mandatory; first 50 words must land one
-- `references/voice.md` — sentence style, words to avoid, what MM Car Care sounds like
-- `references/stats.md` — real numbers to use; never invent figures
-- `references/stories.md` — real workshop anecdotes to open or ground articles
-- `references/opinions.md` — strong positions to state as facts, not suggestions
-- `keywords.csv` — next pending keyword to write about
+- `docs/references/on-page-seo.md` — full on-page SEO checklist (mandatory — read this first)
+- `docs/references/blog-process.md` — the 8-step research process to run before writing (mandatory)
+- `docs/references/humour.md` — dad jokes are mandatory; first 50 words must land one
+- `docs/references/voice.md` — sentence style, words to avoid, what MM Car Care sounds like
+- `docs/references/stats.md` — real numbers to use; never invent figures
+- `docs/references/stories.md` — real workshop anecdotes to open or ground articles
+- `docs/references/opinions.md` — strong positions to state as facts, not suggestions
+- `docs/keywords.csv` — next pending keyword to write about
 
 **Step 2 — Run the blog-process.md research steps:**
 - WebSearch the primary keyword
@@ -138,7 +138,7 @@ Claude Code to behave the way I want. Each feature does one thing, the code is e
 **Rule 1: Always read first**
 Before taking any action, always read:
 - `CLAUDE.md`
-- `project_specs.md`
+- `docs/project_specs.md`
 
 
 If either file doesn't exist, create it before doing anything else.
@@ -146,7 +146,7 @@ If either file doesn't exist, create it before doing anything else.
 
 **Rule 2: Define before you build**
 Before writing any code:
-1. Create or update `project_specs.md` and define:
+1. Create or update `docs/project_specs.md` and define:
   - What the app does and who uses it
   - Tech stack (framework, database, auth, hosting)
   - Pages and user flows (public vs authenticated)
@@ -229,17 +229,17 @@ When a task involves external tools or technical elements that a non-coder would
 # File Structure
 
 
-- `/app` → All the pages your users actually see
-- `/app/api/` → The behind-the-scenes code that handles data (saving, fetching, etc.)
-- `/app/(admin)/` → Pages only the employer can see (dashboard, jobs, reviewing candidates)
-- `/app/interview/[token]/` → The page candidates land on when they click their invite link
-- `/components/` → Reusable building blocks (buttons, cards, forms) used across pages
-- `/lib/` → Shared helper code used throughout the app
-- `/lib/supabase/` → The code that connects the app to your Supabase database
+- `/frontend/app` → Next.js page and API entrypoints required by the framework
+- `/frontend/app/api/` → Thin wrappers that export handlers from `/backend/routes/`
+- `/frontend/components/` → Reusable UI building blocks used across pages
+- `/frontend/contexts/` → Shared client-side state
+- `/frontend/data/` → Typed site content such as reviews, blog posts, and business details
+- `/backend/routes/` → Server-side API implementations and business logic
+- `/docs/` → Operational runbooks and scheduled-task prompts
 - `/supabase/` → The instructions that set up your database tables
-- `/public/` → Images and other static files
+- `/frontend/public/` → Images and other static files
 - `.env.local` → Your secret keys — never share or commit this to GitHub
-- `project_specs.md` → The blueprint Claude reads before doing anything
+- `docs/project_specs.md` → The blueprint Claude reads before doing anything
 
 
 
@@ -340,9 +340,6 @@ Never say "done" if:
 # Scope
 
 
-Only build what is described in `project_specs.md`.
+Only build what is described in `docs/project_specs.md`.
 If anything is unclear, ask before starting.
-
-
-
 

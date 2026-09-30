@@ -11,7 +11,7 @@ Live at **[mmcarcarekakinada.co.in](https://mmcarcarekakinada.co.in)**
 - **AI phone agent** — customer fills a form → outbound AI call triggers from an Indian number → AI collects car issue + books slot in English or Telugu
 - **Lead email alerts** — after every call, owner receives a styled HTML email with customer details + call summary
 - **SEO blog** — structured blog pipeline with keyword tracking, FAQ schema, and Kakinada-specific content
-- **Google Reviews** — 70+ live reviews displayed on site
+- **Google Reviews** — 80 live reviews displayed on site, checked by a duplicate-safe browser agent every three days
 
 ---
 
@@ -36,46 +36,21 @@ Live at **[mmcarcarekakinada.co.in](https://mmcarcarekakinada.co.in)**
 ## Project Structure
 
 ```
-app/
-├── page.tsx                  # Home page
-├── about/                    # About page
-├── services/                 # Services overview + individual service pages
-├── blog/
-│   ├── page.tsx              # Blog index
-│   └── [slug]/page.tsx       # Individual blog post (dynamic)
-├── reviews/                  # All reviews page
-├── contact/                  # Contact page
-├── ai-call/                  # AI call booking page (standalone)
-├── booking-confirmed/        # Post-booking confirmation page
-└── api/
-    ├── callback/             # Triggers outbound VAPI AI call
-    ├── vapi-webhook/         # Receives end-of-call report → email + Sheet log
-    ├── pexels/               # Fetches blog hero images from Pexels API
-    ├── map-image/            # Serves static map image
-    └── sync-reviews/         # Review sync endpoint
+frontend/
+├── app/                      # Next.js pages, layouts, and API entrypoints
+├── components/               # Reusable UI and page sections
+├── contexts/                 # Booking and callback client state
+├── data/                     # Blog, review, and business content
+├── public/                   # Static assets and verification files
+└── ...                       # Next.js and TypeScript configuration
 
-components/
-├── Nav.tsx                   # Navbar with mobile menu + click-to-call
-├── Footer.tsx
-├── CallbackModal.tsx         # AI call booking modal (home page)
-├── BookingModal.tsx          # WhatsApp booking modal
-├── home/                     # Home page sections
-│   ├── HeroSection.tsx       # GSAP hero slideshow (5 slides)
-│   ├── ServicesOverview.tsx
-│   ├── HomeReviewsTeaser.tsx
-│   ├── StatsBar.tsx
-│   ├── ProcessStrip.tsx
-│   ├── CTASection.tsx
-│   └── CarAnimation.tsx
-├── about/                    # About page sections
-├── contact/                  # Contact grid
-└── services/                 # Service page components
+backend/
+└── routes/                   # Server-side API implementations
 
-lib/
-├── blog.ts                   # All blog post data (BLOG_POSTS array)
-├── reviews.ts                # All Google reviews (REVIEWS array)
-├── business.ts               # Business info — name, address, phone, hours
-└── callback-context.tsx      # React context for callback modal state
+docs/
+├── references/               # SEO and editorial source material
+├── review-automation.md      # Three-day Google review task
+└── project_specs.md          # Project architecture and requirements
 ```
 
 ---
@@ -126,6 +101,7 @@ GOOGLE_SHEET_URL=           # Apps Script web app deployment URL
 
 # Pexels — blog post hero images
 PEXELS_API_KEY=             # From pexels.com/api (free)
+
 ```
 
 ---
@@ -152,7 +128,7 @@ npm run start
 
 ## Blog System
 
-All blog posts live in `lib/blog.ts` as a typed TypeScript array — no database needed. Each post follows this schema:
+All blog posts live in `frontend/data/blog.ts` as a typed TypeScript array — no database needed. Each post follows this schema:
 
 ```typescript
 {
@@ -171,6 +147,12 @@ All blog posts live in `lib/blog.ts` as a typed TypeScript array — no database
 ```
 
 Hero images are fetched at runtime from Pexels API via `/api/pexels?query=...`.
+
+## Google Review Monitoring
+
+A scheduled desktop task runs every three days and opens the public Google Maps listing in a browser. It compares the newest reviews with `frontend/data/reviews.ts` using the source ID when available and normalized author-plus-text as a fallback. It adds only genuinely new written 4- or 5-star reviews, runs the build checks, pushes `main`, and verifies the deployed count. No Google Places API key is required.
+
+The durable task prompt and schedule are documented in [`docs/review-automation.md`](docs/review-automation.md). The machine must be on and the ChatGPT desktop app must be running for a local-project scheduled task.
 
 ---
 
