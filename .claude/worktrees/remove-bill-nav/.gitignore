@@ -23,9 +23,3 @@ yarn-error.log*
 .DS_Store
 *.pem
 .vercel
-.gstack/
-
-# private interview prep — keep off GitHub
-abhibus-interview-prep.md
-abhibus-study-guide.md
-MM_CarCare_Interview_Prep.md
