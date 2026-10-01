@@ -1,10 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Providers from '@frontend/components/Providers'
-import Nav from '@frontend/components/Nav'
-import Footer from '@frontend/components/Footer'
-import CustomCursor from '@frontend/components/CustomCursor'
-import ScrollProgress from '@frontend/components/ScrollProgress'
+import SiteFrame from '@frontend/components/SiteFrame'
 import { SITE_URL, BUSINESS } from '@frontend/data/business'
 
 export const metadata: Metadata = {
@@ -134,12 +131,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body suppressHydrationWarning>
         <Providers>
-          <CustomCursor />
-          <ScrollProgress />
-          <Nav />
-          <div className="nav-spacer" />
-          <main>{children}</main>
-          <Footer />
+          <SiteFrame>{children}</SiteFrame>
         </Providers>
       </body>
     </html>
